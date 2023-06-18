@@ -35,10 +35,14 @@ declare global {
 
   export interface TTHUser {
     id: string;
-    name: string;
+    first_name?: string;
+    last_name?: string;
     username?: string;
     email: string;
-    type: string;
+    is_staff: boolean;
+    is_superuser: boolean;
+    date_joined: Date;
+    last_login: Date;
   }
 
   export interface TTHGoal {

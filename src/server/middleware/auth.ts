@@ -12,7 +12,9 @@ const getCurrentUser = async (req: Request, res: Response, next: NextFunction) =
       headers: { Authorization: `Bearer ${req.cookies.session}` },
     });
 
-    req.user = { name: data.name, email: data.email, id: data.id, type: data.type };
+    const { id, first_name, last_name, email, is_staff, is_superuser, date_joined, last_login } = data as TTHUser;
+
+    req.user = { id, first_name, last_name, email, is_staff, is_superuser, date_joined, last_login };
     res.queries.user = req.user;
   } catch {
     console.error('Error: Fetching data from current user');

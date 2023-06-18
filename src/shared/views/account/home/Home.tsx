@@ -10,7 +10,7 @@ const Home = () => {
     <div className="p-8">
       <div className="flex items-center justify-between">
         <PageTitle
-          title={`Welcome, ${user.name?.split(' ')?.[0]}.`}
+          title={`Welcome, ${user.first_name?.split(' ')?.[0]}.`}
           subtitle="Here is an overview of your account."
           className="mb-4"
         />

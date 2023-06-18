@@ -14,7 +14,7 @@ const Navbar = () => {
         {!user && <NavbarLink to="/login" label="Login" />}
         {!user && <NavbarLink to="/signup" label="Sign up" />}
         {user && <NavbarLink to="/api/logout" label="Logout" />}
-        {user && <NavbarLink to="/account/" label={user.name || user.email} />}
+        {user && <NavbarLink to="/account/" label={user.first_name || user.email} />}
       </div>
     </nav>
   );

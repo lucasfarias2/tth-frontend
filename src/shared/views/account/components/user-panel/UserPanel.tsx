@@ -1,6 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import Logo from '@/shared/components/logo/Logo';
 import AchievementIcon from '@/shared/components/ui/icons/AchievementIcon';
+import ConfigurationIcon from '@/shared/components/ui/icons/ConfigurationIcon';
 import HomeIcon from '@/shared/components/ui/icons/HomeIcon';
 import LogoutIcon from '@/shared/components/ui/icons/LogoutIcon';
 import SettingsIcon from '@/shared/components/ui/icons/SettingsIcon';
@@ -20,10 +21,10 @@ const UserPanel = () => {
         </div>
         <div className="py-4">
           <UserPanelLink to="/account/" Icon={HomeIcon} label="Home" />
-          <UserPanelLink to="/account/tasks" Icon={SettingsIcon} label="My tasks" />
+          <UserPanelLink to="/account/habits" Icon={SettingsIcon} label="My habits" />
           <UserPanelLink to="/account/objectives" Icon={SettingsIcon} label="My objectives" />
           <UserPanelLink to="/account/goals" end Icon={AchievementIcon} label="My goals" />
-          <UserPanelLink to="/account/settings" end Icon={SettingsIcon} label="Settings" />
+          <UserPanelLink to="/account/settings" end Icon={ConfigurationIcon} label="Settings" />
         </div>
       </div>
 
@@ -32,7 +33,7 @@ const UserPanel = () => {
           {user && (
             <a href="/account/" className="mr-4 flex items-center py-2 text-sm font-medium">
               <UserIcon className="mr-3 text-2xl text-gray-500" />
-              {user.name || user.email || user.username}
+              {user.first_name || user.email || user.username} {user.last_name}
             </a>
           )}
           {user && (
