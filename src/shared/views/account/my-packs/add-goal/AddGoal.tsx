@@ -99,7 +99,7 @@ const AddGoal = () => {
 
           <input
             type="submit"
-            className="mt-4 cursor-pointer rounded-lg border border-orange-400 bg-orange-400 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500"
+            className="mt-4 cursor-pointer rounded-lg border border-rose-400 bg-rose-400 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-rose-500"
           />
         </form>
       </div>

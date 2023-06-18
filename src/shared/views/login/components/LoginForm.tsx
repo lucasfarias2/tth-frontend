@@ -53,7 +53,7 @@ const LoginForm = () => {
         inputProps={{ type: 'password', placeholder: 'Password', autoComplete: 'current-password' }}
       />
 
-      <button type="submit" className="mt-4 cursor-pointer rounded-lg bg-orange-400 p-2 font-semibold text-white">
+      <button type="submit" className="mt-4 cursor-pointer rounded-lg bg-rose-400 p-2 font-semibold text-white">
         Submit
       </button>
     </form>

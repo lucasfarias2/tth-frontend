@@ -22,7 +22,7 @@ const FormSwitch = ({ name, label, control, defaultValue, ...props }: IProps) =>
           <Switch
             checked={value}
             onChange={onChange}
-            className={`${value ? 'bg-orange-400' : 'bg-gray-300'}
+            className={`${value ? 'bg-rose-400' : 'bg-gray-300'}
             relative inline-flex h-6 w-11 items-center rounded-full shadow-inner`}
             {...props}
           >

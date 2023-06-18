@@ -2,66 +2,53 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useToast } from '@/shared/components/toast/ToastContext';
-import RemovePackageIcon from '@/shared/components/ui/icons/DeletePackageIcon';
 import EditIcon from '@/shared/components/ui/icons/EditIcon';
-import PackageIcon from '@/shared/components/ui/icons/PackageIcon';
+import RemoveIcon from '@/shared/components/ui/icons/EditIcon';
 import PageBack from '@/shared/components/ui/page-back/PageBack';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
+import fetchGoalById from '@/shared/queries/fetch-goal-by-id';
 import EQueryKeys from '@/shared/queries/query-keys';
 import deleteGoal from '@/shared/queries/services/delete-goal';
-import fetchGoalById from '@/shared/queries/services/fetch-goal-by-id';
-import PurchasesDetails from './components/PurchasesDetails';
-import ViewPackDetails from './components/ViewPackDetails';
+import ViewGoalDetails from './components/ViewGoalDetails';
 
-const ViewPack = () => {
+const ViewGoal = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { showToast } = useToast();
-  const { packId } = useParams();
-  const { data: pack } = useQuery([EQueryKeys.Pack, packId], fetchPackById);
+  const { goalId } = useParams();
+  const { data: goal } = useQuery([EQueryKeys.Goal, goalId], fetchGoalById);
   const [editMode, setEditMode] = useState(false);
 
-  const deleteGoal = useMutation(deletePack, {
+  const deleteGoalMutation = useMutation(deleteGoal, {
     onMutate: () => {
       // loading
     },
     onError: () => {
       showToast(
-        'Error while deleting pack',
+        'Error while deleting goal',
         'error',
-        'There has been an error while deleting your pack, please try again later.'
+        'There has been an error while deleting your goal, please try again later.'
       );
     },
     onSuccess: () => {
-      showToast('Pack was removed successfully', 'success');
-      queryClient.invalidateQueries([EQueryKeys.Packs]);
-      navigate('/account/packs');
+      showToast('Goal was removed successfully', 'success');
+      queryClient.invalidateQueries([EQueryKeys.Goals]);
+      navigate('/account/goals');
     },
     onSettled: () => {
       // off loading
     },
   });
 
-  const handleClickDeletePack = (id: string) => {
-    deletePackMutation.mutate(id);
+  const handleClickDeleteGoal = (id: string) => {
+    deleteGoalMutation.mutate(id);
   };
 
   return (
     <div className="p-8">
       <PageBack to="/account" />
       <div className="mb-3 flex items-end justify-between">
-        <div className="flex items-center">
-          {pack?.picture ? (
-            <img
-              src={pack.picture}
-              alt={pack.name}
-              className="mr-3 h-16 w-16 rounded-lg border bg-white object-contain p-2 shadow-sm"
-            />
-          ) : (
-            <PackageIcon className="mr-3 rounded-lg border bg-white p-3 text-6xl text-gray-300 shadow-sm" />
-          )}
-          {pack && <PageTitle title={pack.name} subtitle={pack.category?.name} />}
-        </div>
+        <div className="flex items-center">{goal && <PageTitle title={goal.name} subtitle={`${goal.year}`} />}</div>
         <div className="flex items-center">
           {!editMode && (
             <button
@@ -70,23 +57,21 @@ const ViewPack = () => {
                 setEditMode(true);
               }}
             >
-              <EditIcon className="mr-2 text-xl" /> Edit pack
+              <EditIcon className="mr-2 text-xl" /> Edit goal
             </button>
           )}
           <button
             className="flex items-center rounded-lg border bg-white py-2 px-3 text-sm font-medium text-rose-600 shadow-sm"
-            onClick={() => handleClickDeletePack(pack?.id as string)}
+            onClick={() => handleClickDeleteGoal(goal?.id as string)}
           >
-            <RemovePackageIcon className="mr-2 text-xl" /> Delete pack
+            <RemoveIcon className="mr-2 text-xl" /> Delete goal
           </button>
         </div>
       </div>
 
-      {pack && packId && <ViewPackDetails pack={pack} editMode={editMode} setEditMode={setEditMode} packId={packId} />}
-
-      <PurchasesDetails />
+      {goal && goalId && <ViewGoalDetails goal={goal} editMode={editMode} setEditMode={setEditMode} goalId={goalId} />}
     </div>
   );
 };
 
-export default ViewPack;
+export default ViewGoal;

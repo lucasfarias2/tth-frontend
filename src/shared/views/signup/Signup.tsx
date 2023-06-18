@@ -7,7 +7,7 @@ const Signup = (props: IViewProps) => {
       <div className="mb-4 text-center">
         <h1 className="mb-1 text-4xl font-bold">Create new account</h1>
         <span className="text-center">Already have an account? </span>
-        <a href="/login" className="text-orange-500">
+        <a href="/login" className="text-rose-500">
           Sign in.
         </a>
       </div>

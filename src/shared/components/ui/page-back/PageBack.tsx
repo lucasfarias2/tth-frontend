@@ -6,7 +6,7 @@ const PageBack = ({ to }: IProps) => {
 
   return (
     <div
-      className="mb-4 flex cursor-pointer items-center text-sm font-semibold text-orange-600"
+      className="mb-4 flex cursor-pointer items-center text-sm font-semibold text-rose-600"
       onClick={() => {
         navigate(to);
       }}

@@ -23,7 +23,7 @@ const UserPanelLink = ({ Icon, label, end, to, external }: UserPanelLinkProps) =
     <NavLink
       to={to as NavLinkProps['to']}
       className={({ isActive }) =>
-        `${isActive ? 'rounded-lg border-orange-400 bg-gray-100 text-black' : ''} ${defaultClass}`
+        `${isActive ? 'rounded-lg border-rose-400 bg-gray-100 text-black' : ''} ${defaultClass}`
       }
       end={end}
     >

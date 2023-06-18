@@ -15,7 +15,7 @@ const FormDatePicker = (props: IProps) => {
           <DatePicker
             inputClassName="w-full rounded-md shadow-sm hover:shadow p-2 text-sm border"
             placeholder="Select a date"
-            primaryColor="orange"
+            primaryColor="red"
             value={value}
             useRange={false}
             maxDate={new Date()}

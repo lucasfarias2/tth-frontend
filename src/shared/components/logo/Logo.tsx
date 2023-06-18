@@ -5,7 +5,7 @@ const Logo = ({ dark = false }: { dark?: boolean }) => {
     <a className="logo flex items-center" href="/">
       <div
         className={`mr-2 flex h-[32px] w-[32px] items-center justify-center rounded-full text-[32px] ${
-          dark ? 'bg-transparent fill-orange-500' : 'bg-transparent fill-orange-500'
+          dark ? 'bg-transparent fill-rose-500' : 'bg-transparent fill-rose-500'
         }`}
       >
         <LogoIcon />

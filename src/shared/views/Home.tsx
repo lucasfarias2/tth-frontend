@@ -6,7 +6,7 @@ const Home = (props: IViewProps) => {
       <div className="mt-8 text-center">
         <h1 className="mb-4 text-5xl font-bold">Start tracking your habits</h1>
         <p className="mb-8 text-xl">Engage with your habits by getting insights on your progress.</p>
-        <a href="/signup" className="rounded-lg bg-orange-400 p-2 px-4 font-semibold text-white">
+        <a href="/signup" className="rounded-lg bg-rose-400 p-2 px-4 font-semibold text-white">
           Start now
         </a>
 
