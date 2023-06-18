@@ -7,7 +7,7 @@ const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   try {
-    const { data } = await axios.post(`${process.env.BACKEND_URL}/auth/login`, {
+    const { data } = await axios.post(`${process.env.BACKEND_URL}/auth/login/`, {
       email,
       password,
     });
@@ -47,7 +47,7 @@ const signup = async (req: Request, res: Response) => {
   const { email, password, name } = req.body;
 
   try {
-    const { data } = await axios.post(`${process.env.BACKEND_URL}/auth/register`, {
+    const { data } = await axios.post(`${process.env.BACKEND_URL}/auth/register/`, {
       email,
       password,
       name,
@@ -68,7 +68,7 @@ const currentUser = async (req: Request, res: Response) => {
   }
 
   try {
-    const { data } = await axios.get(`${process.env.BACKEND_URL}/auth/user`, {
+    const { data } = await axios.get(`${process.env.BACKEND_URL}/auth/user/`, {
       headers: { Authorization: `Bearer ${req.cookies.session}` },
     });
 
