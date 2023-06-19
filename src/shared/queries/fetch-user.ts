@@ -6,7 +6,7 @@ const fetchUser: QueryFunction<TTHUser, [EQueryKeys.User]> = async () => {
   const response = await apiRestClient.get('/auth/user');
 
   if (!response.data) {
-    throw new Error(`users failed fetching`);
+    throw new Error(`User failed fetching`);
   }
 
   return response.data;

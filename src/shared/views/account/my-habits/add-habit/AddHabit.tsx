@@ -6,11 +6,10 @@ import { useToast } from '@/components/toast/ToastContext';
 import FormInput from '@/shared/components/ui/input/FormInput';
 import PageBack from '@/shared/components/ui/page-back/PageBack';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
-import FormSelect from '@/shared/components/ui/select/FormSelect';
+import createHabit from '@/shared/queries/create-habit';
 import EQueryKeys from '@/shared/queries/query-keys';
-import createGoal from '@/shared/queries/services/create-goal';
 
-const AddGoal = () => {
+const AddHabit = () => {
   const {
     control,
     handleSubmit,
@@ -21,21 +20,21 @@ const AddGoal = () => {
   const navigate = useNavigate();
   const { showToast } = useToast();
 
-  const createGoalMutation = useMutation(createGoal, {
+  const createHabitMutation = useMutation(createHabit, {
     onMutate: () => {
       // loading
     },
     onError: () => {
       showToast(
-        'Error while creating new goal',
+        'Error while creating new habit',
         'error',
-        'There has been an error while creating goal, please try again later.'
+        'There has been an error while creating habit, please try again later.'
       );
     },
     onSuccess: () => {
-      navigate('/account');
-      queryClient.invalidateQueries([EQueryKeys.Goals]);
-      showToast('Goal created successfully', 'success');
+      navigate('/account/habits');
+      queryClient.invalidateQueries([EQueryKeys.Habits]);
+      showToast('Habit created successfully', 'success');
     },
     onSettled: () => {
       // off loading
@@ -43,19 +42,18 @@ const AddGoal = () => {
   });
 
   const onSubmit: SubmitHandler<IFormData> = async data => {
-    const { name, year, color } = data;
+    const { name, starting_week } = data;
 
-    createGoalMutation.mutate({
+    createHabitMutation.mutate({
       name,
-      year,
-      color,
+      starting_week,
     });
   };
 
   return (
     <div className="p-8">
-      <PageBack to="/account/goals" />
-      <PageTitle title="Add new goal" subtitle="Here you can add a new yearly goal." className="mb-4" />
+      <PageBack to="/account/habits" />
+      <PageTitle title="Add new ViewHabitDetails" subtitle="Here you can add a new habit." className="mb-4" />
       <div>
         <form onSubmit={handleSubmit(onSubmit)} className="max-w-lg rounded-lg border bg-white p-4 shadow-sm">
           <div className="flex flex-col items-start">
@@ -68,30 +66,18 @@ const AddGoal = () => {
               inputProps={{ type: 'text', placeholder: 'Become a master chef' }}
             />
 
-            <FormSelect
-              name="color"
-              label="Color"
-              options={[
-                { id: 'red', name: 'Red' },
-                { id: 'blue', name: 'Blue' },
-              ]}
-              errors={errors}
-              control={control}
-              required
-            />
-
             <FormInput
-              name="year"
-              label="Year"
+              name="starting_week"
+              label="Starting week"
               required
               control={control}
               errors={errors}
-              inputProps={{ type: 'number', placeholder: 'Enter the year' }}
+              inputProps={{ type: 'number', placeholder: 'Enter the week' }}
             />
           </div>
 
           <Link
-            to="/account/goals"
+            to="/account/habits"
             className="mr-2 inline-block rounded-lg border bg-white px-4 py-2 text-sm font-semibold shadow-sm hover:bg-gray-50"
           >
             Cancel
@@ -109,8 +95,7 @@ const AddGoal = () => {
 
 interface IFormData {
   name: string;
-  year: number;
-  color: string;
+  starting_week: number;
 }
 
-export default AddGoal;
+export default AddHabit;

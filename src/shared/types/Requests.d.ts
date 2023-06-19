@@ -1,29 +1,8 @@
-interface ICreateGoalRequest {
+interface ICreateHabitRequest {
   name: string;
-  year: number;
-  color: string;
+  starting_week: number;
 }
 
-interface ICreateObjectiveRequest {
-  name: string;
-  goalId: string;
-  quarter: number;
-}
-
-interface ICreateTaskRequest {
-  name: string;
-  objectiveId: string;
-  effort: number;
-}
-
-interface IEditGoalRequest extends ICreateGoalRequest {
-  id: string;
-}
-
-interface IEditObjectiveRequest extends ICreateObjectiveRequest {
-  id: string;
-}
-
-interface IEditTaskRequest extends ICreateTaskRequest {
+interface IEditHabitRequest extends ICreateHabitRequest {
   id: string;
 }

@@ -2,14 +2,14 @@ import { QueryFunction } from '@tanstack/react-query';
 import EQueryKeys from '@/shared/queries/query-keys';
 import apiRestClient from '@/shared/utils/rest-client';
 
-const fetchGoals: QueryFunction<TTHGoal[], [EQueryKeys.Goals]> = async () => {
-  const response = await apiRestClient.get('/goals');
+const fetchHabits: QueryFunction<TTHHabit[], [EQueryKeys.Habits]> = async () => {
+  const response = await apiRestClient.get('/habits');
 
   if (!response.data) {
-    throw new Error(`Goals failed fetching`);
+    throw new Error(`Habits failed fetching`);
   }
 
   return response.data;
 };
 
-export default fetchGoals;
+export default fetchHabits;

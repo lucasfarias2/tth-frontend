@@ -45,34 +45,11 @@ declare global {
     last_login: Date;
   }
 
-  export interface TTHGoal {
+  export interface TTHHabit {
     id: string;
     name: string;
-    year: number;
-    color: string;
     user: TTHUser;
-  }
-
-  export interface TTHObjective {
-    id: string;
-    name: string;
-    goal: TTHGoal;
-    user: TTHUser;
-    quarter: number;
-  }
-
-  export interface TTHTask {
-    id: string;
-    name: string;
-    objective: TTHObjective;
-    user: TTHUser;
-    effort: number;
-  }
-
-  export interface TTHHome {
-    // TODO: remove this after implementing the backend
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    weekEfforts: any;
+    starting_week: number;
   }
 
   export interface IInitialState {

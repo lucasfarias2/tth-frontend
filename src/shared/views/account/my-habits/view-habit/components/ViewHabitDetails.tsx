@@ -4,21 +4,20 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useToast } from '@/shared/components/toast/ToastContext';
 import Badge from '@/shared/components/ui/badge/Badge';
 import FormInput from '@/shared/components/ui/input/FormInput';
-import FormSelect from '@/shared/components/ui/select/FormSelect';
+import editHabit from '@/shared/queries/edit-habit';
 import EQueryKeys from '@/shared/queries/query-keys';
-import editGoal from '@/shared/queries/services/edit-goal';
 import DetailRow from './DetailRow';
 
-const ViewGoalDetails = ({
+const ViewHabitDetails = ({
   editMode,
   setEditMode,
-  goalId,
-  goal,
+  habitId,
+  habit,
 }: {
-  goalId: string;
+  habitId: string;
   editMode: boolean;
   setEditMode: (b: boolean) => void;
-  goal: TTHGoal;
+  habit: TTHHabit;
 }) => {
   const queryClient = useQueryClient();
   const { showToast } = useToast();
@@ -28,23 +27,23 @@ const ViewGoalDetails = ({
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFormData>({ defaultValues: { year: Number(goal?.year) } });
+  } = useForm<IFormData>({ defaultValues: { starting_week: Number(habit?.starting_week) } });
 
-  const editGoalMutation = useMutation(editGoal, {
+  const editHabitMutation = useMutation(editHabit, {
     onMutate: () => {
       // loading
     },
     onError: () => {
       showToast(
-        'Error while editing goal',
+        'Error while editing habit',
         'error',
-        'There has been an error while editing your goal, please try again later.'
+        'There has been an error while editing your habit, please try again later.'
       );
     },
     onSuccess: () => {
-      showToast('Goal was edited successfully', 'success');
-      queryClient.invalidateQueries([EQueryKeys.Goals]);
-      queryClient.invalidateQueries([EQueryKeys.Goal, goalId]);
+      showToast('Habit was edited successfully', 'success');
+      queryClient.invalidateQueries([EQueryKeys.Habits]);
+      queryClient.invalidateQueries([EQueryKeys.Habit, habitId]);
       setEditMode(false);
     },
     onSettled: () => {
@@ -53,60 +52,50 @@ const ViewGoalDetails = ({
   });
 
   useEffect(() => {
-    if (goal) {
-      setValue('year', Number(goal.year));
-      setValue('name', goal.name);
-      setValue('color', goal.color);
+    if (habit) {
+      setValue('starting_week', Number(habit.starting_week));
+      setValue('name', habit.name);
     }
-  }, [goal, setValue]);
+  }, [habit, setValue]);
 
-  if (!goal) {
+  if (!habit) {
     return null;
   }
 
   const onSubmit: SubmitHandler<IFormData> = async data => {
-    const { name, year, color } = data;
+    const { name, starting_week } = data;
 
-    editGoalMutation.mutate({
-      id: goalId,
+    editHabitMutation.mutate({
+      id: habitId,
       name,
-      year: Number(year),
-      color,
+      starting_week: Number(starting_week),
     });
   };
 
   return (
     <div className={`rounded-lg border ${editMode ? 'bg-gray-100' : 'bg-white'} p-3 shadow-sm`}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <p className="border-b px-2 pb-2 text-xs font-medium text-gray-400">Goal details</p>
+        <p className="border-b px-2 pb-2 text-xs font-medium text-gray-400">Habit details</p>
 
-        <DetailRow title="Name" subtitle="Set a name for your goal.">
+        <DetailRow title="Name" subtitle="Set a name for your habit.">
           {editMode ? (
             <FormInput name="name" control={control} errors={errors} inputProps={{ type: 'text' }} />
           ) : (
-            <p className="text-sm">{goal.name}</p>
+            <p className="text-sm">{habit.name}</p>
           )}
         </DetailRow>
 
-        <DetailRow title="Color" subtitle="Give your goal a color to help you identify it better.">
+        <DetailRow title="Starting week" subtitle="When does this habit start counting">
           {editMode ? (
-            <FormSelect
-              name="color"
-              // defaultValue={goal.color}
-              options={[{ id: 'blue', name: 'Blue' }]}
-              errors={errors}
+            <FormInput
+              name="starting_week"
+              required
               control={control}
+              errors={errors}
+              inputProps={{ type: 'number' }}
             />
           ) : (
-            <Badge>{goal?.color}</Badge>
-          )}
-        </DetailRow>
-
-        <DetailRow title="Year" subtitle="In which year will you plan achieve this goal?">
-          {editMode ? (
-            <FormInput name="year" required control={control} errors={errors} inputProps={{ type: 'number' }} />
-          ) : (
-            <Badge>{goal.year}</Badge>
+            <Badge>{habit.starting_week}</Badge>
           )}
         </DetailRow>
 
@@ -135,8 +124,7 @@ const ViewGoalDetails = ({
 
 interface IFormData {
   name: string;
-  year: number;
-  color: string;
+  starting_week: number;
 }
 
-export default ViewGoalDetails;
+export default ViewHabitDetails;

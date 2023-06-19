@@ -6,49 +6,51 @@ import EditIcon from '@/shared/components/ui/icons/EditIcon';
 import RemoveIcon from '@/shared/components/ui/icons/EditIcon';
 import PageBack from '@/shared/components/ui/page-back/PageBack';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
-import fetchGoalById from '@/shared/queries/fetch-goal-by-id';
+import deleteHabit from '@/shared/queries/delete-habit';
+import fetchHabitbyId from '@/shared/queries/fetch-habit-by-id';
 import EQueryKeys from '@/shared/queries/query-keys';
-import deleteGoal from '@/shared/queries/services/delete-goal';
-import ViewGoalDetails from './components/ViewGoalDetails';
+import ViewHabitDetails from './components/ViewHabitDetails';
 
-const ViewGoal = () => {
+const ViewHabit = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { showToast } = useToast();
-  const { goalId } = useParams();
-  const { data: goal } = useQuery([EQueryKeys.Goal, goalId], fetchGoalById);
+  const { habitId } = useParams();
+  const { data: habit } = useQuery([EQueryKeys.Habit, habitId], fetchHabitbyId);
   const [editMode, setEditMode] = useState(false);
 
-  const deleteGoalMutation = useMutation(deleteGoal, {
+  const deleteHabitMutation = useMutation(deleteHabit, {
     onMutate: () => {
       // loading
     },
     onError: () => {
       showToast(
-        'Error while deleting goal',
+        'Error while deleting habit',
         'error',
-        'There has been an error while deleting your goal, please try again later.'
+        'There has been an error while deleting your habit, please try again later.'
       );
     },
     onSuccess: () => {
-      showToast('Goal was removed successfully', 'success');
-      queryClient.invalidateQueries([EQueryKeys.Goals]);
-      navigate('/account/goals');
+      showToast('Habit was removed successfully', 'success');
+      queryClient.invalidateQueries([EQueryKeys.Habits]);
+      navigate('/account/habits');
     },
     onSettled: () => {
       // off loading
     },
   });
 
-  const handleClickDeleteGoal = (id: string) => {
-    deleteGoalMutation.mutate(id);
+  const handleClickDeleteHabit = (id: string) => {
+    deleteHabitMutation.mutate(id);
   };
 
   return (
     <div className="p-8">
       <PageBack to="/account" />
       <div className="mb-3 flex items-end justify-between">
-        <div className="flex items-center">{goal && <PageTitle title={goal.name} subtitle={`${goal.year}`} />}</div>
+        <div className="flex items-center">
+          {habit && <PageTitle title={habit.name} subtitle={`Starting from week ${habit.starting_week}`} />}
+        </div>
         <div className="flex items-center">
           {!editMode && (
             <button
@@ -57,21 +59,23 @@ const ViewGoal = () => {
                 setEditMode(true);
               }}
             >
-              <EditIcon className="mr-2 text-xl" /> Edit goal
+              <EditIcon className="mr-2 text-xl" /> Edit habit
             </button>
           )}
           <button
             className="flex items-center rounded-lg border bg-white py-2 px-3 text-sm font-medium text-rose-600 shadow-sm"
-            onClick={() => handleClickDeleteGoal(goal?.id as string)}
+            onClick={() => handleClickDeleteHabit(habit?.id as string)}
           >
-            <RemoveIcon className="mr-2 text-xl" /> Delete goal
+            <RemoveIcon className="mr-2 text-xl" /> Delete habit
           </button>
         </div>
       </div>
 
-      {goal && goalId && <ViewGoalDetails goal={goal} editMode={editMode} setEditMode={setEditMode} goalId={goalId} />}
+      {habit && habitId && (
+        <ViewHabitDetails habit={habit} editMode={editMode} setEditMode={setEditMode} habitId={habitId} />
+      )}
     </div>
   );
 };
 
-export default ViewGoal;
+export default ViewHabit;

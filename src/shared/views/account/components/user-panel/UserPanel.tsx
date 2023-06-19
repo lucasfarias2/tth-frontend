@@ -1,10 +1,9 @@
 import { useQueryClient } from '@tanstack/react-query';
 import Logo from '@/shared/components/logo/Logo';
-import AchievementIcon from '@/shared/components/ui/icons/AchievementIcon';
 import ConfigurationIcon from '@/shared/components/ui/icons/ConfigurationIcon';
+import FrequencyIcon from '@/shared/components/ui/icons/FrequencyIcon';
 import HomeIcon from '@/shared/components/ui/icons/HomeIcon';
 import LogoutIcon from '@/shared/components/ui/icons/LogoutIcon';
-import SettingsIcon from '@/shared/components/ui/icons/SettingsIcon';
 import UserIcon from '@/shared/components/ui/icons/UserIcon';
 import EQueryKeys from '@/shared/queries/query-keys';
 import UserPanelLink from './UserPanelLink';
@@ -21,9 +20,7 @@ const UserPanel = () => {
         </div>
         <div className="py-4">
           <UserPanelLink to="/account/" Icon={HomeIcon} label="Home" />
-          <UserPanelLink to="/account/habits" Icon={SettingsIcon} label="My habits" />
-          <UserPanelLink to="/account/objectives" Icon={SettingsIcon} label="My objectives" />
-          <UserPanelLink to="/account/goals" end Icon={AchievementIcon} label="My goals" />
+          <UserPanelLink to="/account/habits" Icon={FrequencyIcon} label="My habits" />
           <UserPanelLink to="/account/settings" end Icon={ConfigurationIcon} label="Settings" />
         </div>
       </div>
