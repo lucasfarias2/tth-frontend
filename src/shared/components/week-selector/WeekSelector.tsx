@@ -1,31 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
+import ChevronLeftIcon from '../ui/icons/ChevronLeftIcon';
+import ChevronRightIcon from '../ui/icons/ChevronRightIcon';
 
-// Define getWeek as a standalone function
-const getWeek = (date: Date) => {
-  const onejan = new Date(date.getFullYear(), 0, 1);
-  const millisecsInDay = 86400000;
-  return Math.ceil(((date.getTime() - onejan.getTime()) / millisecsInDay + onejan.getDay() + 1) / 7);
-};
+interface WeekSelectorProps {
+  value: number;
+  onChange: (value: number) => void;
+  currentWeek: number;
+}
 
-const WeekSelector = () => {
-  const [currentWeek, setCurrentWeek] = useState(getWeek(new Date()));
-
+const WeekSelector = ({ value, onChange, currentWeek }: WeekSelectorProps) => {
   const scrollWeek = (direction: number) => {
-    setCurrentWeek((prevWeek: number) => {
-      let newWeek = prevWeek + direction;
-      if (newWeek < 1) newWeek = 52;
-      if (newWeek > 52) newWeek = 1;
-      return newWeek;
-    });
+    let newWeek = value + direction;
+    if (newWeek < 1) newWeek = 52;
+    if (newWeek > 52) newWeek = 1;
+    onChange(newWeek);
   };
 
   const selectWeek = (weekNumber: number) => {
-    setCurrentWeek(weekNumber);
+    onChange(weekNumber);
   };
 
   const renderWeeks = () => {
     const weeks = [];
-    for (let i = currentWeek - 3; i <= currentWeek + 3; i++) {
+    for (let i = value - 3; i <= value + 3; i++) {
       let weekNumber = i;
       if (weekNumber < 1) weekNumber += 52;
       if (weekNumber > 52) weekNumber -= 52;
@@ -33,11 +30,14 @@ const WeekSelector = () => {
         <div
           key={weekNumber}
           className={`mx-1 cursor-pointer rounded-md px-1 py-2 text-center text-sm last:border-r-0 hover:bg-gray-50 ${
-            weekNumber === currentWeek ? 'border font-semibold' : 'text-gray-400'
+            weekNumber === value ? 'border font-semibold' : 'text-gray-400'
           }`}
           onClick={() => selectWeek(weekNumber)}
         >
-          Week {weekNumber}
+          Week {weekNumber}{' '}
+          {currentWeek === weekNumber && (
+            <span className="rounded-full bg-gray-100 px-2 py-1 text-[10px] font-normal uppercase text-gray-500">{`Current`}</span>
+          )}
         </div>
       );
     }
@@ -46,12 +46,12 @@ const WeekSelector = () => {
 
   return (
     <div className="flex items-center justify-center rounded-md border px-2 py-1 shadow-sm">
-      <button onClick={() => scrollWeek(-1)} className="px-2">
-        {'<'}
+      <button onClick={() => scrollWeek(-1)}>
+        <ChevronLeftIcon className="text-lg" />
       </button>
       <div className="flex items-center justify-center">{renderWeeks()}</div>
-      <button onClick={() => scrollWeek(1)} className="px-2">
-        {'>'}
+      <button onClick={() => scrollWeek(1)} className="text-lg">
+        <ChevronRightIcon />
       </button>
     </div>
   );

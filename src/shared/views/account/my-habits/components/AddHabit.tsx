@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/toast/ToastContext';
@@ -7,6 +7,17 @@ import FormInput from '@/shared/components/ui/input/FormInput';
 import WeekSelector from '@/shared/components/week-selector/WeekSelector';
 import createHabit from '@/shared/queries/create-habit';
 import EQueryKeys from '@/shared/queries/query-keys';
+
+interface IFormData {
+  name: string;
+  starting_week: number;
+}
+
+const getWeek = (date: Date) => {
+  const onejan = new Date(date.getFullYear(), 0, 1);
+  const millisecsInDay = 86400000;
+  return Math.ceil(((date.getTime() - onejan.getTime()) / millisecsInDay + onejan.getDay() + 1) / 7);
+};
 
 const AddHabit = ({ setAddHabitMode }: { setAddHabitMode: (bool: boolean) => void }) => {
   const {
@@ -65,7 +76,12 @@ const AddHabit = ({ setAddHabitMode }: { setAddHabitMode: (bool: boolean) => voi
 
           <div className="mt-2">
             <label className="mb-1 text-sm font-semibold">Starting week</label>
-            <WeekSelector />
+            <Controller
+              name="starting_week"
+              control={control}
+              defaultValue={getWeek(new Date())}
+              render={({ field }) => <WeekSelector {...field} currentWeek={getWeek(new Date())} />}
+            />
           </div>
         </div>
 
@@ -87,10 +103,5 @@ const AddHabit = ({ setAddHabitMode }: { setAddHabitMode: (bool: boolean) => voi
     </div>
   );
 };
-
-interface IFormData {
-  name: string;
-  starting_week: number;
-}
 
 export default AddHabit;

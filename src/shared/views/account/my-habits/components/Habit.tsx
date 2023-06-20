@@ -46,9 +46,16 @@ const Habit = ({ id, name, starting_week, color, effort_goal }: IProps) => {
       onMouseLeave={() => {
         setShowActions(false);
       }}
-      className="mb-2 mr-2 flex items-center justify-between rounded-md border bg-white p-4 text-sm font-medium shadow-sm"
+      className="mb-2 mr-2 flex items-center justify-between rounded-md border bg-white p-4 text-sm shadow-sm"
     >
-      {editMode ? <div>input</div> : <div className="">{name}</div>}
+      <div>
+        {editMode ? <div>input</div> : <div className="font-medium">{name}</div>}
+        {editMode ? (
+          <div>week selector</div>
+        ) : (
+          <div className="text-xs text-gray-500">Starting from week {starting_week}</div>
+        )}
+      </div>
       {!editMode && showActions && (
         <div className="flex cursor-pointer items-center text-base text-gray-400">
           <div onClick={handleClickEdit} className="mr-3 hover:text-black">
@@ -60,13 +67,15 @@ const Habit = ({ id, name, starting_week, color, effort_goal }: IProps) => {
         </div>
       )}
       {editMode && (
-        <div
+        <button
           onClick={() => {
             setEditMode(false);
           }}
+          type="button"
+          className="mr-2 inline-block rounded-lg border bg-white px-2 py-1 text-xs font-semibold shadow-sm hover:bg-gray-50"
         >
-          close
-        </div>
+          Cancel
+        </button>
       )}
     </div>
   );
