@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/toast/ToastContext';
 import FormInput from '@/shared/components/ui/input/FormInput';
+import WeekSelector from '@/shared/components/week-selector/WeekSelector';
 import createHabit from '@/shared/queries/create-habit';
 import EQueryKeys from '@/shared/queries/query-keys';
 
@@ -62,14 +63,10 @@ const AddHabit = ({ setAddHabitMode }: { setAddHabitMode: (bool: boolean) => voi
             inputProps={{ type: 'text', placeholder: 'Name of your habit' }}
           />
 
-          <FormInput
-            name="starting_week"
-            label="Starting week"
-            required
-            control={control}
-            errors={errors}
-            inputProps={{ type: 'number', placeholder: 'Enter the week' }}
-          />
+          <div className="mt-2">
+            <label className="mb-1 text-sm font-semibold">Starting week</label>
+            <WeekSelector />
+          </div>
         </div>
 
         <Link
