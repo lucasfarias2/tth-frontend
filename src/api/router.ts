@@ -12,7 +12,7 @@ apiRouter.get('/auth/user', authController.currentUser);
 apiRouter.get('/habits', habitController.getHabits);
 apiRouter.post('/habits', habitController.createHabit);
 apiRouter.get('/habits/:id', habitController.getHabitById);
-apiRouter.put('/habits/:id', habitController.editHabit);
+apiRouter.patch('/habits/:id', habitController.editHabit);
 apiRouter.delete('/habits/:id', habitController.deleteHabit);
 
 apiRouter.use('*', (_req, res) => {

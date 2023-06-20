@@ -65,12 +65,13 @@ const editHabit = async (req: Request, res: Response) => {
   const { name, starting_week } = req.body;
 
   const session = req.cookies.session;
+
   if (!session) {
     return res.status(401).send('No session found');
   }
 
   try {
-    const { data } = await axios.put(
+    const { data } = await axios.patch(
       `${process.env.BACKEND_URL}/habits/${req.params.id}/`,
       { name, starting_week },
       {

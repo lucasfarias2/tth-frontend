@@ -50,6 +50,8 @@ declare global {
     name: string;
     user: TTHUser;
     starting_week: number;
+    color: string;
+    effort_goal: number;
   }
 
   export interface IInitialState {

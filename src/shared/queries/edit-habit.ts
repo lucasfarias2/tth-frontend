@@ -5,7 +5,7 @@ const editHabit = async (data: IEditHabitRequest) => {
     return {};
   }
 
-  const response = await apiRestClient.put(`/habits/${data.id}`, { confirmed: true });
+  const response = await apiRestClient.patch(`/habits/${data.id}`, data);
 
   if (!response.data) {
     throw new Error(`Failed to edit habit`);

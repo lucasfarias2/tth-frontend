@@ -1,4 +1,4 @@
-const RemoveIcon = ({ className }: IComponent) => (
+const EditIcon = ({ className }: IComponent) => (
   <svg
     width="1em"
     height="1em"
@@ -17,4 +17,4 @@ const RemoveIcon = ({ className }: IComponent) => (
   </svg>
 );
 
-export default RemoveIcon;
+export default EditIcon;
