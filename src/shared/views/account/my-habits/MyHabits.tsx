@@ -7,8 +7,12 @@ import AddHabit from './components/AddHabit';
 import Habit from './components/Habit';
 
 const MyHabits = () => {
-  const { data: habits } = useQuery([EQueryKeys.Habits], fetchHabits);
+  const { data: habits, isLoading } = useQuery([EQueryKeys.Habits], fetchHabits);
   const [addHabitMode, setAddHabitMode] = useState(false);
+
+  if (isLoading) {
+    return <div className="p-24 text-4xl">Loading...</div>;
+  }
 
   return (
     <div className="p-8">

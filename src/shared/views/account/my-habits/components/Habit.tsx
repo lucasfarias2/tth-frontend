@@ -1,16 +1,18 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from '@/shared/components/toast/ToastContext';
+import CircleFilledIcon from '@/shared/components/ui/icons/CircleFilledIcon';
+import CircleIcon from '@/shared/components/ui/icons/CircleIcon';
 import EditIcon from '@/shared/components/ui/icons/EditIcon';
 import RemoveIcon from '@/shared/components/ui/icons/RemoveIcon';
 import deleteHabit from '@/shared/queries/delete-habit';
 import EQueryKeys from '@/shared/queries/query-keys';
 
-const Habit = ({ id, name, starting_week, color, effort_goal }: IProps) => {
+const Habit = ({ id, name, starting_week, color, expected_effort }: IProps) => {
   const queryClient = useQueryClient();
-
+  const navigate = useNavigate();
   const [showActions, setShowActions] = useState(false);
-  const [editMode, setEditMode] = useState(false);
   const { showToast } = useToast();
 
   const deleteHabitMutation = useMutation(deleteHabit, {
@@ -30,16 +32,18 @@ const Habit = ({ id, name, starting_week, color, effort_goal }: IProps) => {
     },
   });
 
-  const handleClickRemove = () => {
+  const handleClickRemove = e => {
+    e.preventDefault();
     deleteHabitMutation.mutate(id);
   };
 
   const handleClickEdit = () => {
-    setEditMode(true);
+    navigate(`/account/habits/${id}`);
   };
 
   return (
-    <div
+    <Link
+      to={`/account/habits/${id}`}
       onMouseEnter={() => {
         setShowActions(true);
       }}
@@ -48,15 +52,26 @@ const Habit = ({ id, name, starting_week, color, effort_goal }: IProps) => {
       }}
       className="mb-2 mr-2 flex items-center justify-between rounded-md border bg-white p-4 text-sm shadow-sm"
     >
-      <div>
-        {editMode ? <div>input</div> : <div className="font-medium">{name}</div>}
-        {editMode ? (
-          <div>week selector</div>
-        ) : (
-          <div className="text-xs text-gray-500">Starting from week {starting_week}</div>
-        )}
+      <div
+        className={`mr-4 flex h-10 w-10 items-center justify-center rounded-full bg-${color}-500 font-semibold uppercase text-white`}
+      >
+        {name[0]}
       </div>
-      {!editMode && showActions && (
+      <div className="flex-1">
+        <div className="mr-2 text-lg font-medium">{name}</div>
+        <div className="text-xs text-gray-500">From week {starting_week}</div>
+      </div>
+
+      <div className="mr-4 flex items-center justify-center">
+        {Array.from({ length: 7 }).map((e, i) => {
+          return i < expected_effort ? (
+            <CircleFilledIcon key={i} className="mr-[1px] fill-rose-500" />
+          ) : (
+            <CircleIcon key={i} className="mr-[1px] text-rose-500" />
+          );
+        })}
+      </div>
+      {showActions && (
         <div className="flex cursor-pointer items-center text-base text-gray-400">
           <div onClick={handleClickEdit} className="mr-3 hover:text-black">
             <EditIcon />
@@ -66,18 +81,7 @@ const Habit = ({ id, name, starting_week, color, effort_goal }: IProps) => {
           </div>
         </div>
       )}
-      {editMode && (
-        <button
-          onClick={() => {
-            setEditMode(false);
-          }}
-          type="button"
-          className="mr-2 inline-block rounded-lg border bg-white px-2 py-1 text-xs font-semibold shadow-sm hover:bg-gray-50"
-        >
-          Cancel
-        </button>
-      )}
-    </div>
+    </Link>
   );
 };
 
@@ -86,7 +90,7 @@ interface IProps extends IComponent {
   name: string;
   starting_week: number;
   color: string;
-  effort_goal: number;
+  expected_effort: number;
 }
 
 export default Habit;

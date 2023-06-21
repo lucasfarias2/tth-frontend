@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/toast/ToastContext';
 import FormInput from '@/shared/components/ui/input/FormInput';
+import FormSelect from '@/shared/components/ui/select/FormSelect';
 import WeekSelector from '@/shared/components/week-selector/WeekSelector';
 import createHabit from '@/shared/queries/create-habit';
 import EQueryKeys from '@/shared/queries/query-keys';
@@ -11,7 +12,29 @@ import EQueryKeys from '@/shared/queries/query-keys';
 interface IFormData {
   name: string;
   starting_week: number;
+  expected_effort: number;
+  color: string;
 }
+
+// Only tailwind colors
+const LIST_OF_COLORS = [
+  { id: 'red', name: 'Red' },
+  { id: 'blue', name: 'Blue' },
+  { id: 'cyan', name: 'Cyan' },
+  { id: 'yellow', name: 'Yellow' },
+  { id: 'orange', name: 'Orange' },
+  { id: 'pink', name: 'Pink' },
+  { id: 'purple', name: 'Purple' },
+  { id: 'indigo', name: 'Indigo' },
+  { id: 'green', name: 'Green' },
+  { id: 'teal', name: 'Teal' },
+  { id: 'gray', name: 'Gray' },
+  { id: 'black', name: 'Black' },
+  { id: 'emerald', name: 'Emerald' },
+  { id: 'rose', name: 'Rose' },
+  { id: 'sky', name: 'Sky' },
+  { id: 'amber', name: 'Amber' },
+];
 
 const getWeek = (date: Date) => {
   const onejan = new Date(date.getFullYear(), 0, 1);
@@ -53,11 +76,13 @@ const AddHabit = ({ setAddHabitMode }: { setAddHabitMode: (bool: boolean) => voi
   });
 
   const onSubmit: SubmitHandler<IFormData> = async data => {
-    const { name, starting_week } = data;
+    const { name, starting_week, expected_effort, color } = data;
 
     createHabitMutation.mutate({
       name,
       starting_week,
+      expected_effort: Number(expected_effort),
+      color,
     });
   };
 
@@ -83,6 +108,25 @@ const AddHabit = ({ setAddHabitMode }: { setAddHabitMode: (bool: boolean) => voi
               render={({ field }) => <WeekSelector {...field} currentWeek={getWeek(new Date())} />}
             />
           </div>
+
+          <FormSelect
+            name="color"
+            label="Color"
+            placeholder="Select a color"
+            options={LIST_OF_COLORS}
+            errors={errors}
+            control={control}
+            required
+          />
+
+          <FormInput
+            name="expected_effort"
+            label="Target effort"
+            required
+            control={control}
+            errors={errors}
+            inputProps={{ type: 'number', placeholder: 'Enter a number from 1 to 7' }}
+          />
         </div>
 
         <Link
