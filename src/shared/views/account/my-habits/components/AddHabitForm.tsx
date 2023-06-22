@@ -42,7 +42,7 @@ const getWeek = (date: Date) => {
   return Math.ceil(((date.getTime() - onejan.getTime()) / millisecsInDay + onejan.getDay() + 1) / 7);
 };
 
-const AddHabit = ({ setAddHabitMode }: { setAddHabitMode: (bool: boolean) => void }) => {
+const AddHabitForm = () => {
   const {
     control,
     handleSubmit,
@@ -68,7 +68,6 @@ const AddHabit = ({ setAddHabitMode }: { setAddHabitMode: (bool: boolean) => voi
       navigate('/account/habits');
       queryClient.invalidateQueries([EQueryKeys.Habits]);
       showToast('Habit created successfully', 'success');
-      setAddHabitMode(false);
     },
     onSettled: () => {
       // off loading
@@ -99,17 +98,6 @@ const AddHabit = ({ setAddHabitMode }: { setAddHabitMode: (bool: boolean) => voi
             inputProps={{ type: 'text', placeholder: 'Name of your habit' }}
           />
 
-          <div className="mt-2">
-            <label className="text-sm font-semibold">Starting week</label>
-            <p className="mb-2 text-xs text-gray-500">When are you going to start with this habit.</p>
-            <Controller
-              name="starting_week"
-              control={control}
-              defaultValue={getWeek(new Date())}
-              render={({ field }) => <WeekSelector {...field} currentWeek={getWeek(new Date())} />}
-            />
-          </div>
-
           <FormSelect
             name="color"
             label="Color"
@@ -120,21 +108,34 @@ const AddHabit = ({ setAddHabitMode }: { setAddHabitMode: (bool: boolean) => voi
             required
           />
 
-          <label className="mt-4 text-sm font-semibold">Target effort</label>
-          <p className="mb-2 text-xs text-gray-500">Amout of work devoted to this habit per week.</p>
-          <Controller
-            name="expected_effort"
-            control={control}
-            defaultValue={1}
-            render={({ field }) => (
-              <EffortLevel maxLevel={7} initialLevel={field.value} onLevelChange={level => field.onChange(level)} />
-            )}
-          />
+          <div className="mt-4 w-full">
+            <label className="text-sm font-semibold">Starting week</label>
+            <p className="mb-2 text-xs text-gray-500">When are you going to start with this habit.</p>
+            <Controller
+              name="starting_week"
+              control={control}
+              defaultValue={getWeek(new Date())}
+              render={({ field }) => <WeekSelector {...field} currentWeek={getWeek(new Date())} />}
+            />
+          </div>
+
+          <div className="my-4">
+            <label className="text-sm font-semibold">Target effort</label>
+            <p className="mb-2 text-xs text-gray-500">Amout of work devoted to this habit per week.</p>
+            <Controller
+              name="expected_effort"
+              control={control}
+              defaultValue={1}
+              render={({ field }) => (
+                <EffortLevel maxLevel={7} initialLevel={field.value} onLevelChange={level => field.onChange(level)} />
+              )}
+            />
+          </div>
         </div>
 
         <Link
           onClick={() => {
-            setAddHabitMode(false);
+            navigate('/account/habits');
           }}
           to="/account/habits"
           className="mr-2 inline-block rounded-lg border bg-white px-4 py-2 text-sm font-semibold shadow-sm hover:bg-gray-50"
@@ -151,4 +152,4 @@ const AddHabit = ({ setAddHabitMode }: { setAddHabitMode: (bool: boolean) => voi
   );
 };
 
-export default AddHabit;
+export default AddHabitForm;

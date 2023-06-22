@@ -5,6 +5,7 @@ import Home from './home/Home';
 import MyHabits from './my-habits/MyHabits';
 import ViewHabit from './my-habits/view-habit/ViewHabit';
 import MySettings from './my-settings/MySettings';
+import AddHabit from './my-habits/add-habit/AddHabit';
 
 const AccountRouter = (props: IViewProps) => {
   return (
@@ -27,6 +28,7 @@ const HabitsRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<MyHabits />} />
+      <Route path="/add" element={<AddHabit />} />
       <Route path="/:id" element={<ViewHabit />} />
     </Routes>
   );

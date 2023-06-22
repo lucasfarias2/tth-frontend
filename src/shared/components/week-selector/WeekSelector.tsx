@@ -23,22 +23,19 @@ const WeekSelector = React.forwardRef<HTMLDivElement, WeekSelectorProps>(
 
     const renderWeeks = () => {
       const weeks = [];
-      for (let i = value - 2; i <= value + 2; i++) {
+      for (let i = value - 3; i <= value + 3; i++) {
         let weekNumber = i;
         if (weekNumber < 1) weekNumber += 52;
         if (weekNumber > 52) weekNumber -= 52;
         weeks.push(
           <div
             key={weekNumber}
-            className={`mx-1 cursor-pointer rounded-md px-1 py-2 text-center text-sm last:border-r-0 hover:bg-gray-50 ${
-              weekNumber === value ? 'border font-semibold' : 'text-gray-400'
-            }`}
+            className={`mx-1 flex w-full cursor-pointer flex-col items-center justify-center rounded-md bg-white p-2 text-center text-sm hover:bg-gray-50 ${
+              weekNumber === value ? 'h-16 border font-semibold text-gray-800 shadow-sm' : 'text-xs'
+            } ${weekNumber === currentWeek ? 'text-rose-500' : 'text-gray-400'}`}
             onClick={() => selectWeek(weekNumber)}
           >
-            Week {weekNumber}{' '}
-            {currentWeek === weekNumber && (
-              <span className="rounded-full bg-gray-100 px-2 py-1 text-[10px] font-normal uppercase text-gray-500">{`Current`}</span>
-            )}
+            Week {weekNumber}
           </div>
         );
       }
@@ -46,12 +43,12 @@ const WeekSelector = React.forwardRef<HTMLDivElement, WeekSelectorProps>(
     };
 
     return (
-      <div className="flex items-center justify-center rounded-md border px-2 py-1 shadow-sm" ref={ref}>
-        <button onClick={() => scrollWeek(-1)}>
+      <div className="flex h-14 items-center justify-between rounded-md border px-2 py-1 shadow-sm" ref={ref}>
+        <button onClick={() => scrollWeek(-1)} type="button">
           <ChevronLeftIcon className="text-lg" />
         </button>
         <div className="flex items-center justify-center">{renderWeeks()}</div>
-        <button onClick={() => scrollWeek(1)} className="text-lg">
+        <button onClick={() => scrollWeek(1)} className="text-lg" type="button">
           <ChevronRightIcon />
         </button>
       </div>
