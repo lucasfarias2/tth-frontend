@@ -30,7 +30,7 @@ const WeekSelector = React.forwardRef<HTMLDivElement, WeekSelectorProps>(
         weeks.push(
           <div
             key={weekNumber}
-            className={`mx-1 flex w-full cursor-pointer flex-col items-center justify-center rounded-md bg-white p-2 text-center text-sm hover:bg-gray-50 ${
+            className={`mx-1 flex w-full cursor-pointer flex-col items-center justify-center rounded-lg bg-white p-2 text-center text-sm hover:bg-gray-50 ${
               weekNumber === value ? 'h-16 border font-semibold text-gray-800 shadow-sm' : 'text-xs'
             } ${weekNumber === currentWeek ? 'text-rose-500' : 'text-gray-400'}`}
             onClick={() => selectWeek(weekNumber)}
@@ -43,7 +43,7 @@ const WeekSelector = React.forwardRef<HTMLDivElement, WeekSelectorProps>(
     };
 
     return (
-      <div className="flex h-14 items-center justify-between rounded-md border px-2 py-1 shadow-sm" ref={ref}>
+      <div className="flex h-14 items-center justify-between rounded-lg border px-2 py-1 shadow-sm" ref={ref}>
         <button onClick={() => scrollWeek(-1)} type="button">
           <ChevronLeftIcon className="text-lg" />
         </button>

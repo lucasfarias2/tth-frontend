@@ -6,5 +6,5 @@ interface ICreateHabitRequest {
 }
 
 interface IEditHabitRequest extends ICreateHabitRequest {
-  id: string;
+  id?: string;
 }

@@ -13,7 +13,7 @@ const FormDatePicker = (props: IProps) => {
         name={name}
         render={({ field: { onChange, value } }) => (
           <DatePicker
-            inputClassName="w-full rounded-md shadow-sm hover:shadow p-2 text-sm border"
+            inputClassName="w-full rounded-lg shadow-sm hover:shadow p-2 text-sm border"
             placeholder="Select a date"
             primaryColor="red"
             value={value}

@@ -1,6 +1,10 @@
 import apiRestClient from '@/shared/utils/rest-client';
 
-const deleteHabit = async (id: string) => {
+const deleteHabit = async (id?: string) => {
+  if (!id) {
+    return {};
+  }
+
   const response = await apiRestClient.delete(`/habits/${id}`);
 
   if (response.status !== 200) {

@@ -28,7 +28,7 @@ const Toast: React.FC<ToastProps> = ({ id, title, subtitle, type, onClose }) => 
 
   return showToast ? (
     <div
-      className={`fixed bottom-4 right-8 flex rounded-md border-l-4 bg-neutral-800 p-3 text-sm text-white shadow-md transition duration-150 ${
+      className={`fixed bottom-4 right-8 flex rounded-lg border-l-4 bg-neutral-800 p-3 text-sm text-white shadow-md transition duration-150 ${
         !subtitle ? 'items-center' : ''
       } ${type === 'success' ? 'border-green-500' : 'border-red-500'} ${animationClass}`}
     >

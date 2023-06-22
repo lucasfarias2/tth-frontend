@@ -29,7 +29,7 @@ const FormSelect = forwardRef<HTMLSelectElement, IProps>((props, ref) => {
         render={({ field }) => (
           <Listbox value={field.value} onChange={value => field.onChange(value.id)} ref={ref}>
             <div className={`relative ${full ? 'w-full' : ''}`}>
-              <Listbox.Button className="relative w-full cursor-pointer rounded-md border bg-white py-2 pl-3 pr-10 text-left text-sm font-normal shadow-sm hover:bg-gray-50">
+              <Listbox.Button className="relative w-full cursor-pointer rounded-lg border bg-white py-2 pl-3 pr-10 text-left text-sm font-normal shadow-sm hover:bg-gray-50">
                 {field.value ? (
                   <span className="truncate">{options?.find(option => option.id === field.value)?.name}</span>
                 ) : (
@@ -45,7 +45,7 @@ const FormSelect = forwardRef<HTMLSelectElement, IProps>((props, ref) => {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
-                <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md border bg-white py-1 shadow-lg">
+                <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-lg border bg-white py-1 shadow-lg">
                   {options?.map(option => (
                     <Listbox.Option
                       key={option.id}
