@@ -1,18 +1,14 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import EffortLevel from '@/shared/components/effort-level/EffortLevel';
 import { useToast } from '@/shared/components/toast/ToastContext';
-import CircleFilledIcon from '@/shared/components/ui/icons/CircleFilledIcon';
-import CircleIcon from '@/shared/components/ui/icons/CircleIcon';
-import EditIcon from '@/shared/components/ui/icons/EditIcon';
-import RemoveIcon from '@/shared/components/ui/icons/RemoveIcon';
 import deleteHabit from '@/shared/queries/delete-habit';
 import EQueryKeys from '@/shared/queries/query-keys';
 
 const Habit = ({ id, name, starting_week, color, expected_effort }: IProps) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const [showActions, setShowActions] = useState(false);
   const { showToast } = useToast();
 
   const deleteHabitMutation = useMutation(deleteHabit, {
@@ -37,50 +33,24 @@ const Habit = ({ id, name, starting_week, color, expected_effort }: IProps) => {
     deleteHabitMutation.mutate(id);
   };
 
-  const handleClickEdit = () => {
-    navigate(`/account/habits/${id}`);
-  };
-
   return (
     <Link
       to={`/account/habits/${id}`}
-      onMouseEnter={() => {
-        setShowActions(true);
-      }}
-      onMouseLeave={() => {
-        setShowActions(false);
-      }}
-      className="mb-2 mr-2 flex items-center justify-between rounded-md border bg-white p-4 text-sm shadow-sm"
+      className="mb-2 flex items-center justify-between rounded-md border bg-white py-2 px-4 text-sm shadow-sm hover:bg-gray-50"
     >
       <div
-        className={`mr-4 flex h-10 w-10 items-center justify-center rounded-full bg-${color}-500 font-semibold uppercase text-white`}
+        className={`mr-4 flex h-8 w-8 items-center justify-center rounded-full bg-${color}-500 font-semibold uppercase text-white`}
       >
         {name[0]}
       </div>
       <div className="flex-1">
-        <div className="mr-2 text-lg font-medium">{name}</div>
+        <div className="mr-2 font-medium">{name}</div>
         <div className="text-xs text-gray-500">From week {starting_week}</div>
       </div>
 
       <div className="mr-4 flex items-center justify-center">
-        {Array.from({ length: 7 }).map((e, i) => {
-          return i < expected_effort ? (
-            <CircleFilledIcon key={i} className="mr-[1px] fill-rose-500" />
-          ) : (
-            <CircleIcon key={i} className="mr-[1px] text-rose-500" />
-          );
-        })}
+        <EffortLevel readOnly initialLevel={expected_effort} color={color} />
       </div>
-      {showActions && (
-        <div className="flex cursor-pointer items-center text-base text-gray-400">
-          <div onClick={handleClickEdit} className="mr-3 hover:text-black">
-            <EditIcon />
-          </div>
-          <div onClick={handleClickRemove} className="hover:text-black">
-            <RemoveIcon />
-          </div>
-        </div>
-      )}
     </Link>
   );
 };

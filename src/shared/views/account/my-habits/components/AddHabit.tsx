@@ -3,6 +3,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/toast/ToastContext';
+import EffortLevel from '@/shared/components/effort-level/EffortLevel';
 import FormInput from '@/shared/components/ui/input/FormInput';
 import FormSelect from '@/shared/components/ui/select/FormSelect';
 import WeekSelector from '@/shared/components/week-selector/WeekSelector';
@@ -29,7 +30,6 @@ const LIST_OF_COLORS = [
   { id: 'green', name: 'Green' },
   { id: 'teal', name: 'Teal' },
   { id: 'gray', name: 'Gray' },
-  { id: 'black', name: 'Black' },
   { id: 'emerald', name: 'Emerald' },
   { id: 'rose', name: 'Rose' },
   { id: 'sky', name: 'Sky' },
@@ -75,7 +75,7 @@ const AddHabit = ({ setAddHabitMode }: { setAddHabitMode: (bool: boolean) => voi
     },
   });
 
-  const onSubmit: SubmitHandler<IFormData> = async data => {
+  const onSubmit: SubmitHandler<IFormData> = data => {
     const { name, starting_week, expected_effort, color } = data;
 
     createHabitMutation.mutate({
@@ -88,7 +88,7 @@ const AddHabit = ({ setAddHabitMode }: { setAddHabitMode: (bool: boolean) => voi
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)} className="max-w-lg rounded-lg border bg-white p-4 shadow-sm">
+      <form onSubmit={handleSubmit(onSubmit)} className="rounded-lg border bg-white p-4 shadow-sm">
         <div className="flex flex-col items-start">
           <FormInput
             name="name"
@@ -100,7 +100,8 @@ const AddHabit = ({ setAddHabitMode }: { setAddHabitMode: (bool: boolean) => voi
           />
 
           <div className="mt-2">
-            <label className="mb-1 text-sm font-semibold">Starting week</label>
+            <label className="text-sm font-semibold">Starting week</label>
+            <p className="mb-2 text-xs text-gray-500">When are you going to start with this habit.</p>
             <Controller
               name="starting_week"
               control={control}
@@ -119,13 +120,15 @@ const AddHabit = ({ setAddHabitMode }: { setAddHabitMode: (bool: boolean) => voi
             required
           />
 
-          <FormInput
+          <label className="mt-4 text-sm font-semibold">Target effort</label>
+          <p className="mb-2 text-xs text-gray-500">Amout of work devoted to this habit per week.</p>
+          <Controller
             name="expected_effort"
-            label="Target effort"
-            required
             control={control}
-            errors={errors}
-            inputProps={{ type: 'number', placeholder: 'Enter a number from 1 to 7' }}
+            defaultValue={1}
+            render={({ field }) => (
+              <EffortLevel maxLevel={7} initialLevel={field.value} onLevelChange={level => field.onChange(level)} />
+            )}
           />
         </div>
 
