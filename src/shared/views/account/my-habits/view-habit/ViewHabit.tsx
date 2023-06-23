@@ -33,6 +33,7 @@ const ViewHabit = () => {
     onSuccess: () => {
       navigate('/account/habits');
       queryClient.invalidateQueries([EQueryKeys.Habits]);
+      queryClient.invalidateQueries([EQueryKeys.Habit, id]);
       showToast('Habit updated successfully', 'success');
     },
     onSettled: () => {

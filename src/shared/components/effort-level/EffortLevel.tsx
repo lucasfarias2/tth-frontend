@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CircleIcon from '@/shared/components/ui/icons/CircleIcon';
 
 interface EffortLevelProps {
@@ -13,6 +13,10 @@ const EffortLevel = React.forwardRef<HTMLDivElement, EffortLevelProps>(
   ({ maxLevel = 7, initialLevel = 1, onLevelChange, readOnly = false, color = 'neutral' }: EffortLevelProps, ref) => {
     const [selectedLevel, setSelectedLevel] = useState<number>(initialLevel);
     const [hoverLevel, setHoverLevel] = useState<number>(0);
+
+    useEffect(() => {
+      setSelectedLevel(initialLevel);
+    }, [initialLevel]);
 
     const { textColor, fillColor } = getColorClasses(color);
 
@@ -131,4 +135,4 @@ function getColorClasses(color: string) {
 
 EffortLevel.displayName = 'EffortLevel';
 
-export default React.memo(EffortLevel);
+export default EffortLevel;

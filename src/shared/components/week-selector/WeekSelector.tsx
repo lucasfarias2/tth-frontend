@@ -58,4 +58,4 @@ const WeekSelector = React.forwardRef<HTMLDivElement, WeekSelectorProps>(
 
 WeekSelector.displayName = 'WeekSelector';
 
-export default React.memo(WeekSelector);
+export default WeekSelector;
