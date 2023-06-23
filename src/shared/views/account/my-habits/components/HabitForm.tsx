@@ -4,6 +4,7 @@ import EffortLevel from '@/shared/components/effort-level/EffortLevel';
 import FormInput from '@/shared/components/ui/input/FormInput';
 import FormSelect from '@/shared/components/ui/select/FormSelect';
 import WeekSelector from '@/shared/components/week-selector/WeekSelector';
+import LIST_OF_COLORS from '@/shared/utils/colors';
 
 interface IFormData {
   name: string;
@@ -11,31 +12,6 @@ interface IFormData {
   expected_effort: number;
   color: string;
 }
-
-// Only tailwind colors
-const LIST_OF_COLORS = [
-  { id: 'red', name: 'Red' },
-  { id: 'blue', name: 'Blue' },
-  { id: 'cyan', name: 'Cyan' },
-  { id: 'yellow', name: 'Yellow' },
-  { id: 'orange', name: 'Orange' },
-  { id: 'pink', name: 'Pink' },
-  { id: 'purple', name: 'Purple' },
-  { id: 'indigo', name: 'Indigo' },
-  { id: 'green', name: 'Green' },
-  { id: 'teal', name: 'Teal' },
-  { id: 'gray', name: 'Gray' },
-  { id: 'emerald', name: 'Emerald' },
-  { id: 'rose', name: 'Rose' },
-  { id: 'sky', name: 'Sky' },
-  { id: 'amber', name: 'Amber' },
-];
-
-const getWeek = (date: Date) => {
-  const onejan = new Date(date.getFullYear(), 0, 1);
-  const millisecsInDay = 86400000;
-  return Math.ceil(((date.getTime() - onejan.getTime()) / millisecsInDay + onejan.getDay() + 1) / 7);
-};
 
 const HabitForm = ({ initialValues, onSubmit }: { initialValues?: IFormData; onSubmit: (data: IFormData) => void }) => {
   const navigate = useNavigate();
