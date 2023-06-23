@@ -54,6 +54,14 @@ declare global {
     expected_effort: number;
   }
 
+  export interface TTHEffort {
+    id: string;
+    habit: TTHHabit;
+    week: number;
+    level: number;
+    user: TTHUser;
+  }
+
   export interface IInitialState {
     user: TTHUser;
   }

@@ -1,5 +1,5 @@
 // Only tailwind colors
-const LIST_OF_COLORS =  [
+const LIST_OF_COLORS = [
   { id: 'red', name: 'Red' },
   { id: 'blue', name: 'Blue' },
   { id: 'cyan', name: 'Cyan' },

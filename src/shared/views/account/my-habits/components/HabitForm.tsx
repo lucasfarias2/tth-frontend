@@ -5,6 +5,7 @@ import FormInput from '@/shared/components/ui/input/FormInput';
 import FormSelect from '@/shared/components/ui/select/FormSelect';
 import WeekSelector from '@/shared/components/week-selector/WeekSelector';
 import LIST_OF_COLORS from '@/shared/utils/colors';
+import getWeek from '@/shared/utils/get-week';
 
 interface IFormData {
   name: string;
