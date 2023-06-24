@@ -62,6 +62,32 @@ declare global {
     user: TTHUser;
   }
 
+  export interface TTHGlobalPerformance {
+    habit: TTHHabit;
+    performance_percentage: number;
+    contribution_percentage: number;
+  }
+
+  export interface TTHHabitPerformance {
+    performance_data: TTHPerformanceData[];
+    average_performance_percentage: number;
+  }
+
+  export interface TTHWeekCompletion {
+    completion_percentage: number;
+  }
+
+  export interface TTHRecentCompletion {
+    week: number;
+    completion_percentage: number;
+    difference: number;
+  }
+
+  export type TTHPerformanceData = {
+    week: number;
+    performance_percentage: number;
+  };
+
   export interface IInitialState {
     user: TTHUser;
   }
