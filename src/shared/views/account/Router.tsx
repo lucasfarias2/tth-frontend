@@ -2,10 +2,10 @@ import { Route, Routes } from 'react-router-dom';
 import Page from '@/shared/components/page/Page';
 import UserPanel from './components/user-panel/UserPanel';
 import Home from './home/Home';
+import AddHabit from './my-habits/add-habit/AddHabit';
 import MyHabits from './my-habits/MyHabits';
 import ViewHabit from './my-habits/view-habit/ViewHabit';
 import MySettings from './my-settings/MySettings';
-import AddHabit from './my-habits/add-habit/AddHabit';
 
 const AccountRouter = (props: IViewProps) => {
   return (

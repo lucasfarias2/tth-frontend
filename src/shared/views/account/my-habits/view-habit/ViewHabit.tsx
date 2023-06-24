@@ -1,5 +1,4 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useToast } from '@/shared/components/toast/ToastContext';
 import RemoveIcon from '@/shared/components/ui/icons/RemoveIcon';
@@ -17,7 +16,6 @@ const ViewHabit = () => {
   const { showToast } = useToast();
   const { id } = useParams();
   const { data: habit } = useQuery([EQueryKeys.Habit, id], fetchHabitbyId);
-  const [editMode, setEditMode] = useState(false);
 
   const editHabitMutation = useMutation(editHabit, {
     onMutate: () => {

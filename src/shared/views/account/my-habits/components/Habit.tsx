@@ -19,7 +19,7 @@ const Habit = ({ id, name, starting_week, color, expected_effort }: IProps) => {
 
       <div className="mr-4 flex flex-col">
         <ProgressBar currentValue={expected_effort} expectedValue={expected_effort} color={color} readOnly />
-        <span className="mr-2 mt-1 text-xs text-gray-400">Expected weekly target: {expected_effort}</span>
+        <span className="mr-2 mt-1 text-xs text-gray-400">Weekly target: {expected_effort}</span>
       </div>
     </Link>
   );

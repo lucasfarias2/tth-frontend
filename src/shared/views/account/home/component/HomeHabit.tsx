@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import ProgressBar from '@/shared/components/progress-bar/ProgressBar';
 import { useToast } from '@/shared/components/toast/ToastContext';
@@ -19,14 +20,18 @@ interface IProps extends IComponent {
   efforts?: TTHEffort[];
 }
 
-const AssignableHabit = ({ id, name, color, expected_effort, efforts, week }: IProps) => {
+const HomeHabit = ({ id, name, color, expected_effort, efforts, week }: IProps) => {
   const habitEffort = efforts?.find(effort => effort.habit.id === id);
   const queryClient = useQueryClient();
   const { showToast } = useToast();
 
-  const { handleSubmit, control } = useForm<IFormData>({
+  const { handleSubmit, control, reset } = useForm<IFormData>({
     defaultValues: { level: habitEffort?.level || 0 },
   });
+
+  useEffect(() => {
+    reset({ level: habitEffort?.level || 0 });
+  }, [habitEffort, reset]);
 
   const createEffortMutation = useMutation(createEffort, {
     onSuccess: () => {
@@ -75,7 +80,7 @@ const AssignableHabit = ({ id, name, color, expected_effort, efforts, week }: IP
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className={`mb-2 flex items-center justify-between rounded-lg p-2 text-sm hover:bg-gray-50`}>
+      <div className={`flex items-center justify-between border-b px-2 py-3 text-sm last:border-b-0`}>
         <div
           className={`mr-4 flex h-8 w-8 items-center justify-center rounded-full bg-${color}-500 font-semibold uppercase text-white`}
         >
@@ -106,4 +111,4 @@ const AssignableHabit = ({ id, name, color, expected_effort, efforts, week }: IP
   );
 };
 
-export default AssignableHabit;
+export default HomeHabit;

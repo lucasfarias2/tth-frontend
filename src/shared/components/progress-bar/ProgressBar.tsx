@@ -56,7 +56,7 @@ const ProgressBar = ({
 
   return (
     <div className="flex items-center">
-      <div className="flex overflow-hidden rounded-lg border-2 border-white shadow-sm">
+      <div className="flex overflow-hidden rounded-lg border-4 border-white shadow">
         {!readOnly && (
           <button
             type="button"
@@ -102,11 +102,11 @@ const ProgressBar = ({
 
       {!readOnly &&
         (showTarget ? (
-          <div className="flex w-36 flex-col items-center px-4 text-center leading-tight">
+          <div className="flex w-36 flex-col items-center px-3 text-center leading-tight">
             <p className="mr-2 text-lg text-gray-500">{`${currentValue || 0}/7`}</p>
             {percentageCompleted > 99 ? (
               <p className="text-[10px] text-green-400">
-                Weekly target completed! {extraCompleted > 0 && `+${extraCompleted}%`}
+                Weekly effort completed! {extraCompleted > 0 && `+${extraCompleted}%`}
               </p>
             ) : (
               <p className="text-[10px] text-gray-400">{percentageCompleted}% of weekly target</p>

@@ -1,6 +1,5 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import EffortLevel from '@/shared/components/effort-level/EffortLevel';
 import ProgressBar from '@/shared/components/progress-bar/ProgressBar';
 import FormInput from '@/shared/components/ui/input/FormInput';
 import FormSelect from '@/shared/components/ui/select/FormSelect';
@@ -80,7 +79,7 @@ const HabitForm = ({ initialValues, onSubmit }: { initialValues?: IFormData; onS
                 minimumValue={1}
                 expectedValue={7}
                 currentValue={field.value}
-                color="rose"
+                color="gray"
                 onChange={(level: number) => field.onChange(level)}
               />
             )}
