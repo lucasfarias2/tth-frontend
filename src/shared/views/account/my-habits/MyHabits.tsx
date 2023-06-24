@@ -14,7 +14,7 @@ const MyHabits = () => {
         <PageTitle title="My habits" subtitle="Here you can manage your habits." className="mb-4" />
         <Link
           to="/account/habits/add"
-          className="flex cursor-pointer items-center rounded-lg border bg-white py-2 px-3 text-sm font-medium text-rose-600 shadow-sm hover:bg-gray-50"
+          className="flex cursor-pointer items-center rounded-lg border bg-white py-2 px-3 text-sm font-medium shadow-sm hover:bg-gray-50"
         >
           <AddIcon className="mr-1" />
           Add new habit

@@ -1,6 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useToast } from '@/shared/components/toast/ToastContext';
+import ConfirmModal from '@/shared/components/ui/confirm-modal/ConfirmModal';
 import RemoveIcon from '@/shared/components/ui/icons/RemoveIcon';
 import PageBack from '@/shared/components/ui/page-back/PageBack';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
@@ -16,6 +18,7 @@ const ViewHabit = () => {
   const { showToast } = useToast();
   const { id } = useParams();
   const { data: habit } = useQuery([EQueryKeys.Habit, id], fetchHabitbyId);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
 
   const editHabitMutation = useMutation(editHabit, {
     onMutate: () => {
@@ -86,10 +89,10 @@ const ViewHabit = () => {
           {habit && <PageTitle title={habit.name} subtitle={`Starting week ${habit?.starting_week}`} />}
         </div>
         <div
-          onClick={handleClickRemove}
-          className="flex cursor-pointer items-center rounded-lg border bg-white p-2 text-sm font-medium text-rose-600 shadow-sm hover:bg-gray-50"
+          onClick={() => setIsConfirmModalOpen(true)}
+          className="flex cursor-pointer items-center rounded-lg border bg-white p-2 text-sm font-medium text-red-600 shadow-sm hover:bg-gray-50"
         >
-          <RemoveIcon className="mr-2 text-lg" /> Delete habit
+          <RemoveIcon className="text-lg" />
         </div>
       </div>
 
@@ -98,6 +101,16 @@ const ViewHabit = () => {
           <HabitForm initialValues={habit} onSubmit={onSubmit} />
         </div>
       )}
+
+      <ConfirmModal
+        title="Delete habit"
+        text="Are you sure you want to delete this habit?"
+        confirmButtonText="Yes, proceed"
+        cancelButtonText="No, go back"
+        onConfirm={handleClickRemove}
+        onCancel={() => setIsConfirmModalOpen(false)}
+        isOpen={isConfirmModalOpen}
+      />
     </div>
   );
 };
