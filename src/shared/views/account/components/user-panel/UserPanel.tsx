@@ -1,5 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
 import Logo from '@/shared/components/logo/Logo';
+import BarChartIcon from '@/shared/components/ui/icons/BarChartIcon';
 import ConfigurationIcon from '@/shared/components/ui/icons/ConfigurationIcon';
 import FrequencyIcon from '@/shared/components/ui/icons/FrequencyIcon';
 import HomeIcon from '@/shared/components/ui/icons/HomeIcon';
@@ -21,7 +22,8 @@ const UserPanel = () => {
         <div className="py-4">
           <UserPanelLink to="/account/" Icon={HomeIcon} label="Home" />
           <UserPanelLink to="/account/habits" Icon={FrequencyIcon} label="My habits" />
-          <UserPanelLink to="/account/settings" end Icon={ConfigurationIcon} label="Settings" />
+          <UserPanelLink to="/account/stats" end Icon={BarChartIcon} label="My statistics" />
+          <UserPanelLink to="/account/settings" end Icon={ConfigurationIcon} label="My settings" />
         </div>
       </div>
 

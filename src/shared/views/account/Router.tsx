@@ -6,6 +6,7 @@ import AddHabit from './my-habits/add-habit/AddHabit';
 import MyHabits from './my-habits/MyHabits';
 import ViewHabit from './my-habits/view-habit/ViewHabit';
 import MySettings from './my-settings/MySettings';
+import MyStats from './my-stats/MyStats';
 
 const AccountRouter = (props: IViewProps) => {
   return (
@@ -16,6 +17,7 @@ const AccountRouter = (props: IViewProps) => {
           <Routes>
             <Route path="/account" element={<Home />} />
             <Route path="/account/habits/*" element={<HabitsRouter />} />
+            <Route path="/account/stats" element={<MyStats />} />
             <Route path="/account/settings" element={<MySettings />} />
           </Routes>
         </div>
