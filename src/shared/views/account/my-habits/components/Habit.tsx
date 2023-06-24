@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import EffortLevel from '@/shared/components/effort-level/EffortLevel';
+import ProgressBar from '@/shared/components/progress-bar/ProgressBar';
 
 const Habit = ({ id, name, starting_week, color, expected_effort }: IProps) => {
   return (
@@ -14,11 +14,12 @@ const Habit = ({ id, name, starting_week, color, expected_effort }: IProps) => {
       </div>
       <div className="flex-1">
         <div className="mr-2 font-medium">{name}</div>
-        <div className="text-xs text-gray-500">From week {starting_week}</div>
+        <div className="text-xs text-gray-500">Started on week {starting_week}</div>
       </div>
 
-      <div className="mr-4 flex items-center justify-center">
-        <EffortLevel readOnly initialLevel={expected_effort} color={color} />
+      <div className="mr-4 flex flex-col">
+        <ProgressBar currentValue={expected_effort} expectedValue={expected_effort} color={color} readOnly />
+        <span className="mr-2 mt-1 text-xs text-gray-400">Expected weekly target: {expected_effort}</span>
       </div>
     </Link>
   );

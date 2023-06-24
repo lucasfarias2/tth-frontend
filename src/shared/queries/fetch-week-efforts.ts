@@ -2,7 +2,7 @@ import { QueryFunction } from '@tanstack/react-query';
 import apiRestClient from '@/shared/utils/rest-client';
 import EQueryKeys from './query-keys';
 
-const fetchEffortsByWeek: QueryFunction<TTHEffort, [EQueryKeys.Efforts, number?]> = async ({ queryKey }) => {
+const fetchEffortsByWeek: QueryFunction<TTHEffort[], [EQueryKeys.Efforts, number?]> = async ({ queryKey }) => {
   const week = queryKey[1];
 
   if (!week) {

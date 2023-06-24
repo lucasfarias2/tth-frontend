@@ -14,7 +14,7 @@ const AssignableHabit = ({ id, name, color, expected_effort, efforts }: IProps) 
         <div className="mr-2 font-medium">{name}</div>
       </div>
 
-      <ProgressBar currentValue={habitEffort?.level} expectedValue={expected_effort} color={color} />
+      <ProgressBar currentValue={habitEffort?.level} expectedValue={expected_effort} color={color} showTarget />
 
       {/* <div className="mr-4 flex items-center justify-center">
     <EffortLevel readOnly maxLevel={habit.expected_effort} color={habit.color} />

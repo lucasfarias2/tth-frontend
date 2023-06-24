@@ -1,6 +1,7 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import EffortLevel from '@/shared/components/effort-level/EffortLevel';
+import ProgressBar from '@/shared/components/progress-bar/ProgressBar';
 import FormInput from '@/shared/components/ui/input/FormInput';
 import FormSelect from '@/shared/components/ui/select/FormSelect';
 import WeekSelector from '@/shared/components/week-selector/WeekSelector';
@@ -75,7 +76,13 @@ const HabitForm = ({ initialValues, onSubmit }: { initialValues?: IFormData; onS
             control={control}
             defaultValue={1}
             render={({ field }) => (
-              <EffortLevel maxLevel={7} initialLevel={field.value} onLevelChange={level => field.onChange(level)} />
+              <ProgressBar
+                minimumValue={1}
+                expectedValue={7}
+                currentValue={field.value}
+                color="rose"
+                onChange={(level: number) => field.onChange(level)}
+              />
             )}
           />
         </div>
