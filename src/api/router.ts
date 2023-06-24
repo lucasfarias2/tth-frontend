@@ -17,6 +17,8 @@ apiRouter.patch('/habits/:id', habitController.editHabit);
 apiRouter.delete('/habits/:id', habitController.deleteHabit);
 
 apiRouter.get('/efforts/week/:week', effortController.getEffortsByWeek);
+apiRouter.post('/efforts', effortController.createEffort);
+apiRouter.patch('/efforts/:id', effortController.editEffort);
 
 apiRouter.use('*', (_req, res) => {
   res.send('Error 404: Page not found');

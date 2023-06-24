@@ -2,14 +2,14 @@ import React from 'react';
 import ChevronLeftIcon from '../ui/icons/ChevronLeftIcon';
 import ChevronRightIcon from '../ui/icons/ChevronRightIcon';
 
-interface WeekSelectorProps {
+interface WeekSelectorProps extends IComponent {
   value: number;
   onChange: (value: number) => void;
   currentWeek: number;
 }
 
 const WeekSelector = React.forwardRef<HTMLDivElement, WeekSelectorProps>(
-  ({ value, onChange, currentWeek }: WeekSelectorProps, ref) => {
+  ({ value, onChange, currentWeek, className }: WeekSelectorProps, ref) => {
     const scrollWeek = (direction: number) => {
       let newWeek = value + direction;
       if (newWeek < 1) newWeek = 52;
@@ -43,7 +43,10 @@ const WeekSelector = React.forwardRef<HTMLDivElement, WeekSelectorProps>(
     };
 
     return (
-      <div className="flex h-14 items-center justify-between rounded-lg border px-2 py-1 shadow-sm" ref={ref}>
+      <div
+        className={`${className} flex h-14 items-center justify-between rounded-lg border bg-white px-2 py-1 shadow-sm`}
+        ref={ref}
+      >
         <button onClick={() => scrollWeek(-1)} type="button">
           <ChevronLeftIcon className="text-lg" />
         </button>

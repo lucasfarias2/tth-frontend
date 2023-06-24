@@ -30,8 +30,10 @@ const ProgressBar = ({
   const [hoverValue, setHoverValue] = useState<number | null>(null);
 
   let percentageCompleted = 0;
+  let extraCompleted = 0;
   if (currentValue !== undefined) {
     percentageCompleted = Math.round((currentValue / expectedValue) * 100);
+    extraCompleted = Math.round(percentageCompleted - 100);
   }
 
   const handleClick = (value: number) => {
@@ -72,6 +74,7 @@ const ProgressBar = ({
               className={`
                 float-left 
                 cursor-pointer
+                transition-all duration-200 ease-in-out
                   ${
                     (currentValue && i < currentValue) || (hoverValue !== null && i < hoverValue)
                       ? filledBarStyle
@@ -101,7 +104,13 @@ const ProgressBar = ({
         (showTarget ? (
           <div className="flex w-36 flex-col items-center px-4 text-center leading-tight">
             <p className="mr-2 text-lg text-gray-500">{`${currentValue || 0}/7`}</p>
-            <p className="text-[10px] text-gray-400">{percentageCompleted}% of weekly target</p>
+            {percentageCompleted > 99 ? (
+              <p className="text-[10px] text-green-400">
+                Weekly target completed! {extraCompleted > 0 && `+${extraCompleted}%`}
+              </p>
+            ) : (
+              <p className="text-[10px] text-gray-400">{percentageCompleted}% of weekly target</p>
+            )}
           </div>
         ) : (
           <div className="flex flex-col items-center px-4 text-center leading-tight">
