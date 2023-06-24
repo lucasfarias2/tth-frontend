@@ -33,8 +33,8 @@ const MyStats = () => {
   const recentCompletionData = recentCompletion?.map(item => ({
     id: item.week,
     week: item.week,
-    completion: item.completion_percentage,
-    difference: item.difference,
+    completion: Math.round(item.completion_percentage),
+    difference: Math.round(item.difference),
   }));
 
   const ContributionTooltip = ({ datum }) => (
@@ -128,14 +128,14 @@ const MyStats = () => {
             <h3 className="mt-4">Past 2 weeks</h3>
             <p className="text-xs text-gray-500">This metric reflects how performant you were in the last two weeks.</p>
             <div className="h-64 w-full">
-              {performanceData && (
+              {recentCompletionData && (
                 <ResponsiveBar
                   data={recentCompletionData}
-                  keys={['completion', 'difference']}
+                  keys={['completion']}
                   margin={{ top: 48, right: 72, bottom: 24, left: 96 }}
                   labelTextColor={'#ffffff'}
-                  tooltip={PerformanceTooltip}
                   indexBy="week"
+                  valueFormat={value => `${value}%`}
                 />
               )}
             </div>
