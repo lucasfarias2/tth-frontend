@@ -13,13 +13,14 @@ const SignupForm = () => {
   } = useForm<IFormData>();
 
   const onSubmit: SubmitHandler<IFormData> = async data => {
-    const { password, email, name } = data;
+    const { password, email, first_name, last_name } = data;
 
     try {
       const response = await apiRestClient.post(`/signup`, {
         password,
         email,
-        name,
+        first_name,
+        last_name,
       });
 
       if (response.data) {
@@ -33,12 +34,21 @@ const SignupForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mx-auto my-0 flex max-w-lg flex-1 flex-col">
       <FormInput
-        name="name"
-        label="Name"
+        name="first_name"
+        label="First name"
         required
         control={control}
         errors={errors}
-        inputProps={{ type: 'text', placeholder: 'Name', autoComplete: 'name' }}
+        inputProps={{ type: 'text', placeholder: 'First name', autoComplete: 'first_name' }}
+      />
+
+      <FormInput
+        name="last_name"
+        label="Last name"
+        required
+        control={control}
+        errors={errors}
+        inputProps={{ type: 'text', placeholder: 'Last name', autoComplete: 'last_name' }}
       />
 
       <FormInput
@@ -69,7 +79,8 @@ const SignupForm = () => {
 interface IFormData {
   email: string;
   password: string;
-  name: string;
+  first_name: string;
+  last_name: string;
 }
 
 export default SignupForm;

@@ -14,7 +14,7 @@ const Home = () => {
   const user = queryClient.getQueryData([EQueryKeys.User]) as TTHUser;
   const currentWeek = getWeek(new Date());
   const [week, setWeek] = useState(currentWeek);
-  const { data: habits } = useQuery([EQueryKeys.Habits], fetchHabits);
+  const { data: habits } = useQuery([EQueryKeys.Habits, week], fetchHabits);
   const { data: efforts } = useQuery([EQueryKeys.Efforts, week], fetchEffortsByWeek);
 
   return (

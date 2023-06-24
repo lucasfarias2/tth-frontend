@@ -28,7 +28,7 @@ const logout = async (req: Request, res: Response) => {
 
   try {
     await axios.post(
-      `${process.env.BACKEND_URL}/auth/logout`,
+      `${process.env.BACKEND_URL}/auth/logout/`,
       {},
       {
         headers: { Authorization: `Bearer ${req.cookies.session}` },
@@ -44,13 +44,14 @@ const logout = async (req: Request, res: Response) => {
 };
 
 const signup = async (req: Request, res: Response) => {
-  const { email, password, name } = req.body;
+  const { email, password, first_name, last_name } = req.body;
 
   try {
     const { data } = await axios.post(`${process.env.BACKEND_URL}/auth/register/`, {
       email,
       password,
-      name,
+      first_name,
+      last_name,
     });
 
     res.cookie('session', data.token, options);

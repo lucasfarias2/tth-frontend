@@ -10,6 +10,7 @@ const getHabits = async (req: Request, res: Response) => {
   try {
     const { data } = await axios.get(`${process.env.BACKEND_URL}/habits/`, {
       headers: { Authorization: `Bearer ${session}` },
+      params: { week: req.query.week },
     });
 
     res.json(data);
