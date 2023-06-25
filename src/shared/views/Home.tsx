@@ -18,7 +18,12 @@ const Home = (props: IViewProps) => {
           </a>
         </div>
         <div className="ml-8">
-          <img src="/path-to-your-image" alt="App Screenshot" />
+          <img
+            src="https://i.imgur.com/UqItYr2.png"
+            alt="App Screenshot"
+            width={400}
+            className="rounded-lg border-2 border-white shadow-2xl"
+          />
         </div>
       </div>
 
