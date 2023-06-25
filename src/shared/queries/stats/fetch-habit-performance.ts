@@ -8,7 +8,7 @@ const fetchHabitPerformance: QueryFunction<TTHHabitPerformance, [EQueryKeys.Habi
   const habit = queryKey[1];
 
   if (!habit) {
-    return {};
+    return [];
   }
 
   const response = await apiRestClient.get(`/stats/performance/${habit}`);

@@ -1,12 +1,12 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
+import axios from 'axios';
 import type { NextFunction, Request, Response } from 'express';
 import EQueryKeys from '../../shared/queries/query-keys.js';
-import backendRestClient from '../backendRestClient.js';
 
 const fetch = async (req: Request, res: Response, next: NextFunction) => {
   const queryClient = new QueryClient();
 
-  const siteConfigResponse = await backendRestClient.get('/site-config', {
+  const siteConfigResponse = await axios.get(`${process.env.BACKEND_URL}/site-config/`, {
     headers: { Authorization: `Bearer ${req.cookies.session}` },
   });
 

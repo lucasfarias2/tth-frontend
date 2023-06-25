@@ -5,7 +5,7 @@ import FrequencyIcon from '../components/ui/icons/FrequencyIcon';
 
 const Home = (props: IViewProps) => {
   return (
-    <Page className="py-4 px-48" initialState={props.initialState} withNavbar>
+    <Page className="py-4 px-4 md:px-[15%]" initialState={props.initialState} withNavbar>
       <div className="mt-8 flex flex-row items-start justify-between">
         <div className="text-left">
           <h1 className="mb-4 text-4xl font-bold">Master your habits, achieve great results.</h1>
@@ -22,7 +22,7 @@ const Home = (props: IViewProps) => {
             src="https://i.imgur.com/UqItYr2.png"
             alt="App Screenshot"
             width={400}
-            className="rounded-lg border-2 border-white shadow-2xl"
+            className="rounded-lg border-2 border-white shadow-lg"
           />
         </div>
       </div>
@@ -47,7 +47,7 @@ const Home = (props: IViewProps) => {
             <BarChartIcon className="mb-2 text-4xl text-rose-400" />
             <h3 className="text-xl font-semibold">Progress visualization</h3>
           </div>
-          <p className="text-sm">{`Our charts bring your progress to life, showing you how much you're accomplishing, which habits are taking
+          <p className="text-sm">{`Bring your progress to life, showing you how much you're accomplishing, which habits are taking
             up most of your time, and how your effort evolves week by week.`}</p>
         </div>
       </div>

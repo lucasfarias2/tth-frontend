@@ -1,6 +1,6 @@
+import axios from 'axios';
 import type { NextFunction, Request, Response } from 'express';
 import EQueryKeys from '../../shared/queries/query-keys.js';
-import backendRestClient from '../backendRestClient.js';
 
 const getCurrentUser = async (req: Request, res: Response, next: NextFunction) => {
   if (!req.cookies.session) {
@@ -9,7 +9,7 @@ const getCurrentUser = async (req: Request, res: Response, next: NextFunction) =
   }
 
   try {
-    const { data } = await backendRestClient.get('/auth/user', {
+    const { data } = await axios.get(`${process.env.BACKEND_URL}/auth/user/`, {
       headers: { Authorization: `Bearer ${req.cookies.session}` },
     });
 
@@ -17,8 +17,8 @@ const getCurrentUser = async (req: Request, res: Response, next: NextFunction) =
 
     req.user = { id, first_name, last_name, email, is_staff, is_superuser, date_joined, last_login };
     res.queries[EQueryKeys.User] = req.user;
-  } catch {
-    console.error('Error: Fetching data from current user');
+  } catch (e) {
+    console.error('Error: Fetching data from current user', e);
   } finally {
     next();
   }

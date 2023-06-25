@@ -1,4 +1,5 @@
 import cookieParser from 'cookie-parser';
+import { config } from 'dotenv';
 import express from 'express';
 import type { ViteDevServer } from 'vite';
 import apiRouter from './api/router.js';
@@ -7,6 +8,8 @@ import notFoundMiddleware from './server/middleware/notFound.js';
 import renderViewMiddleware from './server/middleware/renderView.js';
 import appRouter from './server/router.js';
 import getServerOptions from './server/serverOptions.js';
+
+config();
 
 const port = process.env.PORT || 3000;
 const hmrPort = 3001;

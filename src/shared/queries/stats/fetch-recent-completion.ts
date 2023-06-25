@@ -8,7 +8,7 @@ const fetchRecentCompletion: QueryFunction<TTHRecentCompletion[], [EQueryKeys.Re
   const week = queryKey[1];
 
   if (!week) {
-    return {};
+    return [];
   }
 
   const response = await apiRestClient.get(`/stats/completion/${week}/recent`);

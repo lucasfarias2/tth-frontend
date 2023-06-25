@@ -6,7 +6,7 @@ const fetchEffortsByWeek: QueryFunction<TTHEffort[], [EQueryKeys.Efforts, number
   const week = queryKey[1];
 
   if (!week) {
-    return {};
+    return [];
   }
 
   const response = await apiRestClient.get(`/efforts/week/${week}`);
