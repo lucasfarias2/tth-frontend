@@ -45,7 +45,7 @@ const FormSelect = forwardRef<HTMLSelectElement, IProps>((props, ref) => {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
-                <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-lg border bg-white py-1 shadow-lg">
+                <Listbox.Options className="absolute z-20 mt-1 max-h-60 w-full overflow-auto rounded-lg border bg-white py-1 shadow-lg">
                   {options?.map(option => (
                     <Listbox.Option
                       key={option.id}
