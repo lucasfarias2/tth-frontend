@@ -1,6 +1,6 @@
 import React from 'react';
-import ChevronLeftIcon from '../ui/icons/ChevronLeftIcon';
-import ChevronRightIcon from '../ui/icons/ChevronRightIcon';
+import ChevronLeftIcon from '@/shared/components/ui/icons/ChevronLeftIcon';
+import ChevronRightIcon from '@/shared/components/ui/icons/ChevronRightIcon';
 
 interface WeekSelectorProps extends IComponent {
   value: number;
@@ -31,7 +31,7 @@ const WeekSelector = React.forwardRef<HTMLDivElement, WeekSelectorProps>(
           <div
             key={weekNumber}
             className={`w-18 mx-1 flex cursor-pointer flex-col items-center justify-center bg-white p-2 text-center text-xs hover:bg-gray-50 ${
-              weekNumber === value ? 'h-14 border bg-gray-50 font-semibold text-gray-800' : 'rounded-lg'
+              weekNumber === value ? 'h-14 border-x bg-gray-50 font-semibold text-gray-800' : 'rounded-lg'
             } ${weekNumber === currentWeek ? 'text-rose-500' : 'text-gray-400'}`}
             onClick={() => selectWeek(weekNumber)}
           >
@@ -44,7 +44,7 @@ const WeekSelector = React.forwardRef<HTMLDivElement, WeekSelectorProps>(
 
     return (
       <div
-        className={`${className} flex h-14 items-center justify-between rounded-lg border bg-white px-2 py-1 shadow-sm`}
+        className={`${className} relative flex h-14 items-center justify-between overflow-hidden rounded-lg border-x border-t bg-white px-2 py-1`}
         ref={ref}
       >
         <button onClick={() => scrollWeek(-1)} type="button">

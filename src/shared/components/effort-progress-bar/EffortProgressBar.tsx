@@ -3,7 +3,7 @@ import getColorClasses from '@/shared/utils/get-color-classes';
 import AddIcon from '../ui/icons/AddIcon';
 import MinusIcon from '../ui/icons/MinusIcon';
 
-interface ProgressBarProps {
+interface IProps {
   minimumValue?: number;
   currentValue?: number;
   expectedValue: number;
@@ -13,7 +13,7 @@ interface ProgressBarProps {
   showTarget?: boolean;
 }
 
-const ProgressBar = ({
+const EffortProgressBar = ({
   minimumValue = 0,
   currentValue = 0,
   expectedValue,
@@ -21,7 +21,7 @@ const ProgressBar = ({
   onChange,
   readOnly,
   showTarget = false,
-}: ProgressBarProps) => {
+}: IProps) => {
   const { bgColor } = getColorClasses(color);
   const filledBarStyle = `h-5 ${bgColor} border-r-2 border-white ${readOnly ? 'last:border-r-0' : ''}`;
   const halfFilledBarStyle = `h-5 bg-${color}-100 border-r-2 border-white ${readOnly ? 'last:border-r-0' : ''}`;
@@ -121,4 +121,4 @@ const ProgressBar = ({
   );
 };
 
-export default ProgressBar;
+export default EffortProgressBar;

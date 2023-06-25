@@ -47,7 +47,7 @@ const TotalContributionChart = ({ globalPerformance }: IProps) => {
             arcLinkLabelsThickness={2}
             arcLinkLabelsOffset={0}
             arcLinkLabelsStraightLength={24}
-            arcLinkLabelsDiagonalLength={24}
+            arcLinkLabelsDiagonalLength={12}
             arcLinkLabelsTextOffset={8}
             arcLinkLabelsSkipAngle={12}
             arcLabelsTextColor={'#ffffff'}

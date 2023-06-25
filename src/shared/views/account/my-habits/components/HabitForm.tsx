@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import ProgressBar from '@/shared/components/progress-bar/ProgressBar';
+import EffortProgressBar from '@/shared/components/effort-progress-bar/EffortProgressBar';
 import FormInput from '@/shared/components/ui/input/FormInput';
 import FormSelect from '@/shared/components/ui/select/FormSelect';
 import WeekSelector from '@/shared/components/week-selector/WeekSelector';
@@ -66,7 +66,7 @@ const HabitForm = ({ initialValues, onSubmit }: { initialValues?: IFormData; onS
             name="starting_week"
             control={control}
             defaultValue={currentWeek}
-            render={({ field }) => <WeekSelector {...field} currentWeek={currentWeek} />}
+            render={({ field }) => <WeekSelector {...field} currentWeek={currentWeek} className="border-b shadow-sm" />}
           />
         </div>
 
@@ -78,7 +78,7 @@ const HabitForm = ({ initialValues, onSubmit }: { initialValues?: IFormData; onS
             control={control}
             defaultValue={1}
             render={({ field }) => (
-              <ProgressBar
+              <EffortProgressBar
                 minimumValue={1}
                 expectedValue={7}
                 currentValue={field.value}

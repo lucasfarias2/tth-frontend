@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import ProgressBar from '@/shared/components/progress-bar/ProgressBar';
+import EffortProgressBar from '@/shared/components/effort-progress-bar/EffortProgressBar';
 import { useToast } from '@/shared/components/toast/ToastContext';
 import createEffort from '@/shared/queries/create-effort';
 import editEffort from '@/shared/queries/edit-effort';
@@ -37,6 +37,7 @@ const HomeHabit = ({ id, name, color, expected_effort, efforts, week }: IProps) 
     onSuccess: () => {
       showToast('Effort updated successfully', 'success');
       queryClient.invalidateQueries([EQueryKeys.Efforts]);
+      queryClient.invalidateQueries([EQueryKeys.WeekCompletion, week]);
     },
     onError: () => {
       showToast(
@@ -51,6 +52,7 @@ const HomeHabit = ({ id, name, color, expected_effort, efforts, week }: IProps) 
     onSuccess: () => {
       showToast('Effort updated successfully', 'success');
       queryClient.invalidateQueries([EQueryKeys.Efforts]);
+      queryClient.invalidateQueries([EQueryKeys.WeekCompletion, week]);
     },
     onError: () => {
       showToast(
@@ -80,7 +82,7 @@ const HomeHabit = ({ id, name, color, expected_effort, efforts, week }: IProps) 
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className={`flex items-center justify-between border-b px-2 py-3 text-sm last:border-b-0`}>
+      <div className={`flex items-center justify-between border-b px-2 py-3 text-sm`}>
         <div
           className={`mr-4 flex h-8 w-8 items-center justify-center rounded-full bg-${color}-500 font-semibold uppercase text-white`}
         >
@@ -94,7 +96,7 @@ const HomeHabit = ({ id, name, color, expected_effort, efforts, week }: IProps) 
           name="level"
           control={control}
           render={({ field }) => (
-            <ProgressBar
+            <EffortProgressBar
               currentValue={field.value}
               expectedValue={expected_effort}
               color={color}

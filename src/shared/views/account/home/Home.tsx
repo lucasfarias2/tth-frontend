@@ -2,6 +2,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import CalendarIcon from '@/shared/components/ui/icons/CalendarIcon';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
+import WeekProgressBar from '@/shared/components/week-progress-bar/WeekProgressBar';
 import WeekSelector from '@/shared/components/week-selector/WeekSelector';
 import fetchHabits from '@/shared/queries/fetch-habits';
 import fetchEffortsByWeek from '@/shared/queries/fetch-week-efforts';
@@ -29,29 +30,35 @@ const Home = () => {
       </div>
 
       <WeekSelector
-        className="relative mb-[-4px] rounded-b-none"
+        className="relative rounded-b-none"
         currentWeek={currentWeek}
         value={week}
         onChange={value => {
           setWeek(value);
           queryClient.invalidateQueries([EQueryKeys.Efforts, value]);
+          queryClient.invalidateQueries([EQueryKeys.WeekCompletion, value]);
         }}
       />
 
-      <div className="mb-4  rounded-b-lg border bg-white p-4 shadow-sm">
-        {habits && habits.length > 0 && weekCompletion?.completion_percentage}
-        {currentWeek === week && (
-          <div className="mb-2 flex items-center rounded-lg bg-gray-50 p-3 text-sm text-gray-500">
-            <CalendarIcon className="mr-2 mb-[2px] text-lg" /> This is the ongoing week.
-          </div>
+      <div className="rounded-b-lg border bg-white shadow-sm">
+        {habits && habits.length > 0 && weekCompletion && (
+          <WeekProgressBar progress={weekCompletion?.completion_percentage} />
         )}
-        {habits &&
-          habits?.map(habit => {
-            return <HomeHabit key={habit.id} {...habit} efforts={efforts} week={week} />;
-          })}
-        <div className="mt-4 text-xs text-gray-400">
-          <span className="font-semibold">Note:</span> Add how much have you done of each habit to track your weekly
-          progress.
+
+        <div className="px-4 pb-4">
+          {currentWeek === week && (
+            <div className="mt-4 flex items-center rounded-lg bg-gray-50 p-3 text-sm text-gray-500">
+              <CalendarIcon className="mr-2 mb-[2px] text-lg" /> This is the ongoing week.
+            </div>
+          )}
+          {habits &&
+            habits?.map(habit => {
+              return <HomeHabit key={habit.id} {...habit} efforts={efforts} week={week} />;
+            })}
+          <div className="mt-4 text-xs text-gray-400">
+            <span className="font-semibold">Note:</span> Add how much have you done of each habit to track your weekly
+            progress.
+          </div>
         </div>
       </div>
     </div>
