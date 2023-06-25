@@ -30,8 +30,8 @@ const WeekSelector = React.forwardRef<HTMLDivElement, WeekSelectorProps>(
         weeks.push(
           <div
             key={weekNumber}
-            className={`mx-1 flex w-full cursor-pointer flex-col items-center justify-center rounded-lg bg-white p-2 text-center text-sm hover:bg-gray-50 ${
-              weekNumber === value ? 'h-16 border font-semibold text-gray-800 shadow-sm' : 'text-xs'
+            className={`w-18 mx-1 flex cursor-pointer flex-col items-center justify-center bg-white p-2 text-center text-xs hover:bg-gray-50 ${
+              weekNumber === value ? 'h-14 border bg-gray-50 font-semibold text-gray-800' : 'rounded-lg'
             } ${weekNumber === currentWeek ? 'text-rose-500' : 'text-gray-400'}`}
             onClick={() => selectWeek(weekNumber)}
           >

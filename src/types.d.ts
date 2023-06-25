@@ -88,6 +88,10 @@ declare global {
     performance_percentage: number;
   };
 
+  export interface TTHSiteConfig {
+    current_week: number;
+  }
+
   export interface IInitialState {
     user: TTHUser;
   }

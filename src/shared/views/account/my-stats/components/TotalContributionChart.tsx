@@ -12,7 +12,7 @@ const TotalContributionChart = ({ globalPerformance }: IProps) => {
   const ContributionTooltip = ({ datum }: { datum: ITooltipData }) => (
     <div className="rounded-lg border bg-white p-2 shadow-lg">
       <p className="text-xs text-gray-500">{datum.label}</p>
-      <p>{datum.value}%</p>
+      <p className="font-medium">{datum.value}%</p>
     </div>
   );
 
@@ -28,26 +28,31 @@ const TotalContributionChart = ({ globalPerformance }: IProps) => {
     });
 
   return (
-    <div className="w-full">
+    <div className="mr-4 w-full border-r">
       <h3 className="font-medium">Total contribution</h3>
       <p className="text-xs text-gray-500">
-        This metric reflects how much of total effort are you were dedicating to each habit.
+        This metric reflects how much of total effort are you dedicating to each habit.
       </p>
       <div className="h-72 w-full">
         {data && (
           <ResponsivePie
             data={data}
             margin={{ top: 48, right: 24, bottom: 24, left: 24 }}
-            innerRadius={0.5}
-            padAngle={0.7}
+            innerRadius={0.01}
+            padAngle={1}
             cornerRadius={3}
             colors={d => d.data.color}
             tooltip={ContributionTooltip}
-            arcLinkLabel="label"
             arcLinkLabelsColor={{ from: 'color' }}
             arcLinkLabelsThickness={2}
+            arcLinkLabelsOffset={0}
+            arcLinkLabelsStraightLength={24}
+            arcLinkLabelsDiagonalLength={24}
+            arcLinkLabelsTextOffset={8}
+            arcLinkLabelsSkipAngle={12}
             arcLabelsTextColor={'#ffffff'}
-            valueFormat={value => `${value}%`}
+            arcLinkLabel="label"
+            valueFormat={value => (value > 6 ? `${Math.round(value)}%` : '')}
           />
         )}
       </div>

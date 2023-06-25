@@ -1,11 +1,12 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import ProgressBar from '@/shared/components/progress-bar/ProgressBar';
 import FormInput from '@/shared/components/ui/input/FormInput';
 import FormSelect from '@/shared/components/ui/select/FormSelect';
 import WeekSelector from '@/shared/components/week-selector/WeekSelector';
+import EQueryKeys from '@/shared/queries/query-keys';
 import LIST_OF_COLORS from '@/shared/utils/colors';
-import getWeek from '@/shared/utils/get-week';
 
 interface IFormData {
   name: string;
@@ -16,6 +17,8 @@ interface IFormData {
 
 const HabitForm = ({ initialValues, onSubmit }: { initialValues?: IFormData; onSubmit: (data: IFormData) => void }) => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const { current_week: currentWeek } = queryClient.getQueryData([EQueryKeys.SiteConfig]) as TTHSiteConfig;
 
   const {
     control,
@@ -62,8 +65,8 @@ const HabitForm = ({ initialValues, onSubmit }: { initialValues?: IFormData; onS
           <Controller
             name="starting_week"
             control={control}
-            defaultValue={getWeek(new Date())}
-            render={({ field }) => <WeekSelector {...field} currentWeek={getWeek(new Date())} />}
+            defaultValue={currentWeek}
+            render={({ field }) => <WeekSelector {...field} currentWeek={currentWeek} />}
           />
         </div>
 

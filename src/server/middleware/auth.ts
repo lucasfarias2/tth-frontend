@@ -1,4 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
+import EQueryKeys from '../../shared/queries/query-keys.js';
 import backendRestClient from '../backendRestClient.js';
 
 const getCurrentUser = async (req: Request, res: Response, next: NextFunction) => {
@@ -15,7 +16,7 @@ const getCurrentUser = async (req: Request, res: Response, next: NextFunction) =
     const { id, first_name, last_name, email, is_staff, is_superuser, date_joined, last_login } = data as TTHUser;
 
     req.user = { id, first_name, last_name, email, is_staff, is_superuser, date_joined, last_login };
-    res.queries.user = req.user;
+    res.queries[EQueryKeys.User] = req.user;
   } catch {
     console.error('Error: Fetching data from current user');
   } finally {
@@ -32,7 +33,7 @@ const requireAuth = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const requireStaff = (req: Request, res: Response, next: NextFunction) => {
-  if (req.user.type !== 'STAFF') {
+  if (!req.user.is_staff) {
     res.redirect('/');
   } else {
     next();

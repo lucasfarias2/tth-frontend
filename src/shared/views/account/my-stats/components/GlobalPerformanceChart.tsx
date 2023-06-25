@@ -11,6 +11,7 @@ interface ITooltipData {
 const GlobalPerformanceChart = ({ globalPerformance }: IProps) => {
   const data = globalPerformance
     ?.filter(item => item.performance_percentage > 0)
+    .sort((a, b) => b.performance_percentage - a.performance_percentage)
     .map(item => ({
       id: item.habit.id,
       label: item.habit.name,
@@ -21,7 +22,7 @@ const GlobalPerformanceChart = ({ globalPerformance }: IProps) => {
   const PerformanceTooltip = ({ data }: { data: ITooltipData }) => (
     <div className="rounded-lg border bg-white p-2 shadow-lg">
       <p className="text-xs text-gray-500">{data.label}</p>
-      <p>{data.value}%</p>
+      <p className="font-medium">{data.value}%</p>
     </div>
   );
 
@@ -29,7 +30,8 @@ const GlobalPerformanceChart = ({ globalPerformance }: IProps) => {
     <>
       <h3 className="font-medium">Global performance</h3>
       <p className="text-xs text-gray-500">
-        This is how are you performing this year. We take in account your perfromance in all weeks the current week.
+        This is how you are performing this year. We take in account your perfromance from all previous weeks to the
+        current week.
       </p>
       <div className="h-72 w-full">
         {data && (
@@ -39,7 +41,7 @@ const GlobalPerformanceChart = ({ globalPerformance }: IProps) => {
             colors={d => d.data.color}
             labelTextColor={'#ffffff'}
             tooltip={PerformanceTooltip}
-            valueFormat={value => `${value}%`}
+            valueFormat={value => `${Math.round(value)}%`}
             indexBy="label"
             axisLeft={null}
             legends={[

@@ -6,16 +6,17 @@ import WeekSelector from '@/shared/components/week-selector/WeekSelector';
 import fetchHabits from '@/shared/queries/fetch-habits';
 import fetchEffortsByWeek from '@/shared/queries/fetch-week-efforts';
 import EQueryKeys from '@/shared/queries/query-keys';
-import getWeek from '@/shared/utils/get-week';
+import fetchWeekCompletion from '@/shared/queries/stats/fetch-week-completion';
 import HomeHabit from './component/HomeHabit';
 
 const Home = () => {
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData([EQueryKeys.User]) as TTHUser;
-  const currentWeek = getWeek(new Date());
+  const { current_week: currentWeek } = queryClient.getQueryData([EQueryKeys.SiteConfig]) as TTHSiteConfig;
   const [week, setWeek] = useState(currentWeek);
   const { data: habits } = useQuery([EQueryKeys.Habits, week], fetchHabits);
   const { data: efforts } = useQuery([EQueryKeys.Efforts, week], fetchEffortsByWeek);
+  const { data: weekCompletion } = useQuery([EQueryKeys.WeekCompletion, week], fetchWeekCompletion);
 
   return (
     <div className="max-w-2xl p-8">
@@ -38,6 +39,7 @@ const Home = () => {
       />
 
       <div className="mb-4  rounded-b-lg border bg-white p-4 shadow-sm">
+        {habits && habits.length > 0 && weekCompletion?.completion_percentage}
         {currentWeek === week && (
           <div className="mb-2 flex items-center rounded-lg bg-gray-50 p-3 text-sm text-gray-500">
             <CalendarIcon className="mr-2 mb-[2px] text-lg" /> This is the ongoing week.

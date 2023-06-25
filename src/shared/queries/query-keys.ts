@@ -1,5 +1,6 @@
 enum EQueryKeys {
   User = 'user',
+  SiteConfig = 'site-config',
   Habit = 'habit',
   Habits = 'habits',
   Efforts = 'efforts',
