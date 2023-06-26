@@ -1,42 +1,17 @@
-import { ResponsiveBar } from '@nivo/bar';
+import { Bar, BarChart, Cell, LabelList, ResponsiveContainer, Tooltip, XAxis } from 'recharts';
 import getColorClasses from '@/shared/utils/get-color-classes';
+import RecentCompletionTooltip from './RecentCompletionTooltip';
 
-interface ITooltipData {
-  difference: number;
-  completion: number;
-  week: number;
-}
-
-const RecentCompletionChart = ({ recentCompletion }: IProps) => {
+const RecentCompletionChart = ({ recentCompletion = [] }: IProps) => {
   const data = recentCompletion?.map((item, i) => ({
     id: item.week,
     week: item.week,
-    completion: item.completion_percentage,
+    weekLabel: `Week ${item.week}`,
+    completion: Math.round(item.completion_percentage),
+    completionLabel: `${Math.round(item.completion_percentage)}%`,
     difference: item.difference,
     color: i === recentCompletion.length - 1 ? getColorClasses('rose').hex400 : getColorClasses('neutral').hex400,
   }));
-
-  const RecentCompletionTooltip = ({ data: { difference, completion, week } }: { data: ITooltipData }) => {
-    const isDifferencePositive = difference > 0;
-    return (
-      <div className="rounded-lg border bg-white p-2 shadow-lg">
-        <p className="text-xs text-gray-500">Week {week}</p>
-        <div className="flex items-center">
-          <p className={`inline-block rounded-lg font-medium`}>{completion}%</p>
-          {difference && (
-            <p
-              className={`${
-                isDifferencePositive ? 'bg-green-50 text-green-500' : 'bg-red-50 text-red-500'
-              } ml-1 inline-block rounded-lg p-1 text-[10px] font-medium`}
-            >
-              {isDifferencePositive ? '+' : ''}
-              {difference}%
-            </p>
-          )}
-        </div>
-      </div>
-    );
-  };
 
   return (
     <div className="w-full">
@@ -44,25 +19,18 @@ const RecentCompletionChart = ({ recentCompletion }: IProps) => {
       <p className="text-xs text-gray-500">This metric reflects your performance from the past four weeks.</p>
       <div className="h-72 w-full">
         {data && (
-          <ResponsiveBar
-            data={data}
-            keys={['completion']}
-            colors={d => d.data.color}
-            margin={{ top: 48, right: 48, bottom: 24, left: 36 }}
-            axisLeft={null}
-            labelTextColor={'#ffffff'}
-            valueFormat={value => `${Math.round(value)}%`}
-            tooltip={RecentCompletionTooltip}
-            axisBottom={{
-              tickSize: 5,
-              tickPadding: 5,
-              tickRotation: 0,
-              legend: 'Week',
-              legendPosition: 'middle',
-              legendOffset: 32,
-              format: value => `Week ${value}`,
-            }}
-          />
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={data} margin={{ top: 48, right: 48, left: 48 }} barCategoryGap={4}>
+              <XAxis dataKey="weekLabel" fontSize={12} />
+              <Tooltip content={<RecentCompletionTooltip />} cursor={{ fill: 'transparent' }} />
+              <Bar dataKey="completion">
+                <LabelList dataKey="completionLabel" position="top" fontSize={12} />
+                {data.map((entry, index) => {
+                  return <Cell key={`cell-${index}`} fill={entry.color} />;
+                })}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
         )}
       </div>
     </div>
