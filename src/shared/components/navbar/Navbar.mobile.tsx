@@ -45,11 +45,7 @@ const NavbarMobile = () => {
                 {user && <NavbarLink to="/account/" label={user.first_name || user.email} />}
               </div>
             </div>
-            <button
-              type="button"
-              onClick={handleCloseMenu}
-              className="absolute top-2 left-12 rounded-full p-1"
-            >
+            <button type="button" onClick={handleCloseMenu} className="absolute top-2 left-12 rounded-full p-1">
               <CloseIcon className="text-3xl text-white" />
             </button>
           </>,
