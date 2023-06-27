@@ -1,18 +1,10 @@
-import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import getColorClasses from '@/shared/utils/get-color-classes';
 import ChartTooltip from './ChartTooltip';
-
-interface ITooltipData {
-  label: string | number;
-  value: number;
-  id: string | number;
-  color: string;
-}
 
 const RADIAN = Math.PI / 180;
 
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index, payload }) => {
-  console.log('payload', payload);
   const data = payload?.payload;
 
   if (data.value < 7) return null;
@@ -50,7 +42,6 @@ const TotalContributionChart = ({ globalPerformance }: IProps) => {
         {data && (
           <ResponsiveContainer width="100%" height="100%">
             <PieChart width={400} height={400}>
-              <Legend payload={data} formatter={(_, entry) => entry.label} />
               <Tooltip content={<ChartTooltip />} />
 
               <Pie

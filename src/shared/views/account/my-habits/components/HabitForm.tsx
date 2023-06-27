@@ -72,7 +72,7 @@ const HabitForm = ({ initialValues, onSubmit }: { initialValues?: IFormData; onS
 
         <div className="my-4">
           <label className="text-sm font-semibold">Target effort</label>
-          <p className="mb-2 text-xs text-gray-500">Amout of work devoted to this habit per week.</p>
+          <p className="mb-2 text-xs text-gray-500">Amount of work devoted to this habit per week.</p>
           <Controller
             name="expected_effort"
             control={control}

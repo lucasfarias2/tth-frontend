@@ -9,7 +9,7 @@ const fetch = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 const render = (req: Request, res: Response) => {
-  res.renderView('login', {});
+  res.renderView('login', { device: req.device });
 };
 
 export default { render, fetch };

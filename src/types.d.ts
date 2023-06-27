@@ -17,7 +17,7 @@ declare global {
   }
 
   export interface IDevice {
-    type: TDeviceType;
+    type?: TDeviceType;
   }
 
   type TDeviceType = 'mobile' | 'desktop';
@@ -98,6 +98,7 @@ declare global {
 
   export interface IViewProps {
     initialState: IInitialState;
+    device: IDevice;
   }
 
   export type TOnClick = React.MouseEvent<HTMLButtonElement>;

@@ -23,7 +23,7 @@ const login = async (req: Request, res: Response) => {
 
 const logout = async (req: Request, res: Response) => {
   if (!req.cookies.session) {
-    return res.status(401).send('No session found');
+    res.redirect('/');
   }
 
   try {

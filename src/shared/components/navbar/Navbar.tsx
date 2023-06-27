@@ -8,7 +8,7 @@ const Navbar = () => {
   const user = queryClient.getQueryData([EQueryKeys.User]) as TTHUser;
 
   return (
-    <nav className="flex h-[80px] items-center justify-between bg-white shadow-sm md:px-[15%]">
+    <nav className="flex h-[80px] items-center justify-between bg-white px-16 shadow-sm">
       <Logo />
       <div>
         {!user && <NavbarLink to="/login" label="Login" />}

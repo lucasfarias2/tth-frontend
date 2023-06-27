@@ -10,9 +10,7 @@ const fetch = async (req: Request, res: Response, next: NextFunction) => {
     headers: { Authorization: `Bearer ${req.cookies.session}` },
   });
 
-  if (siteConfigResponse.data) {
-    res.queries[EQueryKeys.SiteConfig] = siteConfigResponse.data;
-  }
+  res.queries[EQueryKeys.SiteConfig] = siteConfigResponse.data || {};
 
   res.locals.initialState = dehydrate(queryClient);
 
@@ -24,7 +22,7 @@ const fetch = async (req: Request, res: Response, next: NextFunction) => {
 const render = (req: Request, res: Response) => {
   res
     .loadQueryKeys([EQueryKeys.User, EQueryKeys.SiteConfig])
-    .renderView('account', { initialState: res.locals.initialState });
+    .renderView('account', { initialState: res.locals.initialState, device: req.device });
 };
 
 export default { render, fetch };

@@ -12,8 +12,6 @@ const getSiteConfig = async (req: Request, res: Response) => {
       headers: { Authorization: `Bearer ${session}` },
     });
 
-    console.log("data", data)
-
     res.json(data);
   } catch (err) {
     console.log(err);

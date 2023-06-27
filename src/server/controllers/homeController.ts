@@ -6,7 +6,9 @@ const fetch = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 const render = (req: Request, res: Response) => {
-  res.loadQueryKeys([EQueryKeys.User]).renderView('home', { initialState: res.locals.initialState });
+  res
+    .loadQueryKeys([EQueryKeys.User])
+    .renderView('home', { initialState: res.locals.initialState, device: req.device });
 };
 
 export default { render, fetch };
