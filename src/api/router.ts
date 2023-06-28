@@ -4,6 +4,7 @@ import effortController from './controllers/effortController.js';
 import habitController from './controllers/habitController.js';
 import siteConfigController from './controllers/siteConfigController.js';
 import statsController from './controllers/statsController.js';
+import userController from './controllers/userController.js';
 
 const apiRouter = express.Router();
 
@@ -11,6 +12,8 @@ apiRouter.post('/login', authController.login);
 apiRouter.post('/signup', authController.signup);
 apiRouter.get('/logout', authController.logout);
 apiRouter.get('/auth/user', authController.currentUser);
+
+apiRouter.patch('/user/profile', userController.updateProfile);
 
 apiRouter.get('/site-config', siteConfigController.getSiteConfig);
 

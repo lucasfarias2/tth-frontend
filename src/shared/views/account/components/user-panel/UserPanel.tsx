@@ -1,5 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
 import Logo from '@/shared/components/logo/Logo';
+import AlertInfoIcon from '@/shared/components/ui/icons/AlertInfoIcon';
 import BarChartIcon from '@/shared/components/ui/icons/BarChartIcon';
 import ConfigurationIcon from '@/shared/components/ui/icons/ConfigurationIcon';
 import FrequencyIcon from '@/shared/components/ui/icons/FrequencyIcon';
@@ -27,8 +28,15 @@ const UserPanel = () => {
         </div>
       </div>
 
-      <div className="flex flex-col text-sm font-medium">
-        <div className="mt-2 flex items-center justify-between border-t px-3 pt-2">
+      <div className="flex flex-col">
+        <div className="rounded-lg bg-rose-50 p-4 text-[12px] text-rose-800">
+          <p className="mb-2 flex items-start font-semibold">
+            <AlertInfoIcon className="mr-2 text-lg" /> Scheduled upgrade migration
+          </p>
+          <span>July 6th at 23:00. Only APAC countries affected.</span>
+        </div>
+
+        <div className="mt-4 flex items-center justify-between border-t px-3 pt-2 font-medium">
           {user && (
             <a href="/account/" className="mr-4 flex items-center py-2 text-sm font-medium">
               <UserIcon className="mr-3 text-2xl text-gray-500" />

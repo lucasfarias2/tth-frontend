@@ -18,3 +18,11 @@ interface ICreateEffortRequest {
 interface IEditEffortRequest extends ICreateEffortRequest {
   id?: string;
 }
+
+interface IUpdateUserRequest {
+  first_name?: string;
+  last_name?: string;
+  email?: string;
+  password?: string;
+  old_password: string;
+}
