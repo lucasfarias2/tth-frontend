@@ -9,7 +9,11 @@ const Navbar = () => {
 
   return (
     <nav className="flex h-[80px] items-center justify-between bg-white px-16 shadow-sm">
-      <Logo />
+      <div className="flex">
+        <Logo />
+        <p className="logo ml-2 rounded-lg text-sm text-red-500">Early access</p>
+      </div>
+
       <div>
         {!user && <NavbarLink to="/login" label="Login" />}
         {!user && <NavbarLink to="/signup" label="Sign up" />}
