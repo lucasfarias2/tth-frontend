@@ -26,12 +26,23 @@ const MySettings = () => {
         </button>
       </div>
       {!editMode && user ? (
-        <div className="rounded-lg border bg-white p-4 shadow-sm">
-          <p className="">
-            {user.first_name} {user.last_name}
-          </p>
-
-          <p>{user.email}</p>
+        <div className="rounded-lg border bg-white p-4 text-sm shadow-sm">
+          <div className="mb-4 flex items-start justify-between border-b px-2 pb-6">
+            <p className="text-xs text-gray-500">First name</p>
+            <span className="w-1/2 font-medium">{user.first_name}</span>
+          </div>
+          <div className="mb-4 flex items-start justify-between border-b px-2 pb-6">
+            <p className="text-xs text-gray-500">Last name</p>
+            <span className="w-1/2 font-medium">{user.last_name}</span>
+          </div>
+          <div className="mb-4 flex items-start justify-between border-b px-2 pb-6">
+            <p className="text-xs text-gray-500">Email</p>
+            <span className="w-1/2 font-medium">{user.email}</span>
+          </div>
+          <div className="flex items-start justify-between px-2 pb-6">
+            <p className="text-xs text-gray-500">Profile picture</p>
+            <span className="w-1/2 font-medium text-gray-400">N/A</span>
+          </div>
         </div>
       ) : (
         <div>

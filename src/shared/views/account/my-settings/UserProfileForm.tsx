@@ -58,46 +58,66 @@ const UserProfileForm = ({ setEditMode }: IProps) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="rounded-lg border bg-white p-4 shadow-sm">
       <div className="flex flex-col">
-        <FormInput
-          name="first_name"
-          label="First name"
-          control={control}
-          errors={errors}
-          inputProps={{ type: 'text', placeholder: 'First name', autoComplete: 'first_name' }}
-        />
+        <div className="mb-4 flex items-start justify-between border-b px-2 pb-6">
+          <p className="text-xs text-gray-500">First name</p>
+          <span className="w-1/2 font-medium">
+            <FormInput
+              name="first_name"
+              control={control}
+              errors={errors}
+              inputProps={{ type: 'text', placeholder: 'First name', autoComplete: 'first_name' }}
+            />
+          </span>
+        </div>
 
-        <FormInput
-          name="last_name"
-          label="Last name"
-          control={control}
-          errors={errors}
-          inputProps={{ type: 'text', placeholder: 'Last name', autoComplete: 'last_name' }}
-        />
+        <div className="mb-4 flex items-start justify-between border-b px-2 pb-6">
+          <p className="text-xs text-gray-500">Last name</p>
+          <span className="w-1/2 font-medium">
+            <FormInput
+              name="last_name"
+              control={control}
+              errors={errors}
+              inputProps={{ type: 'text', placeholder: 'Last name', autoComplete: 'last_name' }}
+            />
+          </span>
+        </div>
 
-        <FormInput
-          name="email"
-          label="Email"
-          control={control}
-          errors={errors}
-          inputProps={{ type: 'email', placeholder: 'Email', autoComplete: 'email' }}
-        />
+        <div className="mb-4 flex items-start justify-between border-b px-2 pb-6">
+          <p className="text-xs text-gray-500">Email</p>
+          <span className="w-1/2 font-medium">
+            <FormInput
+              name="email"
+              control={control}
+              errors={errors}
+              inputProps={{ type: 'email', placeholder: 'Email', autoComplete: 'email' }}
+            />
+          </span>
+        </div>
 
-        <FormInput
-          name="password"
-          label="Password"
-          control={control}
-          errors={errors}
-          inputProps={{ type: 'password', placeholder: 'Password', autoComplete: 'new-password' }}
-        />
+        <div className="mb-4 flex items-start justify-between border-b px-2 pb-6">
+          <p className="text-xs text-gray-500">New password</p>
+          <span className="w-1/2 font-medium">
+            <FormInput
+              name="password"
+              control={control}
+              errors={errors}
+              inputProps={{ type: 'password', placeholder: 'Password', autoComplete: 'new-password' }}
+            />
+          </span>
+        </div>
 
-        <FormInput
-          name="currentPassword"
-          label="Current password"
-          required
-          control={control}
-          errors={errors}
-          inputProps={{ type: 'password', placeholder: 'Current password', autoComplete: 'old-password' }}
-        />
+        <div className="flex items-start justify-between border-b px-2 pb-6">
+          <p className="text-xs text-gray-500">Current password</p>
+          <span className="w-1/2 font-medium">
+            <FormInput
+              name="currentPassword"
+              required
+              control={control}
+              errors={errors}
+              inputProps={{ type: 'password', placeholder: 'Current password', autoComplete: 'old-password' }}
+            />
+          </span>
+        </div>
       </div>
 
       <button

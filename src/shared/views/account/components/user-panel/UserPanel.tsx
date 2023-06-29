@@ -29,18 +29,25 @@ const UserPanel = () => {
       </div>
 
       <div className="flex flex-col">
-        <div className="rounded-lg bg-rose-50 p-4 text-[12px] text-rose-800">
-          <p className="mb-2 flex items-start font-semibold">
-            <AlertInfoIcon className="mr-2 text-lg" /> Scheduled upgrade migration
-          </p>
+        <div className="rounded-lg bg-rose-100 p-4 text-[12px] text-rose-700">
+          <div className="mb-2 flex items-start font-semibold">
+            <div className="flex items-center justify-center">
+              <AlertInfoIcon className="mr-2 text-[14px]" /> Scheduled server upgrade
+            </div>
+          </div>
           <span>July 6th at 23:00. Only APAC countries affected.</span>
         </div>
 
-        <div className="mt-4 flex items-center justify-between border-t px-3 pt-2 font-medium">
+        <div className="mt-4 flex items-center justify-between border-t px-3 pt-2">
           {user && (
-            <a href="/account/" className="mr-4 flex items-center py-2 text-sm font-medium">
+            <a href="/account/" className="mr-4 flex items-center py-2 text-sm">
               <UserIcon className="mr-3 text-2xl text-gray-500" />
-              {user.first_name || user.email || user.username} {user.last_name}
+              <div>
+                <p className="font-medium">
+                  {user.first_name} {user.last_name}
+                </p>
+                <p className="text-xs text-gray-500">{user.email}</p>
+              </div>
             </a>
           )}
           {user && (
