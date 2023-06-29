@@ -8,7 +8,7 @@ const RecentCompletionTooltip = ({ payload }: IProps) => {
       <p className="text-xs text-gray-500">Week {data?.week}</p>
       <div className="flex items-center">
         <p className={`inline-block rounded-lg font-medium`}>{data?.completion}%</p>
-        {data?.difference && (
+        {data?.difference ? (
           <p
             className={`${
               isDifferencePositive ? 'bg-green-50 text-green-500' : 'bg-red-50 text-red-500'
@@ -17,6 +17,8 @@ const RecentCompletionTooltip = ({ payload }: IProps) => {
             {isDifferencePositive ? '+' : ''}
             {data?.difference}%
           </p>
+        ) : (
+          ''
         )}
       </div>
     </div>

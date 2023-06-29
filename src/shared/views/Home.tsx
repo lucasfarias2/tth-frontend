@@ -7,14 +7,14 @@ const Home = (props: IViewProps) => {
   const { device, initialState } = props;
 
   return (
-    <Page className="p-6 md:p-16" initialState={initialState} device={device} withNavbar>
-      <div className="flex flex-row flex-wrap items-start justify-between">
-        <div className="text-left">
+    <Page className="md:py-8 2xl:px-48" initialState={initialState} device={device} withNavbar>
+      <div className="relative flex items-start justify-between overflow-hidden md:h-[470px]">
+        <div className="p-8 text-left text-center md:max-w-3xl md:p-24 md:text-left">
           <h1 className="mb-4 text-4xl font-bold">Master your habits, achieve great results.</h1>
           {device.type === 'mobile' && (
             <div className="mt-6 md:mt-0">
               <img
-                src="https://i.imgur.com/FvTJrTg.png"
+                src="https://i.imgur.com/RI7AjRn.png"
                 alt="App Screenshot"
                 height={100}
                 className="mb-6 max-h-64 rounded-lg border-2 border-white shadow-lg"
@@ -30,18 +30,15 @@ const Home = (props: IViewProps) => {
           </a>
         </div>
         {device.type === 'desktop' && (
-          <div className="mt-6 md:mt-0">
-            <img
-              src="https://i.imgur.com/FvTJrTg.png"
-              alt="App Screenshot"
-              height={100}
-              className="max-h-64 rounded-lg border-2 border-white shadow-lg"
-            />
-          </div>
+          <img
+            src="https://i.imgur.com/RI7AjRn.png"
+            alt="App Screenshot"
+            className="absolute -right-1/3 w-[1200px] rounded-2xl border-8 border-neutral-800 shadow-lg"
+          />
         )}
       </div>
 
-      <div className="my-8 flex flex-row flex-wrap items-center border-t py-4 text-center md:flex-nowrap">
+      <div className="flex flex-row flex-wrap items-center border-t py-4 text-center md:flex-nowrap">
         <div className="flex w-full flex-col items-center p-4 text-center text-sm">
           <div className="flex flex-col items-center">
             <FrequencyIcon className="mb-2 text-4xl text-rose-400" />
