@@ -29,7 +29,7 @@ const UserPanel = () => {
         </div>
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col border-t pt-4">
         <div className="mb-2 rounded-lg bg-green-100 p-4 text-[12px] text-green-700">
           <div className="mb-2 flex items-start font-semibold">
             <div className="flex items-center justify-center">

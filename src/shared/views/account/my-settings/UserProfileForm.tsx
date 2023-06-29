@@ -48,7 +48,7 @@ const UserProfileForm = ({ setEditMode }: IProps) => {
 
     updateUserProfileMutation.mutate({
       email,
-      password,
+      password: password ? password : undefined,
       old_password: currentPassword,
       last_name,
       first_name,
@@ -101,7 +101,7 @@ const UserProfileForm = ({ setEditMode }: IProps) => {
               name="password"
               control={control}
               errors={errors}
-              inputProps={{ type: 'password', placeholder: 'Password', autoComplete: 'new-password' }}
+              inputProps={{ type: 'password', placeholder: 'New password', autoComplete: 'new-password' }}
             />
           </span>
         </div>
