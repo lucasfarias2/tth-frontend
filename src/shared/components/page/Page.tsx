@@ -14,6 +14,14 @@ const Page = ({ children, className, initialState, device, withNavbar = false }:
             {withNavbar && (device?.type === 'mobile' ? <NavbarMobile /> : <Navbar />)}
             <header></header>
             <main className={`${className} ${withNavbar ? 'with-navbar' : 'without-navbar'}`}>{children}</main>
+            {withNavbar && (
+              <footer className="h-100 border-t bg-white p-6 text-center text-xs text-gray-400 shadow-sm">
+                <div>
+                  {' '}
+                  Copyright &copy; {new Date().getFullYear()} Lucas Farias. All rights reserved. <p>lucasfarias.com</p>
+                </div>
+              </footer>
+            )}
           </ToastProvider>
         </Hydrate>
       </QueryClientProvider>
