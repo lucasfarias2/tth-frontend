@@ -13,7 +13,7 @@ const Step: React.FC<StepProps> = ({ title, imageSrc }) => {
         <img
           src={imageSrc}
           alt="App Screenshot"
-          className="my-4 h-56 w-96 rounded-lg border-4 border-neutral-600 object-cover shadow-lg"
+          className="my-4 h-56 w-96 rounded-lg border-4 border-neutral-800 object-cover shadow-lg"
         />
       </div>
     </div>
