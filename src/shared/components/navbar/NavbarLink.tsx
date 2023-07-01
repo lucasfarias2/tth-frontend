@@ -1,4 +1,4 @@
-const NavbarLink = ({ className, to, label }: IProps) => {
+const NavbarLinkMobile = ({ className, to, label }: IProps) => {
   return (
     <a href={to} className={`mx-4 text-sm ${className} font-medium`}>
       {label}
@@ -11,4 +11,4 @@ interface IProps extends IComponent {
   label: string;
 }
 
-export default NavbarLink;
+export default NavbarLinkMobile;
