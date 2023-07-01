@@ -10,7 +10,11 @@ const Step: React.FC<StepProps> = ({ title, imageSrc }) => {
     <div className="my-4 flex w-full flex-col items-center px-6">
       <div className="flex flex-col items-center">
         <h3 className="text-xl">{title}</h3>
-        <img src={imageSrc} alt="App Screenshot" className="my-4 h-64 w-96 rounded-lg object-contain shadow-lg" />
+        <img
+          src={imageSrc}
+          alt="App Screenshot"
+          className="my-4 h-56 w-96 rounded-lg border-4 border-neutral-600 object-cover shadow-lg"
+        />
       </div>
     </div>
   );
