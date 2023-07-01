@@ -45,13 +45,13 @@ const AddHabit = () => {
   };
 
   return (
-    <div className="p-8">
+    <div className="bg-white p-4 md:bg-gray-50">
       <PageBack to="/account/habits" />
       <div className="flex items-center justify-between">
         {<PageTitle title="Add a new habit" subtitle="A new habit will be added to your list." className="mb-4" />}
       </div>
 
-      <div className="mb-4 max-w-2xl rounded-lg border bg-white p-4 shadow-sm">
+      <div className="mb-4 max-w-2xl rounded-lg md:border md:bg-white md:p-4 md:shadow-sm">
         <HabitForm onSubmit={onSubmit} />
       </div>
     </div>

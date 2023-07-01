@@ -82,14 +82,16 @@ const HomeHabit = ({ id, name, color, expected_effort, efforts, week }: IProps) 
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className={`flex items-center justify-between border-b px-2 py-3 text-sm`}>
-        <div
-          className={`mr-4 flex h-8 w-8 items-center justify-center rounded-full bg-${color}-500 font-semibold uppercase text-white`}
-        >
-          {name[0]}
-        </div>
-        <div className="flex-1">
-          <div className="mr-2 font-medium">{name}</div>
+      <div className={`flex flex-col justify-between border-b px-2 py-3 text-sm md:flex-row md:items-center`}>
+        <div className="flex items-center">
+          <div
+            className={`mr-4 flex h-6 w-6 items-center justify-center rounded-full md:h-8 md:w-8 bg-${color}-500 font-semibold uppercase text-white`}
+          >
+            {name[0]}
+          </div>
+          <div className="flex-1">
+            <div className="mr-2 font-medium">{name}</div>
+          </div>
         </div>
 
         <Controller

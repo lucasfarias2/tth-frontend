@@ -77,7 +77,7 @@ const ViewHabit = () => {
   };
 
   return (
-    <div className="max-w-2xl p-8">
+    <div className="max-w-2xl bg-white p-4 md:bg-gray-50 md:p-8">
       <PageBack to="/account/habits" />
       <div className="mb-4 flex items-end justify-between">
         <div className="flex items-center justify-center">
@@ -97,7 +97,7 @@ const ViewHabit = () => {
       </div>
 
       {habit && (
-        <div className="rounded-lg border bg-white p-4 shadow-sm">
+        <div className="rounded-lg md:border md:bg-white md:p-4 md:shadow-sm">
           <HabitForm initialValues={habit} onSubmit={onSubmit} />
         </div>
       )}

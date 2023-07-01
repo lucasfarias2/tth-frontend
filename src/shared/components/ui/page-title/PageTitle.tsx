@@ -1,8 +1,8 @@
 const PageTitle = ({ className, title, subtitle }: IProps) => {
   return (
     <div className={`${className}`}>
-      <h1 className="text-2xl font-bold">{title}</h1>
-      {subtitle && <p className="text-sm leading-tight text-gray-500">{subtitle}</p>}
+      <h1 className="text-xl font-bold md:text-2xl">{title}</h1>
+      {subtitle && <p className="text-xs leading-tight text-gray-500 md:text-sm">{subtitle}</p>}
     </div>
   );
 };

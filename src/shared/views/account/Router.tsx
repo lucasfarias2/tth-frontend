@@ -9,10 +9,12 @@ import MySettings from './my-settings/MySettings';
 import MyStats from './my-stats/MyStats';
 
 const AccountRouter = (props: IViewProps) => {
+  const { device, initialState } = props;
+
   return (
-    <Page initialState={props.initialState}>
+    <Page initialState={initialState} device={device} withNavbar={device.type === 'mobile'} inRouter>
       <div className="flex h-full">
-        <UserPanel />
+        {device.type === 'desktop' && <UserPanel />}
         <div className="flex-1 overflow-y-scroll bg-gray-50">
           <Routes>
             <Route path="/account" element={<Home />} />
