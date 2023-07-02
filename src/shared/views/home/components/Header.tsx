@@ -39,7 +39,7 @@ const Title = ({ device }: { device: IDevice }) => {
           <img
             src="https://i.imgur.com/65BQ1v5.png"
             alt="App Screenshot"
-            className="mx-auto mb-6 w-64 rounded-3xl border-4 border-black shadow-lg"
+            className="mx-auto mb-6 w-64 rounded-3xl border-4 border-neutral-600 shadow-2xl"
           />
         </div>
       )}
