@@ -1,16 +1,9 @@
 import { ComponentType, MouseEvent, SyntheticEvent } from 'react';
 import { NavLink, NavLinkProps, useNavigate } from 'react-router-dom';
 
-const NavbarLink = ({ className, to, label, Icon, end, closeMenu }: IProps) => {
+const NavbarLinkMobile = ({ className, to, label, Icon, end, closeMenu }: IProps) => {
   const navigate = useNavigate();
   const defaultClass = `flex items-center py-2 px-3 text-sm font-medium ${className}`;
-
-  const inner = (
-    <>
-      {Icon && <Icon className="mr-3 flex items-center text-2xl text-gray-500" />}
-      {label}
-    </>
-  );
 
   const handleClick = (event: MouseEvent<HTMLAnchorElement, MouseEvent> | SyntheticEvent) => {
     event.preventDefault();
@@ -29,7 +22,8 @@ const NavbarLink = ({ className, to, label, Icon, end, closeMenu }: IProps) => {
       onClick={handleClick}
       end={end}
     >
-      {inner}
+      {Icon && <Icon className="mr-3 flex items-center text-2xl text-gray-500" />}
+      {label}
     </NavLink>
   );
 };
@@ -43,4 +37,4 @@ interface IProps extends IComponent {
   closeMenu?: () => void;
 }
 
-export default NavbarLink;
+export default NavbarLinkMobile;

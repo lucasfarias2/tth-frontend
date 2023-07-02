@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import { Bar, BarChart, Cell, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { DeviceContext } from '@/shared/contexts/DeviceContext';
 import getColorClasses from '@/shared/utils/get-color-classes';
 import ChartTooltip from './ChartTooltip';
 
@@ -7,6 +9,11 @@ interface IProps {
 }
 
 const GlobalPerformanceChart = ({ globalPerformance }: IProps) => {
+  const device = useContext(DeviceContext);
+
+  const desktopMargins = { top: 48, right: 140, bottom: 24, left: 96 };
+  const mobileMargins = { top: 48, right: 32, bottom: 0, left: -24 };
+
   const data = globalPerformance
     ?.filter(item => item.performance_percentage > 0)
     .sort((a, b) => b.performance_percentage - a.performance_percentage)
@@ -28,7 +35,11 @@ const GlobalPerformanceChart = ({ globalPerformance }: IProps) => {
       <div className="h-72">
         {data && (
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={data} margin={{ top: 48, right: 140, bottom: 24, left: 96 }} barCategoryGap={2}>
+            <BarChart
+              data={data}
+              margin={device.type === 'desktop' ? desktopMargins : mobileMargins}
+              barCategoryGap={2}
+            >
               <XAxis dataKey="label" fontSize={10} />
               <YAxis fontSize={12} />
               <Tooltip content={<ChartTooltip />} cursor={{ fill: 'transparent' }} />

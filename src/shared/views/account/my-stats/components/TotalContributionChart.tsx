@@ -1,8 +1,12 @@
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
+import { useContext } from 'react';
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
+import { DeviceContext } from '@/shared/contexts/DeviceContext';
 import getColorClasses from '@/shared/utils/get-color-classes';
 import ChartTooltip from './ChartTooltip';
 
 const TotalContributionChart = ({ globalPerformance }: IProps) => {
+  const device = useContext(DeviceContext);
+
   const data = globalPerformance
     ?.filter(item => item.contribution_percentage > 0)
     .map(item => {
@@ -15,17 +19,35 @@ const TotalContributionChart = ({ globalPerformance }: IProps) => {
     });
 
   return (
-    <div className="mr-4 w-full border-r">
+    <div className="mr-4 w-full md:border-r">
       <h3 className="font-medium">Total contribution</h3>
       <p className="text-xs text-gray-500">
         This metric reflects how much of total effort are you dedicating to each habit.
       </p>
-      <div className="h-72 w-full">
+      <div className="h-96 w-full">
         {data && (
           <ResponsiveContainer width="100%" height="100%">
-            <PieChart width={400} height={400}>
+            <PieChart>
               <Tooltip content={<ChartTooltip />} />
-              <Pie data={data} cx="50%" cy="50%" outerRadius={100} fill="#8884d8" dataKey="value" label>
+              {device.type === 'mobile' && (
+                <Legend
+                  wrapperStyle={{ fontSize: 14, fontWeight: 400 }}
+                  layout="vertical"
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  formatter={(_, entry: any) => {
+                    console.log('entry', entry?.payload?.payload?.payload?.label);
+                    return entry?.payload?.payload?.payload?.label;
+                  }}
+                />
+              )}
+              <Pie
+                data={data}
+                cx="50%"
+                cy="50%"
+                outerRadius={device.type === 'desktop' ? 100 : 70}
+                dataKey="value"
+                label
+              >
                 {data.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}

@@ -1,11 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useToast } from '@/shared/components/toast/ToastContext';
 import ConfirmModal from '@/shared/components/ui/confirm-modal/ConfirmModal';
 import RemoveIcon from '@/shared/components/ui/icons/RemoveIcon';
 import PageBack from '@/shared/components/ui/page-back/PageBack';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
+import { DeviceContext } from '@/shared/contexts/DeviceContext';
 import deleteHabit from '@/shared/queries/delete-habit';
 import editHabit from '@/shared/queries/edit-habit';
 import fetchHabitbyId from '@/shared/queries/fetch-habit-by-id';
@@ -19,6 +20,7 @@ const ViewHabit = () => {
   const { id } = useParams();
   const { data: habit } = useQuery([EQueryKeys.Habit, id], fetchHabitbyId);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const device = useContext(DeviceContext);
 
   const editHabitMutation = useMutation(editHabit, {
     onMutate: () => {
@@ -76,8 +78,10 @@ const ViewHabit = () => {
     deleteHabitMutation.mutate(id);
   };
 
+  const fullScreenClasses = device.type === 'mobile' ? 'h-full bg-white fixed top-0' : '';
+
   return (
-    <div className="max-w-2xl bg-white p-4 md:bg-gray-50 md:p-8">
+    <div className={`max-w-2xl p-6 md:p-8 ${fullScreenClasses}`}>
       <PageBack to="/account/habits" />
       <div className="mb-4 flex items-end justify-between">
         <div className="flex items-center justify-center">

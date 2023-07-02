@@ -1,8 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/shared/components/toast/ToastContext';
 import PageBack from '@/shared/components/ui/page-back/PageBack';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
+import { DeviceContext } from '@/shared/contexts/DeviceContext';
 import createHabit from '@/shared/queries/create-habit';
 import EQueryKeys from '@/shared/queries/query-keys';
 import HabitForm from '../components/HabitForm';
@@ -11,6 +13,7 @@ const AddHabit = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { showToast } = useToast();
+  const device = useContext(DeviceContext);
 
   const createHabitMutation = useMutation(createHabit, {
     onMutate: () => {
@@ -44,8 +47,10 @@ const AddHabit = () => {
     });
   };
 
+  const fullScreenClasses = device.type === 'mobile' ? 'h-full bg-white fixed top-0' : '';
+
   return (
-    <div className="bg-white p-4 md:bg-gray-50">
+    <div className={`p-6 md:p-8 ${fullScreenClasses}`}>
       <PageBack to="/account/habits" />
       <div className="flex items-center justify-between">
         {<PageTitle title="Add a new habit" subtitle="A new habit will be added to your list." className="mb-4" />}

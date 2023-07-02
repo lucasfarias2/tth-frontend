@@ -14,7 +14,7 @@ const RecentCompletionChart = ({ recentCompletion = [] }: IProps) => {
   }));
 
   return (
-    <div className="w-full">
+    <div className="mt-4 w-full border-t pt-4 md:mt-0 md:border-none md:pt-0">
       <h3 className="font-medium">Past 4 weeks</h3>
       <p className="text-xs text-gray-500">This metric reflects your performance from the past four weeks.</p>
       <div className="h-72 w-full">

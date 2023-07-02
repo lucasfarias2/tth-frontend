@@ -23,9 +23,9 @@ const EffortProgressBar = ({
   showTarget = false,
 }: IProps) => {
   const { bgColor } = getColorClasses(color);
-  const filledBarStyle = `h-5 ${bgColor} border-r-2 border-white ${readOnly ? 'last:border-r-0' : ''}`;
-  const halfFilledBarStyle = `h-5 bg-${color}-100 border-r-2 border-white ${readOnly ? 'last:border-r-0' : ''}`;
-  const emptyBarStyle = `h-5 bg-gray-50 border-r-2 border-white ${readOnly ? 'last:border-r-0' : ''}`;
+  const filledBarStyle = `h-4 md:h-5 ${bgColor} border-r-2 border-white ${readOnly ? 'last:border-r-0' : ''}`;
+  const halfFilledBarStyle = `h-4 md:h-5 bg-${color}-100 border-r-2 border-white ${readOnly ? 'last:border-r-0' : ''}`;
+  const emptyBarStyle = `h-4 md:h-5 bg-gray-50 border-r-2 border-white ${readOnly ? 'last:border-r-0' : ''}`;
 
   const [hoverValue, setHoverValue] = useState<number | null>(null);
 
@@ -60,7 +60,7 @@ const EffortProgressBar = ({
         {!readOnly && (
           <button
             type="button"
-            className="flex h-5 items-center rounded-l-lg bg-white px-2 text-[10px] text-gray-500 hover:bg-gray-50"
+            className="flex h-4 items-center rounded-l-lg bg-white px-2 text-[10px] text-gray-500 hover:bg-gray-50 md:h-5"
             onClick={decrementValue}
           >
             <MinusIcon className="text-xs" />
@@ -92,7 +92,7 @@ const EffortProgressBar = ({
         {!readOnly && (
           <button
             type="button"
-            className="flex h-5 items-center rounded-r-lg bg-white px-2 text-[10px] text-gray-500 hover:bg-gray-50"
+            className="flex h-4 items-center rounded-r-lg bg-white px-2 text-[10px] text-gray-500 hover:bg-gray-50 md:h-5"
             onClick={incrementValue}
           >
             <AddIcon className="text-xs" />
@@ -102,8 +102,8 @@ const EffortProgressBar = ({
 
       {!readOnly &&
         (showTarget ? (
-          <div className="flex w-36 flex-col items-center px-3 text-center leading-tight">
-            <p className="mr-2 text-lg text-gray-500">{`${currentValue || 0}/7`}</p>
+          <div className="flex w-24 flex-col items-center px-3 py-2 text-center leading-tight md:w-36 md:py-0">
+            <p className="mr-2 text-gray-500 md:text-lg">{`${currentValue || 0}/7`}</p>
             {percentageCompleted > 99 ? (
               <p className="text-[10px] text-green-400">
                 Weekly effort completed! {extraCompleted > 0 && `+${extraCompleted}%`}

@@ -14,13 +14,13 @@ const MyStats = () => {
   const { data: recentCompletion } = useQuery([EQueryKeys.RecentCompletion, currentWeek], fetchRecentCompletion);
 
   return (
-    <div className="p-8">
+    <div className="p-6">
       <PageTitle title="My statistics" subtitle="Here you can have an overview of your performance." className="mb-4" />
 
       <div className="rounded-lg border bg-white p-4 shadow-sm">
         <GlobalPerformanceChart globalPerformance={globalPerformance} />
 
-        <div className="mt-4 flex border-t py-4">
+        <div className="mt-4 flex flex-col border-t py-4 md:flex-row">
           <TotalContributionChart globalPerformance={globalPerformance} />
           <RecentCompletionChart recentCompletion={recentCompletion} />
         </div>

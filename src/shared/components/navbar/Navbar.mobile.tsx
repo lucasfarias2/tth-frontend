@@ -57,7 +57,7 @@ const NavbarMobile = ({ inRouter = false }: { inRouter?: boolean }) => {
         createPortal(
           <>
             <div className="fixed inset-0 bg-neutral-700 opacity-80" onClick={handleCloseMenu} />
-            <div className="fixed top-0 left-0 z-10 flex h-screen w-5/6 max-w-xs flex-col justify-between overflow-y-auto bg-white p-4 shadow-2xl">
+            <div className="fixed top-0 left-0 z-10 flex h-full w-5/6 max-w-xs flex-col justify-between overflow-y-auto bg-white p-4 shadow-2xl">
               <div>
                 <div className="border-b px-4 pb-4">
                   <Logo />

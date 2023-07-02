@@ -58,9 +58,9 @@ const UserProfileForm = ({ setEditMode }: IProps) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="rounded-lg border bg-white p-4 shadow-sm">
       <div className="flex flex-col">
-        <div className="mb-4 flex items-start justify-between border-b px-2 pb-6">
+        <div className="mb-4 flex flex-col items-start justify-between border-b pb-6 md:flex-row md:px-2">
           <p className="text-xs text-gray-500">First name</p>
-          <span className="w-1/2 font-medium">
+          <span className="mt-2 w-full font-medium md:mt-0 md:w-1/2">
             <FormInput
               name="first_name"
               control={control}
@@ -70,9 +70,9 @@ const UserProfileForm = ({ setEditMode }: IProps) => {
           </span>
         </div>
 
-        <div className="mb-4 flex items-start justify-between border-b px-2 pb-6">
+        <div className="mb-4 flex flex-col items-start justify-between border-b pb-6 md:flex-row md:px-2">
           <p className="text-xs text-gray-500">Last name</p>
-          <span className="w-1/2 font-medium">
+          <span className="mt-2 w-full font-medium md:mt-0 md:w-1/2">
             <FormInput
               name="last_name"
               control={control}
@@ -82,9 +82,9 @@ const UserProfileForm = ({ setEditMode }: IProps) => {
           </span>
         </div>
 
-        <div className="mb-4 flex items-start justify-between border-b px-2 pb-6">
+        <div className="mb-4 flex flex-col items-start justify-between border-b pb-6 md:flex-row md:px-2">
           <p className="text-xs text-gray-500">Email</p>
-          <span className="w-1/2 font-medium">
+          <span className="mt-2 w-full font-medium md:mt-0 md:w-1/2">
             <FormInput
               name="email"
               control={control}
@@ -94,9 +94,9 @@ const UserProfileForm = ({ setEditMode }: IProps) => {
           </span>
         </div>
 
-        <div className="mb-4 flex items-start justify-between border-b px-2 pb-6">
+        <div className="mb-4 flex flex-col items-start justify-between border-b pb-6 md:flex-row md:px-2">
           <p className="text-xs text-gray-500">New password</p>
-          <span className="w-1/2 font-medium">
+          <span className="mt-2 w-full font-medium md:mt-0 md:w-1/2">
             <FormInput
               name="password"
               control={control}
@@ -106,9 +106,9 @@ const UserProfileForm = ({ setEditMode }: IProps) => {
           </span>
         </div>
 
-        <div className="flex items-start justify-between border-b px-2 pb-6">
+        <div className="flex flex-col items-start justify-between border-b pb-6 md:flex-row md:px-2">
           <p className="text-xs text-gray-500">Current password</p>
-          <span className="w-1/2 font-medium">
+          <span className="mt-2 w-full font-medium md:mt-0 md:w-1/2">
             <FormInput
               name="currentPassword"
               required
