@@ -16,7 +16,7 @@ const UserPanel = () => {
   const user = queryClient.getQueryData([EQueryKeys.User]) as TTHUser;
 
   return (
-    <div className="z-10 flex h-full w-[320px] flex-col justify-between border-r bg-white px-4 py-6">
+    <div className="z-10 flex h-full w-[320px] flex-col justify-between border-r bg-white p-4">
       <div>
         <div className="border-b px-2 pb-4">
           <Logo />

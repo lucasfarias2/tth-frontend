@@ -27,14 +27,24 @@ const Navbar = () => {
         />
       </div>
       <div className="flex">
-        {!user && (
-          <NavbarLink to="/login" label="Login" Icon={LoginIcon} subLabel="Have an account?" className="mr-2" />
+        {user ? (
+          <>
+            <NavbarLink
+              to="/account/"
+              label="Your account"
+              className="mr-2"
+              Icon={UserIcon}
+              subLabel={`Welcome, ${user.first_name}`}
+            />
+
+            <NavbarLink to="/api/logout" label="Logout" Icon={LogoutIcon} />
+          </>
+        ) : (
+          <>
+            <NavbarLink to="/login" label="Login" Icon={LoginIcon} subLabel="Have an account?" className="mr-2" />
+            <NavbarLink to="/signup" label="Sign up" Icon={RegisterIcon} subLabel="Create a new account" />
+          </>
         )}
-        {!user && <NavbarLink to="/signup" label="Sign up" Icon={RegisterIcon} subLabel="Create a new account" />}
-        {user && (
-          <NavbarLink to="/account/" label="Your account" Icon={UserIcon} subLabel={`Welcome, ${user.first_name}`} />
-        )}
-        {user && <NavbarLink to="/api/logout" label="Logout" Icon={LogoutIcon} />}
       </div>
     </nav>
   );
