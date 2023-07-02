@@ -1,6 +1,6 @@
 const Header = ({ device }: { device: IDevice }) => {
   return (
-    <div className="flex items-center justify-between px-6 md:h-[470px] md:px-0">
+    <div className="flex items-center justify-between bg-white py-2 md:h-[470px] md:py-0 md:pl-16 2xl:px-48">
       <div className="flex h-full max-w-2xl flex-col items-center justify-center text-center md:items-start md:text-left">
         <Announcements />
         <Title device={device} />
@@ -11,8 +11,9 @@ const Header = ({ device }: { device: IDevice }) => {
           <img
             src="https://i.imgur.com/RI7AjRn.png"
             alt="App Screenshot"
-            className="max-h-none -right-3/2 absolute top-12 ml-4 w-[900px] max-w-none rounded-2xl border-8 border-neutral-800 shadow-lg"
+            className="max-h-none -right-3/2 absolute top-12 ml-4 w-[900px] max-w-none rounded-2xl border-8 border-neutral-800 bg-gradient-to-r from-white to-transparent shadow-lg"
           />
+          <div className="absolute right-0 top-0 h-full bg-gradient-to-l from-white 2xl:w-12"></div>
         </div>
       )}
     </div>
@@ -30,7 +31,7 @@ const Announcements = () => {
 
 const Title = ({ device }: { device: IDevice }) => {
   return (
-    <>
+    <div className="px-6 md:px-0">
       <div className="mb-4 text-3xl font-semibold leading-tight md:text-5xl">
         Master your habits, <p>achieve great results.</p>
       </div>
@@ -40,7 +41,7 @@ const Title = ({ device }: { device: IDevice }) => {
             src="https://i.imgur.com/RI7AjRn.png"
             alt="App Screenshot"
             height={200}
-            className="mb-6 rounded-lg border-4 border-neutral-800 shadow-lg"
+            className="mb-6 rounded-lg shadow-lg"
           />
         </div>
       )}
@@ -48,7 +49,7 @@ const Title = ({ device }: { device: IDevice }) => {
         This app empowers you to track, measure, and improve your habits over the course of a year. Set your habits,
         track your efforts, and visualize your progress with our intuitive and engaging charts.
       </div>
-    </>
+    </div>
   );
 };
 

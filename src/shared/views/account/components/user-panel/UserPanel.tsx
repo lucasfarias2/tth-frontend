@@ -22,7 +22,7 @@ const UserPanel = () => {
           <Logo />
         </div>
         <div className="py-4">
-          <UserPanelLink to="/account/" Icon={HomeIcon} label="Home" />
+          <UserPanelLink to="/account/" Icon={HomeIcon} label="Dashboard" />
           <UserPanelLink to="/account/habits" Icon={FrequencyIcon} label="My habits" />
           <UserPanelLink to="/account/stats" end Icon={BarChartIcon} label="My statistics" />
           <UserPanelLink to="/account/settings" end Icon={ConfigurationIcon} label="My settings" />

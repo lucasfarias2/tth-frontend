@@ -6,7 +6,9 @@ import EQueryKeys from '@/shared/queries/query-keys';
 import BarChartIcon from '../ui/icons/BarChartIcon';
 import CloseIcon from '../ui/icons/CloseIcon';
 import ConfigurationIcon from '../ui/icons/ConfigurationIcon';
+import FileIcon from '../ui/icons/FileIcon';
 import FrequencyIcon from '../ui/icons/FrequencyIcon';
+import HelpIcon from '../ui/icons/HelpIcon';
 import HomeIcon from '../ui/icons/HomeIcon';
 import LoginIcon from '../ui/icons/LoginIcon';
 import LogoutIcon from '../ui/icons/LogoutIcon';
@@ -67,7 +69,7 @@ const NavbarMobile = ({ inRouter = false }: { inRouter?: boolean }) => {
                     <DynamicNavLink
                       to="/account/"
                       Icon={HomeIcon}
-                      label="Home"
+                      label="Dashboard"
                       closeMenu={() => {
                         setOpenMobileMenu(false);
                       }}
@@ -106,23 +108,34 @@ const NavbarMobile = ({ inRouter = false }: { inRouter?: boolean }) => {
                   </div>
                 )}
               </div>
-              <div className="flex items-center justify-between border-t px-3 pt-2">
-                {user && (
-                  <a href="/account/" className="mr-4 flex items-center py-2 text-sm">
-                    <UserIcon className="mr-3 text-2xl text-gray-500" />
-                    <div>
-                      <p className="font-medium">
-                        {user.first_name} {user.last_name}
-                      </p>
-                      <p className="text-xs text-gray-500">{user.email}</p>
-                    </div>
-                  </a>
-                )}
-                {user && (
-                  <a href="/api/logout" className="my-2 flex items-center">
-                    <LogoutIcon className="mr-3 text-2xl text-gray-400" />
-                  </a>
-                )}
+              <div>
+                <div className="mb-4">
+                  <NavbarLinkExternalMobile
+                    to="/roadmap"
+                    Icon={FileIcon}
+                    label="Development roadmap"
+                    subLabel="What's next?"
+                  />
+                  <NavbarLinkExternalMobile to="/contact" Icon={HelpIcon} label="Contact us" subLabel="Need help?" />
+                </div>
+                <div className="flex items-center justify-between border-t px-3 pt-2">
+                  {user && (
+                    <a href="/account/" className="mr-4 flex items-center py-2 text-sm">
+                      <UserIcon className="mr-3 text-2xl text-gray-500" />
+                      <div>
+                        <p className="font-medium">
+                          {user.first_name} {user.last_name}
+                        </p>
+                        <p className="text-xs text-gray-500">{user.email}</p>
+                      </div>
+                    </a>
+                  )}
+                  {user && (
+                    <a href="/api/logout" className="my-2 flex items-center">
+                      <LogoutIcon className="mr-3 text-2xl text-gray-400" />
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
 

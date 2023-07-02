@@ -33,8 +33,12 @@
   outline-color: #fb923c;
 }
 
-.with-navbar {
-  /* height: calc(100vh - 70px); */
+.with-navbar-max-height-mobile {
+  height: calc(100vh - 142px);
+}
+
+.with-navbar-max-height-desktop {
+  height: calc(100vh - 164px);
 }
 
 .without-navbar {

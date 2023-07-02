@@ -1,18 +1,33 @@
+import { Route, Routes } from 'react-router-dom';
 import Page from '@/shared/components/page/Page';
 import Features from './components/Features';
 import Header from './components/Header';
 import Steps from './components/Steps';
+import ContactUs from './contact-us/ContactUs';
+import Roadmap from './roadmap/Roadmap';
 
-const Home = (props: IViewProps) => {
+const HomeRouter = (props: IViewProps) => {
   const { device, initialState } = props;
 
   return (
-    <Page className="md:px-16 2xl:px-48" initialState={initialState} device={device} withNavbar>
-      <Header device={device} />
-      <Features />
-      <Steps />
+    <Page className="" initialState={initialState} device={device} withNavbar>
+      <Routes>
+        <Route path="/" element={<Home device={device} />} />
+        <Route path="/roadmap" element={<Roadmap />} />
+        <Route path="/contact" element={<ContactUs />} />
+      </Routes>
     </Page>
   );
 };
 
-export default Home;
+const Home = ({ device }: { device: IDevice }) => {
+  return (
+    <>
+      <Header device={device} />
+      <Features />
+      <Steps />
+    </>
+  );
+};
+
+export default HomeRouter;
