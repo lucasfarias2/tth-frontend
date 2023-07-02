@@ -11,9 +11,8 @@ const Header = ({ device }: { device: IDevice }) => {
           <img
             src="https://i.imgur.com/RI7AjRn.png"
             alt="App Screenshot"
-            className="max-h-none -right-3/2 absolute top-12 ml-4 w-[900px] max-w-none rounded-2xl border-8 border-neutral-800 bg-gradient-to-r from-white to-transparent shadow-lg"
+            className="max-h-none -right-3/2 absolute top-12 ml-4 w-[900px] max-w-none rounded-2xl border-8 border-neutral-800 shadow-lg"
           />
-          <div className="absolute right-0 top-0 h-full bg-gradient-to-l from-white 2xl:w-12"></div>
         </div>
       )}
     </div>
@@ -23,8 +22,8 @@ const Header = ({ device }: { device: IDevice }) => {
 const Announcements = () => {
   return (
     <div className="mb-4 mt-4 inline-block items-center rounded-full bg-rose-50 p-2 text-xs text-rose-600 md:mt-0">
-      <span className="mr-2 rounded-full bg-white py-1 px-2">New feature</span>
-      <span className="px-1 text-rose-600">Check out the new account dashboard</span>
+      <span className="mr-2 rounded-full bg-white py-1 px-2">Latest feature</span>
+      <span className="px-1 text-rose-600">Web-mobile experience released</span>
     </div>
   );
 };
@@ -32,16 +31,15 @@ const Announcements = () => {
 const Title = ({ device }: { device: IDevice }) => {
   return (
     <div className="px-6 md:px-0">
-      <div className="mb-4 text-3xl font-semibold leading-tight md:text-5xl">
+      <div className="mb-6 text-3xl font-semibold leading-tight md:mb-4 md:text-5xl">
         Master your habits, <p>achieve great results.</p>
       </div>
       {device.type === 'mobile' && (
-        <div className="mt-2">
+        <div className="mb-6 max-h-64 overflow-hidden border-b">
           <img
-            src="https://i.imgur.com/RI7AjRn.png"
+            src="https://i.imgur.com/65BQ1v5.png"
             alt="App Screenshot"
-            height={200}
-            className="mb-6 rounded-lg shadow-lg"
+            className="mx-auto mb-6 w-64 rounded-3xl border-4 border-black shadow-lg"
           />
         </div>
       )}
