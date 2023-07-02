@@ -10,16 +10,18 @@ import UserIcon from '../ui/icons/UserIcon';
 import NavbarLink from './NavbarLink';
 import NavbarLinkExternalDesktop from './NavbarLinkExternal.desktop';
 
-const Navbar = () => {
+const Navbar = ({ inRouter }: { inRouter?: boolean }) => {
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData([EQueryKeys.User]) as TTHUser;
+
+  const DynamicNavLink = !inRouter ? NavbarLinkExternalDesktop : NavbarLink;
 
   return (
     <nav className="relative flex h-[70px] items-center justify-between border-b bg-white px-16 shadow-sm 2xl:px-48">
       <div className="flex items-center">
         <Logo className="border-r pr-8" />
-        <NavbarLink to="/contact" label="Contact us" Icon={HelpIcon} subLabel="Need help?" className="ml-4" />
-        <NavbarLink
+        <DynamicNavLink to="/contact" label="Contact us" Icon={HelpIcon} subLabel="Need help?" className="ml-4" />
+        <DynamicNavLink
           to="/roadmap"
           label="Development roadmap"
           Icon={FileIcon}

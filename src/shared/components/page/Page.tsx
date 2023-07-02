@@ -11,7 +11,8 @@ const Page = ({ children, className, initialState, device, withNavbar = false, i
       <QueryClientProvider client={queryClient}>
         <Hydrate state={initialState}>
           <ToastProvider>
-            {withNavbar && (device?.type === 'mobile' ? <NavbarMobile inRouter={inRouter} /> : <Navbar />)}
+            {withNavbar &&
+              (device?.type === 'mobile' ? <NavbarMobile inRouter={inRouter} /> : <Navbar inRouter={inRouter} />)}
             <header></header>
             <main className={`${className} ${withNavbar ? 'with-navbar' : 'without-navbar'}`}>{children}</main>
             {withNavbar && (

@@ -10,7 +10,7 @@ const HomeRouter = (props: IViewProps) => {
   const { device, initialState } = props;
 
   return (
-    <Page className="" initialState={initialState} device={device} withNavbar>
+    <Page className="" initialState={initialState} device={device} withNavbar inRouter>
       <Routes>
         <Route path="/" element={<Home device={device} />} />
         <Route path="/roadmap" element={<Roadmap />} />
