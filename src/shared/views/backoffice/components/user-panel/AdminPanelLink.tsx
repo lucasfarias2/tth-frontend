@@ -2,7 +2,7 @@ import { ComponentType } from 'react';
 import { NavLink, NavLinkProps } from 'react-router-dom';
 
 const AdminPanelLink = ({ Icon, label, end, to, external }: IProps) => {
-  const defaultClass = 'flex items-center py-2 px-3 text-sm font-medium text-white rounded-lg';
+  const defaultClass = 'flex items-center py-2 px-3 text-sm font-medium text-white rounded-lg my-1';
 
   const inner = (
     <>
