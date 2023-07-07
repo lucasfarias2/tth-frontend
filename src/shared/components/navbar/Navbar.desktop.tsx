@@ -7,21 +7,19 @@ import LoginIcon from '../ui/icons/LoginIcon';
 import LogoutIcon from '../ui/icons/LogoutIcon';
 import RegisterIcon from '../ui/icons/RegisterIcon';
 import UserIcon from '../ui/icons/UserIcon';
-import NavbarLink from './NavbarLink';
+import NavbarLinkDesktop from './NavbarLink.desktop';
 import NavbarLinkExternalDesktop from './NavbarLinkExternal.desktop';
 
-const Navbar = ({ inRouter }: { inRouter?: boolean }) => {
+const NavbarDesktop = () => {
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData([EQueryKeys.User]) as TTHUser;
 
-  const DynamicNavLink = !inRouter ? NavbarLinkExternalDesktop : NavbarLink;
-
   return (
-    <nav className="relative flex h-[70px] items-center justify-between border-b bg-white px-16 shadow-sm 2xl:px-48">
+    <nav className="relative flex h-[70px] items-center justify-between border-b bg-white px-16 2xl:px-48">
       <div className="flex items-center">
         <Logo className="border-r pr-8" />
-        <DynamicNavLink to="/contact" label="Contact us" Icon={HelpIcon} subLabel="Need help?" className="ml-4" />
-        <DynamicNavLink
+        <NavbarLinkDesktop to="/contact" label="Contact us" Icon={HelpIcon} subLabel="Need help?" className="ml-4" />
+        <NavbarLinkDesktop
           to="/roadmap"
           label="Development roadmap"
           Icon={FileIcon}
@@ -44,19 +42,14 @@ const Navbar = ({ inRouter }: { inRouter?: boolean }) => {
           </>
         ) : (
           <>
-            <NavbarLinkExternalDesktop
+            <NavbarLinkDesktop
               to="/login"
               label="Login"
               Icon={LoginIcon}
               subLabel="Have an account?"
               className="mr-2"
             />
-            <NavbarLinkExternalDesktop
-              to="/signup"
-              label="Sign up"
-              Icon={RegisterIcon}
-              subLabel="Create a new account"
-            />
+            <NavbarLinkDesktop to="/signup" label="Sign up" Icon={RegisterIcon} subLabel="Create a new account" />
           </>
         )}
       </div>
@@ -64,4 +57,4 @@ const Navbar = ({ inRouter }: { inRouter?: boolean }) => {
   );
 };
 
-export default Navbar;
+export default NavbarDesktop;

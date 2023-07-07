@@ -1,6 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
 import Logo from '@/shared/components/logo/Logo';
-import AlertInfoIcon from '@/shared/components/ui/icons/AlertInfoIcon';
 import AnnouncementIcon from '@/shared/components/ui/icons/AnnouncementIcon';
 import BarChartIcon from '@/shared/components/ui/icons/BarChartIcon';
 import ConfigurationIcon from '@/shared/components/ui/icons/ConfigurationIcon';
@@ -30,7 +29,7 @@ const UserPanel = () => {
       </div>
 
       <div className="flex flex-col border-t pt-4">
-        <div className="mb-2 rounded-lg bg-green-100 p-4 text-[12px] text-green-700">
+        <div className="mb-4 rounded-lg bg-green-100 p-4 text-[12px] text-green-700">
           <div className="mb-2 flex items-start font-semibold">
             <div className="flex items-center justify-center">
               <AnnouncementIcon className="mr-2 text-[14px]" /> Early access
@@ -42,14 +41,14 @@ const UserPanel = () => {
           </span>
         </div>
 
-        <div className="mb-4 rounded-lg bg-orange-100 p-4 text-[12px] text-orange-700">
+        {/* <div className="mb-4 rounded-lg bg-orange-100 p-4 text-[12px] text-orange-700">
           <div className="mb-2 flex items-start font-semibold">
             <div className="flex items-center justify-center">
               <AlertInfoIcon className="mr-2 text-[14px]" /> Scheduled server upgrade
             </div>
           </div>
           <span>July 6th at 23:00. Only APAC countries affected.</span>
-        </div>
+        </div> */}
 
         <div className="flex items-center justify-between border-t px-3 pt-2">
           {user && (

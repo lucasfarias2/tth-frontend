@@ -1,11 +1,8 @@
-import Page from '@/components/page/Page';
 import LoginForm from './components/LoginForm';
 
-const Login = (props: IViewProps) => {
-  const { device, initialState } = props;
-
+const Login = () => {
   return (
-    <Page className="p-8" initialState={initialState} device={device} withNavbar>
+    <div className="with-navbar-max-height-mobile bg-white p-6">
       <div className="mb-4 text-center">
         <h1 className="mb-1 text-4xl font-bold">Sign in</h1>
         <span>{`Don't have an account yet?`} </span>
@@ -15,7 +12,7 @@ const Login = (props: IViewProps) => {
       </div>
 
       <LoginForm />
-    </Page>
+    </div>
   );
 };
 

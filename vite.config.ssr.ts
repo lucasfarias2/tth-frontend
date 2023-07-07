@@ -14,8 +14,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         home: resolve(__dirname, '/src/server/entries/home.tsx'),
-        login: resolve(__dirname, '/src/server/entries/login.tsx'),
-        signup: resolve(__dirname, '/src/server/entries/signup.tsx'),
         account: resolve(__dirname, '/src/server/entries/account.tsx'),
       },
     },

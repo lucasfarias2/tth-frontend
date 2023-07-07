@@ -15,8 +15,6 @@ export default defineConfig({
       // plugins: [analyze()],
       input: {
         home: resolve(__dirname, '/src/client/entries/home/home.html'),
-        login: resolve(__dirname, '/src/client/entries/login/login.html'),
-        signup: resolve(__dirname, '/src/client/entries/signup/signup.html'),
         account: resolve(__dirname, '/src/client/entries/account/account.html'),
       },
     },

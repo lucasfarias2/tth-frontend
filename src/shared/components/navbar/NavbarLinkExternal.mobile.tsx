@@ -1,7 +1,7 @@
 import { ComponentType } from 'react';
 
 const NavbarLinkExternalMobile = ({ className, to, label, subLabel, Icon }: IProps) => {
-  const defaultClass = `flex items-center py-2 px-3 text-sm font-medium ${className}`;
+  const defaultClass = `flex items-center p-3 border-b last:border-0 text-sm font-medium ${className}`;
 
   return (
     <a href={to} className={defaultClass}>

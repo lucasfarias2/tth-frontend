@@ -3,7 +3,7 @@ import { NavLink, NavLinkProps, useNavigate } from 'react-router-dom';
 
 const NavbarLinkMobile = ({ className, to, label, subLabel, Icon, end, closeMenu }: IProps) => {
   const navigate = useNavigate();
-  const defaultClass = `flex items-center py-2 px-3 text-sm font-medium ${className}`;
+  const defaultClass = `flex items-center p-3 border-b last:border-0 text-sm font-medium ${className}`;
 
   const handleClick = (event: MouseEvent<HTMLAnchorElement, MouseEvent> | SyntheticEvent) => {
     event.preventDefault();
@@ -16,9 +16,7 @@ const NavbarLinkMobile = ({ className, to, label, subLabel, Icon, end, closeMenu
   return (
     <NavLink
       to={to as NavLinkProps['to']}
-      className={({ isActive }) =>
-        `${isActive ? 'rounded-lg border-rose-400 bg-gray-100 text-black' : ''} ${defaultClass}`
-      }
+      className={({ isActive }) => `${isActive ? 'bg-gray-50 text-black' : ''} ${defaultClass}`}
       onClick={handleClick}
       end={end}
     >

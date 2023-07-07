@@ -40,4 +40,12 @@ const requireStaff = (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export default { getCurrentUser, requireAuth, requireStaff };
+const requireGuest = (req: Request, res: Response, next: NextFunction) => {
+  if (req.user) {
+    res.redirect('/account');
+  } else {
+    next();
+  }
+};
+
+export default { getCurrentUser, requireAuth, requireStaff, requireGuest };

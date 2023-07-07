@@ -12,7 +12,7 @@ const AccountRouter = (props: IViewProps) => {
   const { device, initialState } = props;
 
   return (
-    <Page initialState={initialState} device={device} withNavbar={device.type === 'mobile'} inRouter>
+    <Page initialState={initialState} device={device} withNavbar={device.type === 'mobile'} flow="account">
       <div className="flex h-full">
         {device.type === 'desktop' && <UserPanel />}
         <div className="flex-1 overflow-y-scroll bg-gray-50">

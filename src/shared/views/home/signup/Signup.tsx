@@ -1,11 +1,8 @@
-import Page from '@/components/page/Page';
-import SignupForm from '@/shared/views/signup/components/SignupForm';
+import SignupForm from '@/shared/views/home/signup/components/SignupForm';
 
-const Signup = (props: IViewProps) => {
-  const { device, initialState } = props;
-
+const Signup = () => {
   return (
-    <Page className="p-8" initialState={initialState} withNavbar device={device}>
+    <div className="with-navbar-max-height-mobile bg-white p-6">
       <div className="mb-4 text-center">
         <h1 className="mb-1 text-4xl font-bold">Sign up</h1>
         <span>Already have an account? </span>
@@ -14,7 +11,7 @@ const Signup = (props: IViewProps) => {
         </a>
       </div>
       <SignupForm />
-    </Page>
+    </div>
   );
 };
 
