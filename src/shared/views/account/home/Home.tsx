@@ -20,7 +20,7 @@ const Home = () => {
   const { data: weekCompletion } = useQuery([EQueryKeys.WeekCompletion, week], fetchWeekCompletion);
 
   return (
-    <div className="max-w-2xl p-6 md:p-8">
+    <div className="max-w-2xl p-6">
       <div className="flex items-center justify-between">
         <PageTitle
           title={`Welcome, ${user?.first_name?.split(' ')?.[0]}.`}

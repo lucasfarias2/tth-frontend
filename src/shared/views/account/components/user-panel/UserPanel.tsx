@@ -1,5 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
 import Logo from '@/shared/components/logo/Logo';
+import { ExternalLinkIcon } from '@/shared/components/ui/icons';
 import AnnouncementIcon from '@/shared/components/ui/icons/AnnouncementIcon';
 import BarChartIcon from '@/shared/components/ui/icons/BarChartIcon';
 import ConfigurationIcon from '@/shared/components/ui/icons/ConfigurationIcon';
@@ -28,7 +29,13 @@ const UserPanel = () => {
         </div>
       </div>
 
-      <div className="flex flex-col border-t pt-4">
+      <div className="flex flex-col">
+        {user.is_staff && (
+          <div className="mb-4 border-b py-1">
+            <UserPanelLink to="/backoffice/" Icon={ExternalLinkIcon} label="Backoffice" external />
+          </div>
+        )}
+
         <div className="mb-4 rounded-lg bg-green-100 p-4 text-[12px] text-green-700">
           <div className="mb-2 flex items-start font-semibold">
             <div className="flex items-center justify-center">

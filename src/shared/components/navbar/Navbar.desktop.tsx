@@ -1,10 +1,10 @@
 import { useQueryClient } from '@tanstack/react-query';
 import Logo from '@/components/logo/Logo';
 import EQueryKeys from '@/shared/queries/query-keys';
+import { ExternalLinkIcon } from '../ui/icons';
 import FileIcon from '../ui/icons/FileIcon';
 import HelpIcon from '../ui/icons/HelpIcon';
 import LoginIcon from '../ui/icons/LoginIcon';
-import LogoutIcon from '../ui/icons/LogoutIcon';
 import RegisterIcon from '../ui/icons/RegisterIcon';
 import UserIcon from '../ui/icons/UserIcon';
 import NavbarLinkDesktop from './NavbarLink.desktop';
@@ -30,6 +30,7 @@ const NavbarDesktop = () => {
       <div className="flex">
         {user ? (
           <>
+            {user.is_staff && <NavbarLinkExternalDesktop to="/backoffice" label="Backoffice" Icon={ExternalLinkIcon} />}
             <NavbarLinkExternalDesktop
               to="/account/"
               label="Your account"
@@ -37,8 +38,6 @@ const NavbarDesktop = () => {
               Icon={UserIcon}
               subLabel={`Welcome, ${user.first_name}`}
             />
-
-            <NavbarLinkExternalDesktop to="/api/logout" label="Logout" Icon={LogoutIcon} />
           </>
         ) : (
           <>

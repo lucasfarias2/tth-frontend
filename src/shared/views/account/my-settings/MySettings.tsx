@@ -25,7 +25,7 @@ const MySettings = () => {
   const { data: user } = useQuery([EQueryKeys.User], fetchUser);
 
   return (
-    <div className="max-w-2xl p-6 md:p-8">
+    <div className="max-w-2xl p-6">
       <div className="flex items-center justify-between">
         <PageTitle title="My settings" subtitle="Here manage your user profile." className="mb-4" />
         {!editMode && (

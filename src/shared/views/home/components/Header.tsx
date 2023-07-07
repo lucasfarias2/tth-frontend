@@ -31,9 +31,9 @@ const Announcements = () => {
 const Title = ({ device }: { device: IDevice }) => {
   return (
     <div className="px-6 md:px-0">
-      <div className="mb-6 text-3xl font-semibold leading-tight md:mb-4 md:text-5xl">
+      <h1 className="mb-6 text-3xl font-semibold leading-tight md:mb-4 md:text-5xl">
         Master your habits, <p>achieve great results.</p>
-      </div>
+      </h1>
       {device.type === 'mobile' && (
         <div className="mb-6 max-h-64 overflow-hidden border-b">
           <img

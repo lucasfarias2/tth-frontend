@@ -16,6 +16,7 @@ export default defineConfig({
       input: {
         home: resolve(__dirname, '/src/client/entries/home/home.html'),
         account: resolve(__dirname, '/src/client/entries/account/account.html'),
+        backoffice: resolve(__dirname, '/src/client/entries/backoffice/backoffice.html'),
       },
     },
   },

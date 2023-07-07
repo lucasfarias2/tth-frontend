@@ -26,7 +26,7 @@ const Step: React.FC<StepProps> = ({ title, imageSrc }) => {
 const Steps: React.FC = () => {
   return (
     <>
-      <h3 className="mb-4 border-t pt-8 text-center text-2xl font-semibold">How does it work?</h3>
+      <h3 className="mb-4 pt-8 text-center text-2xl font-semibold">How does it work?</h3>
       <div className="flex flex-row flex-wrap items-start text-center md:flex-nowrap md:px-8 2xl:px-48">
         <Step title="Create your habits" imageSrc="https://i.imgur.com/y6Tb9XQ.png" />
         <Step title="Manage your habits" imageSrc="https://i.imgur.com/DFjzwxK.png" />

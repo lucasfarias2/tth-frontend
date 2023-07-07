@@ -50,3 +50,4 @@ export { default as SupportIcon } from './SupportIcon';
 export { default as TokenIcon } from './TokenIcon';
 export { default as UserIcon } from './UserIcon';
 export { default as UsersIcon } from './UsersIcon';
+export { default as ExternalLinkIcon } from './ExternalLinkIcon';

@@ -15,6 +15,7 @@ export default defineConfig({
       input: {
         home: resolve(__dirname, '/src/server/entries/home.tsx'),
         account: resolve(__dirname, '/src/server/entries/account.tsx'),
+        backoffice: resolve(__dirname, '/src/server/entries/backoffice.tsx'),
       },
     },
   },

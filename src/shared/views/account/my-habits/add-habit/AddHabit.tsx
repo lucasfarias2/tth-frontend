@@ -50,7 +50,7 @@ const AddHabit = () => {
   const fullScreenClasses = device.type === 'mobile' ? 'h-full bg-white fixed top-0' : '';
 
   return (
-    <div className={`p-6 md:p-8 ${fullScreenClasses}`}>
+    <div className={`p-6 ${fullScreenClasses}`}>
       <PageBack to="/account/habits" />
       <div className="flex items-center justify-between">
         {<PageTitle title="Add a new habit" subtitle="A new habit will be added to your list." className="mb-4" />}

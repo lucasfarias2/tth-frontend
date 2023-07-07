@@ -1,12 +1,12 @@
 import { ComponentType } from 'react';
 import { NavLink, NavLinkProps } from 'react-router-dom';
 
-const UserPanelLink = ({ Icon, label, end, to, external }: UserPanelLinkProps) => {
-  const defaultClass = 'flex items-center py-2 px-3 text-sm font-medium my-1 first:mt-0';
+const AdminPanelLink = ({ Icon, label, end, to, external }: IProps) => {
+  const defaultClass = 'flex items-center py-2 px-3 text-sm font-medium text-white rounded-lg';
 
   const inner = (
     <>
-      {Icon && <Icon className="mr-3 flex items-center text-2xl text-gray-500" />}
+      {Icon && <Icon className="mr-3 flex items-center text-2xl text-white/50" />}
       {label}
     </>
   );
@@ -23,9 +23,7 @@ const UserPanelLink = ({ Icon, label, end, to, external }: UserPanelLinkProps) =
     <NavLink
       to={to as NavLinkProps['to']}
       className={({ isActive }) =>
-        `${
-          isActive ? 'rounded-lg border-rose-400 bg-gray-100 text-black' : 'rounded-lg hover:bg-gray-50'
-        } ${defaultClass}`
+        `${isActive ? 'bg-white/10 text-white' : 'text-white/70 hover:bg-white/5'} ${defaultClass}`
       }
       end={end}
     >
@@ -34,7 +32,7 @@ const UserPanelLink = ({ Icon, label, end, to, external }: UserPanelLinkProps) =
   );
 };
 
-type UserPanelLinkProps = {
+type IProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   Icon?: ComponentType<any>;
   label: string;
@@ -43,4 +41,4 @@ type UserPanelLinkProps = {
   external?: boolean;
 };
 
-export default UserPanelLink;
+export default AdminPanelLink;

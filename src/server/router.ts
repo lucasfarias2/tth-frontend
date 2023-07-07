@@ -3,6 +3,7 @@ import homeController from './controllers/homeController.js';
 import authMiddleware from './middleware/auth.js';
 import withQueryMiddleware from './middleware/withQuery.js';
 import accountRouter from './routers/accountRouter.js';
+import backofficeRouter from './routers/backofficeRouter.js';
 
 const appRouter = express.Router();
 
@@ -15,5 +16,6 @@ appRouter.get('/login', authMiddleware.getCurrentUser, authMiddleware.requireGue
 appRouter.get('/signup', authMiddleware.getCurrentUser, authMiddleware.requireGuest, homeController.render);
 
 appRouter.use('/account', accountRouter);
+appRouter.use('/backoffice', backofficeRouter);
 
 export default appRouter;

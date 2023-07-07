@@ -1,5 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { ReactNode, useEffect } from 'react';
+import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import Logo from '@/components/logo/Logo';
 import { CloseIcon, LogoutIcon, MenuIcon, UserIcon } from '@/shared/components/ui/icons';
@@ -19,18 +19,6 @@ const NavbarWrapperMobile = ({ guestLinks, accountLinks, setOpenMobileMenu, open
   const handleCloseMenu = () => {
     setOpenMobileMenu(false);
   };
-
-  useEffect(() => {
-    if (openMobileMenu) {
-      document.body.style.overflowY = 'hidden'; // Prevent scrolling
-    } else {
-      document.body.style.overflowY = ''; // Restore scrolling
-    }
-
-    return () => {
-      document.body.style.overflowY = ''; // Restore scrolling when unmounting
-    };
-  }, [openMobileMenu]);
 
   return (
     <>

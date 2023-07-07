@@ -81,7 +81,7 @@ const ViewHabit = () => {
   const fullScreenClasses = device.type === 'mobile' ? 'h-full bg-white fixed top-0' : '';
 
   return (
-    <div className={`max-w-2xl p-6 md:p-8 ${fullScreenClasses}`}>
+    <div className={`max-w-2xl p-6 ${fullScreenClasses}`}>
       <PageBack to="/account/habits" />
       <div className="mb-4 flex items-end justify-between">
         <div className="flex items-center justify-center">
