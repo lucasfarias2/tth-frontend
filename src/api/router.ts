@@ -2,6 +2,7 @@ import express from 'express';
 import authController from './controllers/authController.js';
 import backofficeController from './controllers/backofficeController.js';
 import effortController from './controllers/effortController.js';
+import featuresController from './controllers/featuresController.js';
 import habitController from './controllers/habitController.js';
 import siteConfigController from './controllers/siteConfigController.js';
 import statsController from './controllers/statsController.js';
@@ -17,6 +18,8 @@ apiRouter.get('/auth/user', authController.currentUser);
 apiRouter.patch('/user/profile', userController.updateProfile);
 
 apiRouter.get('/site-config', siteConfigController.getSiteConfig);
+
+apiRouter.get('/features', featuresController.getFeatures);
 
 apiRouter.get('/habits', habitController.getHabits);
 apiRouter.post('/habits', habitController.createHabit);
@@ -36,6 +39,7 @@ apiRouter.get('/stats/performance/global', statsController.getGlobalPerformance)
 apiRouter.get('/backoffice/users', backofficeController.getUsers);
 apiRouter.get('/backoffice/announcements', backofficeController.getAnnouncements);
 apiRouter.get('/backoffice/tickets', backofficeController.getTickets);
+apiRouter.get('/backoffice/features', backofficeController.getFeatures);
 
 apiRouter.use('*', (_req, res) => {
   res.send('Error 404: Page not found');

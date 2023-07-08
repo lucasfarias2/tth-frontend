@@ -27,6 +27,7 @@ const render = (req: Request, res: Response) => {
       EQueryKeys.Users,
       EQueryKeys.Announcements,
       EQueryKeys.Tickets,
+      EQueryKeys.Features,
     ])
     .renderView('backoffice', { initialState: res.locals.initialState, device: req.device });
 };

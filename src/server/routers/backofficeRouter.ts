@@ -81,6 +81,30 @@ backofficeRouter.get(
 );
 
 backofficeRouter.get(
+  '/features',
+  authMiddleware.getCurrentUser,
+  authMiddleware.requireAuth,
+  authMiddleware.requireStaff,
+  async (req: Request, res: Response, next: NextFunction) => {
+    const queryClient = new QueryClient();
+
+    const response = await axios.get(`${process.env.BACKEND_URL}/backoffice/features/`, {
+      headers: { Authorization: `Bearer ${req.cookies.session}` },
+    });
+
+    res.queries[EQueryKeys.Features] = response.data || {};
+
+    res.locals.initialState = dehydrate(queryClient);
+
+    queryClient.clear();
+
+    next();
+  },
+  backofficeController.fetch,
+  backofficeController.render
+);
+
+backofficeRouter.get(
   '*',
   authMiddleware.getCurrentUser,
   authMiddleware.requireAuth,

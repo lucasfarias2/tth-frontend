@@ -112,6 +112,14 @@ declare global {
     end_date: string;
   }
 
+  export interface TTHFeature {
+    id: string;
+    title: string;
+    status: 'ontrack' | 'live';
+    creation_date: string;
+    updated_date: string;
+  }
+
   export interface IInitialState {
     user: TTHUser;
   }

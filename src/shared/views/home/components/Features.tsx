@@ -25,17 +25,17 @@ const Features = () => {
   return (
     <div className="flex flex-row flex-wrap items-start border-y-4 bg-gray-100 px-8 py-8 text-center md:flex-nowrap md:py-12 2xl:px-48">
       <Feature
-        icon={<FrequencyIcon className="text-5xl text-rose-600" />}
+        icon={<FrequencyIcon className="text-5xl text-rose-400" />}
         title="Habit creation"
         description="Kickstart your journey to self-improvement by creating habits for an entire year."
       />
       <Feature
-        icon={<CalendarDateIcon className="text-5xl text-rose-600" />}
+        icon={<CalendarDateIcon className="text-5xl text-rose-400" />}
         title="Effort tracking"
         description="Each week, log the 'effort' you've put towards your habits. Understand the real effort you're investing and how it matches up with your expectations."
       />
       <Feature
-        icon={<BarChartIcon className="text-5xl text-rose-600" />}
+        icon={<BarChartIcon className="text-5xl text-rose-400" />}
         title="Progress visualization"
         description="Bring your progress to life, showing you how much you're accomplishing, which habits are taking up most of your time, and how your effort evolves week by week."
       />

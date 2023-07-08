@@ -55,3 +55,7 @@ export { default as InboxIcon } from './InboxIcon';
 export { default as EmailOpenIcon } from './EmailOpenIcon';
 export { default as EmailClosedIcon } from './EmailClosedIcon';
 export { default as EditPencilIcon } from './EditPencilIcon';
+export { default as CodeFileIcon } from './CodeFileIcon';
+export { default as PuzzleIcon } from './PuzzleIcon';
+export { default as BracketsCheckIcon } from './BracketsCheckIcon';
+export { default as BracketsIcon } from './BracketsIcon';

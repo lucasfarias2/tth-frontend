@@ -1,33 +1,23 @@
+import { useQuery } from '@tanstack/react-query';
+import { PuzzleIcon } from '@/shared/components/ui/icons';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
+import fetchFeaturesPublic from '@/shared/queries/fetch-features-public';
+import EQueryKeys from '@/shared/queries/query-keys';
+import { formatDate } from '@/shared/utils/date';
 
 const Roadmap = () => {
-  const devRoadmap = [
-    {
-      title: 'Cancelling & Finishing Habits',
-      description: 'Users to be able to cancel and finish dates for habits with record of its progress.',
-      status: 'On track',
-    },
-    {
-      title: 'Email & notifications',
-      description: 'Get notifications when its time to fill your efforts.',
-      status: 'On track',
-    },
-    {
-      title: 'Mobile iOS app',
-      description: 'First release early access of the native iOS app',
-      status: 'On track',
-    },
-    {
-      title: 'Watch OS app',
-      description: 'First release early access of the native Watch OS app',
-      status: 'On track',
-    },
-    {
-      title: 'Android app',
-      description: 'First release early access of the native Android app',
-      status: 'On track',
-    },
-  ];
+  const { data: features } = useQuery([EQueryKeys.FeaturesPublic], fetchFeaturesPublic);
+
+  const getLabel = (status: string) => {
+    if (status === 'ontrack') {
+      return 'On track';
+    } else if (status === 'live') {
+      return 'Live';
+    }
+  };
+
+  const LiveIcon = <PuzzleIcon className="text-xl text-green-500" />;
+  const OnTrackIcon = <PuzzleIcon className="text-xl text-gray-500" />;
 
   return (
     <div className="with-navbar-max-height-mobile p-6 md:px-16 2xl:px-48">
@@ -35,24 +25,38 @@ const Roadmap = () => {
         title="Development roadmap"
         subtitle="Please fill out the form and we will reach back to you as soon as possible."
       />
-      <div className="mt-4 max-w-lg rounded-lg border bg-white px-4 shadow-sm">
-        {devRoadmap.map(item => {
-          return (
-            <div key={item.description} className="mb-1 flex items-center justify-between border-b py-4 last:border-0">
-              <div className="flex-1">
-                <div className="font-medium">{item.title}</div>
-                <div className="text-sm text-gray-500">{item.description}</div>
-              </div>
-              <div
-                className={`ml-4 rounded-lg border p-1 text-xs ${
-                  item.status === 'On track' && 'border-sky-200 bg-sky-50 text-sky-500'
-                }`}
-              >
-                {item.status}
+      <div className="mt-4 max-w-2xl overflow-hidden rounded-lg border  bg-white shadow-sm dark:border-white/5 dark:bg-white/5">
+        {features?.map((feature, i) => (
+          <div
+            className={`flex items-center justify-between border-b py-3 px-4 last:mb-0 last:border-b-0 ${
+              i % 2 === 0 ? 'bg-white' : 'bg-gray-50'
+            } flex-wrap ${feature.status === 'live' ? 'opacity-50' : ''}`}
+            key={feature.id}
+          >
+            <div className="flex items-center">
+              {feature.status === 'ontrack' ? OnTrackIcon : LiveIcon}
+              <div className="ml-4 flex-1">
+                <div className="flex items-center text-sm font-medium">
+                  <div className="mr-2">{feature.title}</div>
+                </div>
+                <div className="text-xs text-black/50">Last update: {formatDate(feature.updated_date)}</div>
               </div>
             </div>
-          );
-        })}
+            <div className="mt-4 flex items-center md:mt-0">
+              <span className="inline-block text-xs">
+                {feature.status === 'ontrack' ? (
+                  <div className="rounded-lg border border-sky-300 bg-sky-100 py-1 px-2 text-sky-500">
+                    {getLabel(feature.status)}
+                  </div>
+                ) : (
+                  <div className="rounded-lg border border-green-300 bg-green-100 py-1 px-2 text-green-500">
+                    {getLabel(feature.status)}
+                  </div>
+                )}
+              </span>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -59,23 +59,9 @@ const Announcements = () => {
                 </div>
               </div>
               <div className="mt-4 flex items-center md:mt-0">
-                <div className="md:ml-2 text-[10px] text-gray-500 md:text-right">
+                <div className="text-[10px] text-gray-500 md:ml-2 md:text-right">
                   <div>From: {formatDate(announcement.starting_date)}</div>
                   <div>Until: {formatDate(announcement.end_date)}</div>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    className="ml-4 rounded-lg border bg-white p-1 text-red-600 shadow-sm hover:bg-gray-50"
-                  >
-                    <CloseIcon className="text-lg" />
-                  </button>
-                  <button
-                    type="button"
-                    className="ml-1 rounded-lg border bg-white p-1 text-sky-600 shadow-sm hover:bg-gray-50"
-                  >
-                    <EditPencilIcon className="text-lg" />
-                  </button>
                 </div>
               </div>
             </div>

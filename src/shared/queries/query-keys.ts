@@ -11,6 +11,8 @@ enum EQueryKeys {
   Users = 'users',
   Announcements = 'announcements',
   Tickets = 'tickets',
+  Features = 'features',
+  FeaturesPublic = 'features-public',
 }
 
 export default EQueryKeys;
