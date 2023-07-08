@@ -4,6 +4,7 @@ import {
   AnnouncementIcon,
   ExternalLinkIcon,
   HomeIcon,
+  InboxIcon,
   LogoutIcon,
   UserIcon,
   UsersIcon,
@@ -16,7 +17,7 @@ const AdminPanel = () => {
   const user = queryClient.getQueryData([EQueryKeys.User]) as TTHUser;
 
   return (
-    <div className="z-10 flex h-full w-[320px] flex-col justify-between border-r border-white/10 bg-neutral-800 px-4 pt-4 shadow">
+    <div className="z-10 flex h-full w-[280px] flex-col justify-between border-r border-white/10 bg-neutral-800 px-4 pt-4 shadow">
       <div>
         <div className="border-b border-neutral-700 px-2 pb-4">
           <Logo dark hideTag />
@@ -25,10 +26,11 @@ const AdminPanel = () => {
           <AdminPanelLink to="/backoffice/" Icon={HomeIcon} label="Dashboard" />
           <AdminPanelLink to="/backoffice/users" Icon={UsersIcon} label="Users" />
           <AdminPanelLink to="/backoffice/announcements" end Icon={AnnouncementIcon} label="Announcements" />
+          <AdminPanelLink to="/backoffice/tickets" end Icon={InboxIcon} label="Tickets" />
         </div>
       </div>
 
-      <div className="flex flex-col border-t border-white/10">
+      <div className="flex flex-col border-white/10">
         <div className="py-1">
           <AdminPanelLink to="/account" Icon={ExternalLinkIcon} label="Account dashboard" external />
         </div>

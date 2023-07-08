@@ -1,5 +1,6 @@
 import express from 'express';
 import authController from './controllers/authController.js';
+import backofficeController from './controllers/backofficeController.js';
 import effortController from './controllers/effortController.js';
 import habitController from './controllers/habitController.js';
 import siteConfigController from './controllers/siteConfigController.js';
@@ -31,6 +32,10 @@ apiRouter.get('/stats/completion/:week', statsController.getWeekCompletion);
 apiRouter.get('/stats/completion/:week/recent', statsController.getRecentCompletion);
 apiRouter.get('/stats/performance/:habit', statsController.getHabitPerformance);
 apiRouter.get('/stats/performance/global', statsController.getGlobalPerformance);
+
+apiRouter.get('/backoffice/users', backofficeController.getUsers);
+apiRouter.get('/backoffice/announcements', backofficeController.getAnnouncements);
+apiRouter.get('/backoffice/tickets', backofficeController.getTickets);
 
 apiRouter.use('*', (_req, res) => {
   res.send('Error 404: Page not found');

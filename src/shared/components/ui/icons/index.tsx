@@ -51,3 +51,7 @@ export { default as TokenIcon } from './TokenIcon';
 export { default as UserIcon } from './UserIcon';
 export { default as UsersIcon } from './UsersIcon';
 export { default as ExternalLinkIcon } from './ExternalLinkIcon';
+export { default as InboxIcon } from './InboxIcon';
+export { default as EmailOpenIcon } from './EmailOpenIcon';
+export { default as EmailClosedIcon } from './EmailClosedIcon';
+export { default as EditPencilIcon } from './EditPencilIcon';

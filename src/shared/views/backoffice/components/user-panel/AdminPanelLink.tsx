@@ -13,7 +13,7 @@ const AdminPanelLink = ({ Icon, label, end, to, external }: IProps) => {
 
   if (external) {
     return (
-      <a href={to} className={defaultClass}>
+      <a href={to} className={`${defaultClass} hover:bg-white/5`}>
         {inner}
       </a>
     );

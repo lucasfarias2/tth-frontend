@@ -16,10 +16,10 @@ const UserPanel = () => {
   const user = queryClient.getQueryData([EQueryKeys.User]) as TTHUser;
 
   return (
-    <div className="z-10 flex h-full w-[320px] flex-col justify-between border-r bg-white p-4">
+    <div className="z-10 flex h-full w-[280px] flex-col justify-between border-r bg-white p-4">
       <div>
         <div className="border-b px-2 pb-4">
-          <Logo />
+          <Logo hideTag />
         </div>
         <div className="py-4">
           <UserPanelLink to="/account/" Icon={HomeIcon} label="Dashboard" />

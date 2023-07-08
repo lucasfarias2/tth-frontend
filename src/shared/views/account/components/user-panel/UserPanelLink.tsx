@@ -2,7 +2,7 @@ import { ComponentType } from 'react';
 import { NavLink, NavLinkProps } from 'react-router-dom';
 
 const UserPanelLink = ({ Icon, label, end, to, external }: UserPanelLinkProps) => {
-  const defaultClass = 'flex items-center py-2 px-3 text-sm font-medium my-1 first:mt-0';
+  const defaultClass = 'flex items-center py-2 px-3 text-sm font-medium my-1 first:mt-0 rounded-lg';
 
   const inner = (
     <>
@@ -13,7 +13,7 @@ const UserPanelLink = ({ Icon, label, end, to, external }: UserPanelLinkProps) =
 
   if (external) {
     return (
-      <a href={to} className={defaultClass}>
+      <a href={to} className={`${defaultClass} hover:bg-gray-50`}>
         {inner}
       </a>
     );
@@ -23,9 +23,7 @@ const UserPanelLink = ({ Icon, label, end, to, external }: UserPanelLinkProps) =
     <NavLink
       to={to as NavLinkProps['to']}
       className={({ isActive }) =>
-        `${
-          isActive ? 'rounded-lg border-rose-400 bg-gray-100 text-black' : 'rounded-lg hover:bg-gray-50'
-        } ${defaultClass}`
+        `${isActive ? 'border-rose-400 bg-gray-100 text-black' : 'hover:bg-gray-50'} ${defaultClass}`
       }
       end={end}
     >

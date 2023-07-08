@@ -41,8 +41,8 @@ declare global {
     email: string;
     is_staff: boolean;
     is_superuser: boolean;
-    date_joined: Date;
-    last_login: Date;
+    date_joined: string;
+    last_login: string;
   }
 
   export interface TTHHabit {
@@ -90,6 +90,26 @@ declare global {
 
   export interface TTHSiteConfig {
     current_week: number;
+  }
+
+  export interface TTHTicket {
+    id: string;
+    title: string;
+    content: string;
+    status: 'open' | 'closed' | 'resolved';
+    sender: string;
+    type: 'email' | 'web';
+    creation_date: string;
+    updated_date: string;
+  }
+
+  export interface TTHAnnouncement {
+    id: string;
+    title: string;
+    content: string;
+    type: 'alert' | 'warning' | 'info';
+    starting_date: string;
+    end_date: string;
   }
 
   export interface IInitialState {

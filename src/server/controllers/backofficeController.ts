@@ -21,7 +21,13 @@ const fetch = async (req: Request, res: Response, next: NextFunction) => {
 
 const render = (req: Request, res: Response) => {
   res
-    .loadQueryKeys([EQueryKeys.User, EQueryKeys.SiteConfig])
+    .loadQueryKeys([
+      EQueryKeys.User,
+      EQueryKeys.SiteConfig,
+      EQueryKeys.Users,
+      EQueryKeys.Announcements,
+      EQueryKeys.Tickets,
+    ])
     .renderView('backoffice', { initialState: res.locals.initialState, device: req.device });
 };
 
