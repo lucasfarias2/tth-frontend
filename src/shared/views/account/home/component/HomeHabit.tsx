@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import EffortProgressBar from '@/shared/components/effort-progress-bar/EffortProgressBar';
 import { useToast } from '@/shared/components/toast/ToastContext';
@@ -24,6 +24,7 @@ const HomeHabit = ({ id, name, color, expected_effort, efforts, week }: IProps) 
   const habitEffort = efforts?.find(effort => effort.habit.id === id);
   const queryClient = useQueryClient();
   const { showToast } = useToast();
+  const [isMutating, setIsMutating] = useState(false);
 
   const { handleSubmit, control, reset } = useForm<IFormData>({
     defaultValues: { level: habitEffort?.level || 0 },
@@ -34,6 +35,9 @@ const HomeHabit = ({ id, name, color, expected_effort, efforts, week }: IProps) 
   }, [habitEffort, reset]);
 
   const createEffortMutation = useMutation(createEffort, {
+    onMutate: () => {
+      setIsMutating(true);
+    },
     onSuccess: () => {
       showToast('Effort updated successfully', 'success');
       queryClient.invalidateQueries([EQueryKeys.Efforts]);
@@ -45,10 +49,16 @@ const HomeHabit = ({ id, name, color, expected_effort, efforts, week }: IProps) 
         'error',
         'There has been an error while creating habit, please try again later.'
       );
+    },
+    onSettled: () => {
+      setIsMutating(false);
     },
   });
 
   const editEffortMutation = useMutation(editEffort, {
+    onMutate: () => {
+      setIsMutating(true);
+    },
     onSuccess: () => {
       showToast('Effort updated successfully', 'success');
       queryClient.invalidateQueries([EQueryKeys.Efforts]);
@@ -61,9 +71,14 @@ const HomeHabit = ({ id, name, color, expected_effort, efforts, week }: IProps) 
         'There has been an error while creating habit, please try again later.'
       );
     },
+    onSettled: () => {
+      setIsMutating(false);
+    },
   });
 
   const onSubmit = async (data: IFormData) => {
+    if (isMutating) return;
+
     if (habitEffort) {
       editEffortMutation.mutate({
         id: habitEffort.id,
@@ -83,7 +98,9 @@ const HomeHabit = ({ id, name, color, expected_effort, efforts, week }: IProps) 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div
-        className={`flex flex-col justify-between border-b py-4 text-sm md:flex-row md:items-center md:px-2 md:py-3`}
+        className={`flex flex-col justify-between border-b-2 py-4 text-sm md:flex-row md:items-center md:px-2 md:py-3 ${
+          isMutating ? 'pointer-events-none opacity-40' : ''
+        }`}
       >
         <div className="flex items-center">
           <div

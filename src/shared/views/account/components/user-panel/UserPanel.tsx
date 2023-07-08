@@ -1,6 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
 import Logo from '@/shared/components/logo/Logo';
-import { ExternalLinkIcon } from '@/shared/components/ui/icons';
+import { ExternalLinkIcon, SupportIcon } from '@/shared/components/ui/icons';
 import AnnouncementIcon from '@/shared/components/ui/icons/AnnouncementIcon';
 import BarChartIcon from '@/shared/components/ui/icons/BarChartIcon';
 import ConfigurationIcon from '@/shared/components/ui/icons/ConfigurationIcon';
@@ -16,9 +16,9 @@ const UserPanel = () => {
   const user = queryClient.getQueryData([EQueryKeys.User]) as TTHUser;
 
   return (
-    <div className="z-10 flex h-full w-[280px] flex-col justify-between border-r bg-white p-4">
+    <div className="z-10 flex h-full w-[280px] flex-col justify-between border-r-2 bg-white p-4">
       <div>
-        <div className="border-b px-2 pb-4">
+        <div className="border-b-2 px-2 pb-4">
           <Logo hideTag />
         </div>
         <div className="py-4">
@@ -26,12 +26,13 @@ const UserPanel = () => {
           <UserPanelLink to="/account/habits" Icon={FrequencyIcon} label="My habits" />
           <UserPanelLink to="/account/stats" end Icon={BarChartIcon} label="My statistics" />
           <UserPanelLink to="/account/settings" end Icon={ConfigurationIcon} label="My settings" />
+          <UserPanelLink to="/account/support" end Icon={SupportIcon} label="Support" />
         </div>
       </div>
 
       <div className="flex flex-col">
         {user.is_staff && (
-          <div className="mb-4 border-b py-1">
+          <div className="mb-4 border-b-2 py-1">
             <UserPanelLink to="/backoffice/" Icon={ExternalLinkIcon} label="Backoffice" external />
           </div>
         )}
@@ -57,7 +58,7 @@ const UserPanel = () => {
           <span>July 6th at 23:00. Only APAC countries affected.</span>
         </div> */}
 
-        <div className="flex items-center justify-between border-t px-3 pt-2">
+        <div className="flex items-center justify-between border-t-2 px-3 pt-2">
           {user && (
             <a href="/account/" className="mr-4 flex items-center py-2 text-sm">
               <UserIcon className="mr-3 text-2xl text-gray-500" />
