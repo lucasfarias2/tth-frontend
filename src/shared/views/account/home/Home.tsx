@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CalendarIcon from '@/shared/components/ui/icons/CalendarIcon';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
 import WeekProgressBar from '@/shared/components/week-progress-bar/WeekProgressBar';
@@ -8,6 +8,7 @@ import fetchHabits from '@/shared/queries/fetch-habits';
 import fetchEffortsByWeek from '@/shared/queries/fetch-week-efforts';
 import EQueryKeys from '@/shared/queries/query-keys';
 import fetchWeekCompletion from '@/shared/queries/stats/fetch-week-completion';
+import trackEvent from '@/shared/utils/ga-tracking';
 import HomeHabit from './component/HomeHabit';
 
 const Home = () => {
@@ -18,6 +19,10 @@ const Home = () => {
   const { data: habits } = useQuery([EQueryKeys.Habits, week], fetchHabits);
   const { data: efforts } = useQuery([EQueryKeys.Efforts, week], fetchEffortsByWeek);
   const { data: weekCompletion } = useQuery([EQueryKeys.WeekCompletion, week], fetchWeekCompletion);
+
+  useEffect(() => {
+    trackEvent('page_view', { title: 'account_dashboard' });
+  }, []);
 
   return (
     <div className="max-w-2xl p-6">

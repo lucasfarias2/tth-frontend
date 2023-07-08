@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useToast } from '@/shared/components/toast/ToastContext';
 import ConfirmModal from '@/shared/components/ui/confirm-modal/ConfirmModal';
@@ -11,6 +11,7 @@ import deleteHabit from '@/shared/queries/delete-habit';
 import editHabit from '@/shared/queries/edit-habit';
 import fetchHabitbyId from '@/shared/queries/fetch-habit-by-id';
 import EQueryKeys from '@/shared/queries/query-keys';
+import trackEvent from '@/shared/utils/ga-tracking';
 import HabitForm from '../components/HabitForm';
 
 const ViewHabit = () => {
@@ -22,11 +23,17 @@ const ViewHabit = () => {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const device = useContext(DeviceContext);
 
+  useEffect(() => {
+    trackEvent('page_view', { title: 'account_view_habit' });
+  }, []);
+
   const editHabitMutation = useMutation(editHabit, {
     onMutate: () => {
       // loading
     },
     onError: () => {
+      trackEvent('edit_habit_success');
+
       showToast(
         'Error while editing new habit',
         'error',
@@ -35,6 +42,8 @@ const ViewHabit = () => {
     },
     onSuccess: () => {
       navigate('/account/habits');
+      trackEvent('edit_habit_error');
+
       queryClient.invalidateQueries([EQueryKeys.Habits]);
       queryClient.invalidateQueries([EQueryKeys.Habit, id]);
       showToast('Habit updated successfully', 'success');

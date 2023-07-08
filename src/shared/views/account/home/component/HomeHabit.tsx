@@ -6,6 +6,7 @@ import { useToast } from '@/shared/components/toast/ToastContext';
 import createEffort from '@/shared/queries/create-effort';
 import editEffort from '@/shared/queries/edit-effort';
 import EQueryKeys from '@/shared/queries/query-keys';
+import trackEvent from '@/shared/utils/ga-tracking';
 
 interface IFormData {
   level: number;
@@ -39,11 +40,15 @@ const HomeHabit = ({ id, name, color, expected_effort, efforts, week }: IProps) 
       setIsMutating(true);
     },
     onSuccess: () => {
+      trackEvent('add_effort_success');
+
       showToast('Effort updated successfully', 'success');
       queryClient.invalidateQueries([EQueryKeys.Efforts]);
       queryClient.invalidateQueries([EQueryKeys.WeekCompletion, week]);
     },
     onError: () => {
+      trackEvent('add_effort_error');
+
       showToast(
         'Error while creating new habit',
         'error',
@@ -63,8 +68,12 @@ const HomeHabit = ({ id, name, color, expected_effort, efforts, week }: IProps) 
       showToast('Effort updated successfully', 'success');
       queryClient.invalidateQueries([EQueryKeys.Efforts]);
       queryClient.invalidateQueries([EQueryKeys.WeekCompletion, week]);
+
+      trackEvent('add_effort_success');
     },
     onError: () => {
+      trackEvent('add_effort_error');
+
       showToast(
         'Error while creating new habit',
         'error',

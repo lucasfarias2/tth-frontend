@@ -1,8 +1,14 @@
+import { useEffect } from 'react';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
+import trackEvent from '@/shared/utils/ga-tracking';
 
 const Support = () => {
   // const queryClient = useQueryClient();
   // const { data: tickets } = useQuery([EQueryKeys.Tickets], fetchTickets);
+
+  useEffect(() => {
+    trackEvent('page_view', { title: 'account_support' });
+  }, []);
 
   return (
     <div className="p-6">

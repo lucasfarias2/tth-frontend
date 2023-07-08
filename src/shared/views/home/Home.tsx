@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Page from '@/shared/components/page/Page';
+import trackEvent from '@/shared/utils/ga-tracking';
 import Features from './components/Features';
 import Header from './components/Header';
 import Steps from './components/Steps';
@@ -25,6 +27,10 @@ const GuestRouter = (props: IViewProps) => {
 };
 
 const Home = ({ device }: { device: IDevice }) => {
+  useEffect(() => {
+    trackEvent('page_view', { title: 'home' });
+  }, []);
+
   return (
     <>
       <Header device={device} />

@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import EditIcon from '@/shared/components/ui/icons/EditIcon';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
 import fetchUser from '@/shared/queries/fetch-user';
 import EQueryKeys from '@/shared/queries/query-keys';
+import trackEvent from '@/shared/utils/ga-tracking';
 import UserProfileForm from './UserProfileForm';
 
 interface IUserInfoItemProps {
@@ -23,6 +24,10 @@ const UserInfoItem = ({ label, value }: IUserInfoItemProps) => {
 const MySettings = () => {
   const [editMode, setEditMode] = useState(false);
   const { data: user } = useQuery([EQueryKeys.User], fetchUser);
+
+  useEffect(() => {
+    trackEvent('page_view', { title: 'account_settings' });
+  }, []);
 
   return (
     <div className="max-w-2xl p-6">

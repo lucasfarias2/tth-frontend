@@ -4,6 +4,7 @@ import { useToast } from '@/components/toast/ToastContext';
 import FormInput from '@/components/ui/input/FormInput';
 import EQueryKeys from '@/shared/queries/query-keys';
 import updateUser from '@/shared/queries/update-user';
+import trackEvent from '@/shared/utils/ga-tracking';
 
 interface IProps {
   setEditMode: (value: boolean) => void;
@@ -27,6 +28,8 @@ const UserProfileForm = ({ setEditMode }: IProps) => {
       // loading
     },
     onError: () => {
+      trackEvent('edit_user_profile_error');
+
       showToast(
         'Error while updating your profile',
         'error',
@@ -35,6 +38,7 @@ const UserProfileForm = ({ setEditMode }: IProps) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries([EQueryKeys.User]);
+      trackEvent('edit_user_profile_success');
       showToast('User updated successfully', 'success');
       setEditMode(false);
     },

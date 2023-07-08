@@ -1,13 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AddIcon from '@/shared/components/ui/icons/AddIcon';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
 import fetchHabits from '@/shared/queries/fetch-habits';
 import EQueryKeys from '@/shared/queries/query-keys';
+import trackEvent from '@/shared/utils/ga-tracking';
 import Habit from './components/Habit';
 
 const MyHabits = () => {
   const { data: habits } = useQuery([EQueryKeys.Habits], fetchHabits);
+
+  useEffect(() => {
+    trackEvent('page_view', { title: 'account_habits' });
+  }, []);
+
   return (
     <div className="p-6">
       <div className="flex max-w-2xl items-center justify-between">

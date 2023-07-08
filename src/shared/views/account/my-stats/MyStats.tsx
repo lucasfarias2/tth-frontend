@@ -1,8 +1,10 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
 import EQueryKeys from '@/shared/queries/query-keys';
 import fetchGlobalPerformance from '@/shared/queries/stats/fetch-global-performance';
 import fetchRecentCompletion from '@/shared/queries/stats/fetch-recent-completion';
+import trackEvent from '@/shared/utils/ga-tracking';
 import GlobalPerformanceChart from './components/GlobalPerformanceChart';
 import RecentCompletionChart from './components/RecentCompletionChart';
 import TotalContributionChart from './components/TotalContributionChart';
@@ -15,6 +17,10 @@ const MyStats = () => {
     [EQueryKeys.RecentCompletion, siteConfig?.current_week],
     fetchRecentCompletion
   );
+
+  useEffect(() => {
+    trackEvent('page_view', { title: 'account_stats' });
+  }, []);
 
   return (
     <div className="p-6">

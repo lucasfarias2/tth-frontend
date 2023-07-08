@@ -1,6 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useToast } from '@/components/toast/ToastContext';
 import FormInput from '@/components/ui/input/FormInput';
+import trackEvent from '@/shared/utils/ga-tracking';
 import apiRestClient from '@/shared/utils/rest-client';
 
 const SignupForm = () => {
@@ -25,8 +26,10 @@ const SignupForm = () => {
 
       if (response.data) {
         window.location.href = '/';
+        trackEvent('signup_success', { email });
       }
     } catch {
+      trackEvent('signup_error', { email });
       showToast('Error signing up', 'error', 'There has been an error while signing up, please try again later.');
     }
   };

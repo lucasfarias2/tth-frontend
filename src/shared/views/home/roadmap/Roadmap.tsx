@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
 import { PuzzleIcon } from '@/shared/components/ui/icons';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
 import fetchFeaturesPublic from '@/shared/queries/fetch-features-public';
 import EQueryKeys from '@/shared/queries/query-keys';
 import { formatDate } from '@/shared/utils/date';
+import trackEvent from '@/shared/utils/ga-tracking';
 
 const Roadmap = () => {
   const { data: features } = useQuery([EQueryKeys.FeaturesPublic], fetchFeaturesPublic);
@@ -15,6 +17,10 @@ const Roadmap = () => {
       return 'Live';
     }
   };
+
+  useEffect(() => {
+    trackEvent('page_view', { title: 'roadmap' });
+  }, []);
 
   const LiveIcon = <PuzzleIcon className="text-xl text-green-500" />;
   const OnTrackIcon = <PuzzleIcon className="text-xl text-gray-500" />;

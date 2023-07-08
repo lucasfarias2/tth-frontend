@@ -1,6 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useToast } from '@/components/toast/ToastContext';
 import FormInput from '@/components/ui/input/FormInput';
+import trackEvent from '@/shared/utils/ga-tracking';
 import apiRestClient from '@/shared/utils/rest-client';
 
 const LoginForm = () => {
@@ -23,8 +24,10 @@ const LoginForm = () => {
 
       if (response.data) {
         window.location.href = '/';
+        trackEvent('login_success', { email });
       }
     } catch {
+      trackEvent('login_error', { email });
       showToast(
         'Error while logging in',
         'error',

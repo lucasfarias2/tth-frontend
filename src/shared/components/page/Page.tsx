@@ -1,9 +1,6 @@
 import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { logEvent } from 'firebase/analytics';
-import { useEffect } from 'react';
 import NavbarDesktop from '@/components/navbar/Navbar.desktop';
 import { ToastProvider } from '@/components/toast/ToastContext';
-import { analytics } from '@/config/firebase';
 import NavbarAccountMobile from '@/shared/components/navbar/NavbarAccount.mobile';
 import NavbarBackofficeMobile from '@/shared/components/navbar/NavbarBackoffice.mobile';
 import NavbarGuestMobile from '@/shared/components/navbar/NavbarGuest.mobile';
@@ -24,14 +21,6 @@ const Page = ({ children, className, initialState, device, flow, withNavbar = fa
       NavbarComponent = NavbarGuestMobile;
     }
   }
-
-  useEffect(() => {
-    if (analytics)
-      logEvent(analytics, 'page_view', {
-        page_location: window.location.href,
-        page_path: window.location.pathname,
-      });
-  }, []);
 
   return (
     <DeviceContext.Provider value={{ type: device?.type }}>
@@ -61,7 +50,6 @@ const Page = ({ children, className, initialState, device, flow, withNavbar = fa
 };
 
 interface IProps extends IComponent {
-  user?: TTHUser;
   withNavbar?: boolean;
   initialState?: IInitialState;
   device: IDevice;

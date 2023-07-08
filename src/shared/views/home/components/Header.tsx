@@ -1,3 +1,5 @@
+import trackEvent from '@/shared/utils/ga-tracking';
+
 const Header = ({ device }: { device: IDevice }) => {
   return (
     <div className="flex items-center justify-between bg-white py-2 md:h-[470px] md:py-0 md:pl-16 2xl:px-48">
@@ -54,10 +56,22 @@ const Title = ({ device }: { device: IDevice }) => {
 const Actions = () => {
   return (
     <div className="mb-8">
-      <a href="/#" className="mr-2 rounded-lg border bg-white p-3 px-4 text-sm font-semibold text-rose-500 shadow-sm">
+      <a
+        href="/#"
+        className="mr-2 rounded-lg border bg-white p-3 px-4 text-sm font-semibold text-rose-500 shadow-sm"
+        onClick={() => {
+          trackEvent('home_header_click_more');
+        }}
+      >
         Learn more
       </a>
-      <a href="/signup" className="rounded-lg bg-rose-500 p-3 px-4 text-sm font-semibold text-white">
+      <a
+        href="/signup"
+        className="rounded-lg bg-rose-500 p-3 px-4 text-sm font-semibold text-white"
+        onClick={() => {
+          trackEvent('home_header_click_start');
+        }}
+      >
         Start now
       </a>
     </div>

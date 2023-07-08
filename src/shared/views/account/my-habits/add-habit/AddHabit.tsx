@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/shared/components/toast/ToastContext';
 import PageBack from '@/shared/components/ui/page-back/PageBack';
@@ -7,6 +7,7 @@ import PageTitle from '@/shared/components/ui/page-title/PageTitle';
 import { DeviceContext } from '@/shared/contexts/DeviceContext';
 import createHabit from '@/shared/queries/create-habit';
 import EQueryKeys from '@/shared/queries/query-keys';
+import trackEvent from '@/shared/utils/ga-tracking';
 import HabitForm from '../components/HabitForm';
 
 const AddHabit = () => {
@@ -15,11 +16,17 @@ const AddHabit = () => {
   const { showToast } = useToast();
   const device = useContext(DeviceContext);
 
+  useEffect(() => {
+    trackEvent('page_view', { title: 'account_add_habit' });
+  }, []);
+
   const createHabitMutation = useMutation(createHabit, {
     onMutate: () => {
       // loading
     },
     onError: () => {
+      trackEvent('add_habit_error');
+
       showToast(
         'Error while creating new habit',
         'error',
@@ -27,6 +34,8 @@ const AddHabit = () => {
       );
     },
     onSuccess: () => {
+      trackEvent('add_habit_success');
+
       navigate('/account/habits');
       queryClient.invalidateQueries([EQueryKeys.Habits]);
       showToast('Habit created successfully', 'success');
