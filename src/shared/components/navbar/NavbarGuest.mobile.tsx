@@ -67,7 +67,7 @@ const NavbarGuestMobile = () => {
           setOpenMobileMenu(false);
         }}
       />
-      {user.is_staff && <NavbarLinkExternalMobile to="/backoffice" Icon={ExternalLinkIcon} label="Backoffice" />}
+      {user?.is_staff && <NavbarLinkExternalMobile to="/backoffice" Icon={ExternalLinkIcon} label="Backoffice" />}
     </>
   );
 

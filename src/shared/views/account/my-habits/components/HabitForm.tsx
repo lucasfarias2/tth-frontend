@@ -18,7 +18,7 @@ interface IFormData {
 const HabitForm = ({ initialValues, onSubmit }: { initialValues?: IFormData; onSubmit: (data: IFormData) => void }) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { current_week: currentWeek } = queryClient.getQueryData([EQueryKeys.SiteConfig]) as TTHSiteConfig;
+  const siteConfig = queryClient.getQueryData([EQueryKeys.SiteConfig]) as TTHSiteConfig;
 
   const {
     control,
@@ -65,8 +65,10 @@ const HabitForm = ({ initialValues, onSubmit }: { initialValues?: IFormData; onS
           <Controller
             name="starting_week"
             control={control}
-            defaultValue={currentWeek}
-            render={({ field }) => <WeekSelector {...field} currentWeek={currentWeek} className="border-b shadow-sm" />}
+            defaultValue={siteConfig?.current_week}
+            render={({ field }) => (
+              <WeekSelector {...field} currentWeek={siteConfig?.current_week} className="border-b shadow-sm" />
+            )}
           />
         </div>
 

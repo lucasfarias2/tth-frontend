@@ -10,8 +10,11 @@ import TotalContributionChart from './components/TotalContributionChart';
 const MyStats = () => {
   const queryClient = useQueryClient();
   const { data: globalPerformance } = useQuery([EQueryKeys.GlobalPerformance], fetchGlobalPerformance);
-  const { current_week: currentWeek } = queryClient.getQueryData([EQueryKeys.SiteConfig]) as TTHSiteConfig;
-  const { data: recentCompletion } = useQuery([EQueryKeys.RecentCompletion, currentWeek], fetchRecentCompletion);
+  const siteConfig = queryClient.getQueryData([EQueryKeys.SiteConfig]) as TTHSiteConfig;
+  const { data: recentCompletion } = useQuery(
+    [EQueryKeys.RecentCompletion, siteConfig?.current_week],
+    fetchRecentCompletion
+  );
 
   return (
     <div className="p-6">

@@ -13,8 +13,8 @@ import HomeHabit from './component/HomeHabit';
 const Home = () => {
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData([EQueryKeys.User]) as TTHUser;
-  const { current_week: currentWeek } = queryClient.getQueryData([EQueryKeys.SiteConfig]) as TTHSiteConfig;
-  const [week, setWeek] = useState(currentWeek);
+  const siteConfig = queryClient.getQueryData([EQueryKeys.SiteConfig]) as TTHSiteConfig;
+  const [week, setWeek] = useState(siteConfig.current_week);
   const { data: habits } = useQuery([EQueryKeys.Habits, week], fetchHabits);
   const { data: efforts } = useQuery([EQueryKeys.Efforts, week], fetchEffortsByWeek);
   const { data: weekCompletion } = useQuery([EQueryKeys.WeekCompletion, week], fetchWeekCompletion);
@@ -31,7 +31,7 @@ const Home = () => {
 
       <WeekSelector
         className="relative rounded-b-none"
-        currentWeek={currentWeek}
+        currentWeek={siteConfig?.current_week}
         value={week}
         onChange={value => {
           setWeek(value);
@@ -46,7 +46,7 @@ const Home = () => {
         )}
 
         <div className="px-4 pb-4">
-          {currentWeek === week && (
+          {siteConfig?.current_week === week && (
             <div className="mt-4 flex items-center rounded-lg bg-gray-50 p-3 text-sm text-gray-500">
               <CalendarIcon className="mr-2 mb-[2px] text-lg" /> This is the ongoing week.
             </div>

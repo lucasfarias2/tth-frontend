@@ -61,7 +61,7 @@ const NavbarAccountMobile = () => {
     <>
       <NavbarLinkExternalMobile to="/roadmap" Icon={FileIcon} label="Development roadmap" subLabel="What's next?" />
       <NavbarLinkExternalMobile to="/contact" Icon={HelpIcon} label="Contact us" subLabel="Need help?" />
-      {user.is_staff && <NavbarLinkExternalMobile to="/backoffice" Icon={ExternalLinkIcon} label="Backoffice" />}
+      {user?.is_staff && <NavbarLinkExternalMobile to="/backoffice" Icon={ExternalLinkIcon} label="Backoffice" />}
     </>
   );
   return (
