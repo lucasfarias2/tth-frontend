@@ -3,6 +3,7 @@ import Logo from '@/shared/components/logo/Logo';
 import {
   AnnouncementIcon,
   ExternalLinkIcon,
+  FileIcon,
   HomeIcon,
   InboxIcon,
   LogoutIcon,
@@ -27,6 +28,7 @@ const AdminPanel = () => {
           <AdminPanelLink to="/backoffice/users" Icon={UsersIcon} label="Users" />
           <AdminPanelLink to="/backoffice/announcements" end Icon={AnnouncementIcon} label="Announcements" />
           <AdminPanelLink to="/backoffice/tickets" end Icon={InboxIcon} label="Tickets" />
+          <AdminPanelLink to="/backoffice/features" end Icon={FileIcon} label="Development features" />
         </div>
       </div>
 

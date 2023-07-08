@@ -2,6 +2,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import RegisterIcon from '@/shared/components/ui/icons/RegisterIcon';
 import EQueryKeys from '@/shared/queries/query-keys';
+import { ExternalLinkIcon } from '../ui/icons';
 import BarChartIcon from '../ui/icons/BarChartIcon';
 import ConfigurationIcon from '../ui/icons/ConfigurationIcon';
 import FileIcon from '../ui/icons/FileIcon';
@@ -66,6 +67,7 @@ const NavbarGuestMobile = () => {
           setOpenMobileMenu(false);
         }}
       />
+      {user.is_staff && <NavbarLinkExternalMobile to="/backoffice" Icon={ExternalLinkIcon} label="Backoffice" />}
     </>
   );
 

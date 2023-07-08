@@ -3,6 +3,7 @@ import Page from '@/shared/components/page/Page';
 import AdminPanel from './components/user-panel/AdminPanel';
 import Announcements from './routes/Announcements';
 import Dashboard from './routes/Dashboard';
+import Features from './routes/Features';
 import Tickets from './routes/Tickets';
 import Users from './routes/Users';
 
@@ -19,6 +20,7 @@ const BackofficeRouter = (props: IViewProps) => {
             <Route path="/backoffice/users" element={<Users />} />
             <Route path="/backoffice/announcements" element={<Announcements />} />
             <Route path="/backoffice/tickets" element={<Tickets />} />
+            <Route path="/backoffice/features" element={<Features />} />
           </Routes>
         </div>
       </div>
