@@ -22,7 +22,7 @@ const NavbarWrapperMobile = ({ guestLinks, accountLinks, setOpenMobileMenu, open
 
   return (
     <>
-      <nav className="relative flex h-[60px] items-center justify-between border-b bg-white px-6">
+      <nav className="relative flex h-[60px] items-center justify-between border-b-2 bg-white px-6">
         <Logo />
         <button
           type="button"
