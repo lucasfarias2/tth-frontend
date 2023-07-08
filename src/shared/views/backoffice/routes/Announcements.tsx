@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { AlertInfoIcon, AnnouncementIcon, CloseIcon, EditPencilIcon } from '@/shared/components/ui/icons';
+import { AlertInfoIcon, AnnouncementIcon } from '@/shared/components/ui/icons';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
 import fetchAnnouncements from '@/shared/queries/backoffice/fetch-announcements';
 import EQueryKeys from '@/shared/queries/query-keys';
