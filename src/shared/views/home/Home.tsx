@@ -1,7 +1,4 @@
-import { logEvent } from 'firebase/analytics';
-import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { analytics } from '@/config/firebase';
 import Page from '@/shared/components/page/Page';
 import Features from './components/Features';
 import Header from './components/Header';
@@ -13,15 +10,6 @@ import Signup from './signup/Signup';
 
 const GuestRouter = (props: IViewProps) => {
   const { device, initialState } = props;
-
-  useEffect(() => {
-    if (analytics)
-      logEvent(analytics, 'page_view', {
-        page_location: window.location.href,
-        page_path: window.location.pathname,
-        page_title: 'Home',
-      });
-  }, []);
 
   return (
     <Page initialState={initialState} device={device} withNavbar flow="guest">
