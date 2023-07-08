@@ -1,13 +1,16 @@
 import { useQueryClient } from '@tanstack/react-query';
 import Logo from '@/shared/components/logo/Logo';
-import { ExternalLinkIcon, SupportIcon } from '@/shared/components/ui/icons';
-import AnnouncementIcon from '@/shared/components/ui/icons/AnnouncementIcon';
-import BarChartIcon from '@/shared/components/ui/icons/BarChartIcon';
-import ConfigurationIcon from '@/shared/components/ui/icons/ConfigurationIcon';
-import FrequencyIcon from '@/shared/components/ui/icons/FrequencyIcon';
-import HomeIcon from '@/shared/components/ui/icons/HomeIcon';
-import LogoutIcon from '@/shared/components/ui/icons/LogoutIcon';
-import UserIcon from '@/shared/components/ui/icons/UserIcon';
+import {
+  AnnouncementIcon,
+  BarChartIcon,
+  ConfigurationIcon,
+  DashboardIcon,
+  ExternalLinkIcon,
+  FrequencyIcon,
+  LogoutIcon,
+  SupportIcon,
+  UserIcon,
+} from '@/shared/components/ui/icons';
 import EQueryKeys from '@/shared/queries/query-keys';
 import UserPanelLink from './UserPanelLink';
 
@@ -22,7 +25,7 @@ const UserPanel = () => {
           <Logo hideTag />
         </div>
         <div className="py-4">
-          <UserPanelLink to="/account/" Icon={HomeIcon} label="Dashboard" />
+          <UserPanelLink to="/account/" Icon={DashboardIcon} label="Dashboard" />
           <UserPanelLink to="/account/habits" Icon={FrequencyIcon} label="My habits" />
           <UserPanelLink to="/account/stats" end Icon={BarChartIcon} label="My statistics" />
           <UserPanelLink to="/account/settings" end Icon={ConfigurationIcon} label="My settings" />
@@ -31,7 +34,7 @@ const UserPanel = () => {
       </div>
 
       <div className="flex flex-col">
-        {user.is_staff && (
+        {user?.is_staff && (
           <div className="mb-4 border-b-2 py-1">
             <UserPanelLink to="/backoffice/" Icon={ExternalLinkIcon} label="Backoffice" external />
           </div>

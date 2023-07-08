@@ -8,8 +8,8 @@ import { formatDate } from '@/shared/utils/date';
 const Tickets = () => {
   const { data: tickets } = useQuery([EQueryKeys.Tickets], fetchTickets);
 
-  const EmailOpen = <EmailOpenIcon className="mr-4 h-6 w-6 text-sky-400" />;
-  const EmailClosed = <EmailClosedIcon className="mr-4 h-6 w-6 text-gray-500" />;
+  const EmailOpen = <EmailOpenIcon className="mr-4 h-5 w-5 text-sky-400 md:h-6 md:w-6" />;
+  const EmailClosed = <EmailClosedIcon className="mr-4 h-5 w-5 text-gray-400 md:h-6 md:w-6" />;
 
   return (
     <div className="p-6">
@@ -20,7 +20,7 @@ const Tickets = () => {
           <div
             className={`flex items-center justify-between border-b py-3 px-4 last:mb-0 last:border-b-0 ${
               i % 2 === 0 ? 'bg-white' : 'bg-gray-50'
-            }`}
+            } flex-wrap`}
             key={ticket.id}
           >
             <div className="flex items-center">
@@ -39,8 +39,8 @@ const Tickets = () => {
                 <div className="text-xs text-black/50">{ticket.sender}</div>
               </div>
             </div>
-            <div className="flex items-center">
-              <div className="ml-2 text-right text-[10px] text-gray-500">
+            <div className="mt-4 flex items-center md:mt-0">
+              <div className="text-[10px] text-gray-500 md:ml-2 md:text-right">
                 <div>Created at: {formatDate(ticket.creation_date)}</div>
                 <div>Last update: {formatDate(ticket.updated_date)}</div>
               </div>

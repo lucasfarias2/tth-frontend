@@ -15,7 +15,7 @@ const NavbarDesktop = () => {
   const user = queryClient.getQueryData([EQueryKeys.User]) as TTHUser;
 
   return (
-    <nav className="relative flex h-[70px] items-center justify-between border-b bg-white px-16 2xl:px-48">
+    <nav className="relative flex h-[70px] items-center justify-between border-b-2 bg-white px-16 2xl:px-48">
       <div className="flex items-center">
         <Logo className="border-r pr-8" />
         <NavbarLinkDesktop to="/contact" label="Contact us" Icon={HelpIcon} subLabel="Need help?" className="ml-4" />
@@ -30,13 +30,15 @@ const NavbarDesktop = () => {
       <div className="flex">
         {user ? (
           <>
-            {user.is_staff && <NavbarLinkExternalDesktop to="/backoffice" label="Backoffice" Icon={ExternalLinkIcon} />}
+            {user?.is_staff && (
+              <NavbarLinkExternalDesktop to="/backoffice" label="Backoffice" Icon={ExternalLinkIcon} />
+            )}
             <NavbarLinkExternalDesktop
               to="/account/"
               label="Your account"
               className="mr-2 text-rose-700"
               Icon={UserIcon}
-              subLabel={`Welcome, ${user.first_name}`}
+              subLabel={`Welcome, ${user?.first_name}`}
             />
           </>
         ) : (

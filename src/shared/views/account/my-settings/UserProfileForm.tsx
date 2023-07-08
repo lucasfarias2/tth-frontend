@@ -19,7 +19,7 @@ const UserProfileForm = ({ setEditMode }: IProps) => {
     handleSubmit,
     formState: { errors },
   } = useForm<IFormData>({
-    defaultValues: { first_name: user.first_name, last_name: user.last_name, email: user.email },
+    defaultValues: { first_name: user?.first_name, last_name: user?.last_name, email: user?.email },
   });
 
   const updateUserProfileMutation = useMutation(updateUser, {

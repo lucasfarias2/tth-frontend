@@ -10,8 +10,8 @@ const currentDate = new Date();
 const Announcements = () => {
   const { data: announcements } = useQuery([EQueryKeys.Announcements], fetchAnnouncements);
 
-  const TypeInfoIcon = <AnnouncementIcon className="mr-4 h-6 w-6 text-black/40" />;
-  const TypeAlertIcon = <AlertInfoIcon className="mr-4 h-6 w-6 text-black/40" />;
+  const TypeInfoIcon = <AnnouncementIcon className="mr-4 h-5 w-5 text-black/40 md:h-6 md:w-6" />;
+  const TypeAlertIcon = <AlertInfoIcon className="mr-4 h-5 w-5 text-black/40 md:h-6 md:w-6" />;
 
   const getTypeIcon = (type: string) => {
     switch (type) {
@@ -37,7 +37,7 @@ const Announcements = () => {
 
           return (
             <div
-              className={`flex items-center justify-between border-b py-3 px-4 last:mb-0 last:border-b-0 ${
+              className={`flex flex-wrap items-center justify-between border-b py-3 px-4 last:mb-0 last:border-b-0 ${
                 i % 2 === 0 ? 'bg-white' : 'bg-gray-50'
               }`}
               key={announcement.id}
@@ -58,8 +58,8 @@ const Announcements = () => {
                   <div className="text-xs capitalize text-black/50">{announcement.type}</div>
                 </div>
               </div>
-              <div className="flex items-center">
-                <div className="ml-2 text-right text-[10px] text-gray-500">
+              <div className="mt-4 flex items-center md:mt-0">
+                <div className="md:ml-2 text-[10px] text-gray-500 md:text-right">
                   <div>From: {formatDate(announcement.starting_date)}</div>
                   <div>Until: {formatDate(announcement.end_date)}</div>
                 </div>

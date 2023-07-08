@@ -40,7 +40,7 @@ const NavbarWrapperMobile = ({ guestLinks, accountLinks, setOpenMobileMenu, open
             <div className="fixed top-0 left-0 z-10 flex h-full w-5/6 max-w-xs flex-col justify-between overflow-y-auto bg-white shadow-2xl">
               <div>
                 <div className="border-b-2 p-4">
-                  {user ? <div className="px-2 text-lg font-semibold">Welcome, {user.first_name}</div> : <Logo />}
+                  {user ? <div className="px-2 text-lg font-semibold">Welcome, {user?.first_name}</div> : <Logo />}
                 </div>
                 {accountLinks}
               </div>
@@ -52,9 +52,9 @@ const NavbarWrapperMobile = ({ guestLinks, accountLinks, setOpenMobileMenu, open
                       <UserIcon className="mr-3 text-2xl text-gray-500" />
                       <div>
                         <p className="font-semibold">
-                          {user.first_name} {user.last_name}
+                          {user?.first_name} {user?.last_name}
                         </p>
-                        <p className="text-xs text-gray-500">{user.email}</p>
+                        <p className="text-xs text-gray-500">{user?.email}</p>
                       </div>
                     </a>
 

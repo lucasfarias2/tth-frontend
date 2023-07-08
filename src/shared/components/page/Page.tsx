@@ -2,6 +2,7 @@ import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query
 import NavbarDesktop from '@/components/navbar/Navbar.desktop';
 import { ToastProvider } from '@/components/toast/ToastContext';
 import NavbarAccountMobile from '@/shared/components/navbar/NavbarAccount.mobile';
+import NavbarBackofficeMobile from '@/shared/components/navbar/NavbarBackoffice.mobile';
 import NavbarGuestMobile from '@/shared/components/navbar/NavbarGuest.mobile';
 import { DeviceContext } from '@/shared/contexts/DeviceContext';
 
@@ -14,6 +15,8 @@ const Page = ({ children, className, initialState, device, flow, withNavbar = fa
   } else {
     if (flow === 'account') {
       NavbarComponent = NavbarAccountMobile;
+    } else if (flow === 'backoffice') {
+      NavbarComponent = NavbarBackofficeMobile;
     } else {
       NavbarComponent = NavbarGuestMobile;
     }

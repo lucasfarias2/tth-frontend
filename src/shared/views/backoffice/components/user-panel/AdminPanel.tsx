@@ -2,9 +2,9 @@ import { useQueryClient } from '@tanstack/react-query';
 import Logo from '@/shared/components/logo/Logo';
 import {
   AnnouncementIcon,
+  DashboardIcon,
   ExternalLinkIcon,
   FileIcon,
-  HomeIcon,
   InboxIcon,
   LogoutIcon,
   UserIcon,
@@ -24,7 +24,7 @@ const AdminPanel = () => {
           <Logo dark hideTag />
         </div>
         <div className="py-4">
-          <AdminPanelLink to="/backoffice/" Icon={HomeIcon} label="Dashboard" />
+          <AdminPanelLink to="/backoffice/" Icon={DashboardIcon} label="Dashboard" />
           <AdminPanelLink to="/backoffice/users" Icon={UsersIcon} label="Users" />
           <AdminPanelLink to="/backoffice/announcements" end Icon={AnnouncementIcon} label="Announcements" />
           <AdminPanelLink to="/backoffice/tickets" end Icon={InboxIcon} label="Tickets" />

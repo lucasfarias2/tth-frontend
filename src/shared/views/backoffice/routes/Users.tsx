@@ -21,7 +21,7 @@ const Users = () => {
           >
             <div className="flex items-center">
               <div
-                className={`mr-4 flex h-4 w-4 items-center justify-center rounded-full ${
+                className={`mr-4 flex h-5 w-5 items-center justify-center rounded-full ${
                   !user.is_staff ? 'bg-black/40' : 'bg-orange-500'
                 } text-xs font-semibold uppercase text-white md:h-6 md:w-6`}
               >
