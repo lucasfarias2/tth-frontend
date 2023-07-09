@@ -110,6 +110,7 @@ declare global {
     type: 'alert' | 'warning' | 'info';
     starting_date: string;
     end_date: string;
+    status: 'ON' | 'OFF';
   }
 
   export interface TTHFeature {

@@ -10,8 +10,11 @@ enum EQueryKeys {
   RecentCompletion = 'recent-completion',
   Users = 'users',
   Announcements = 'announcements',
+  Announcement = 'announcement',
   Tickets = 'tickets',
+  Ticket = 'ticket',
   Features = 'features',
+  Feature = 'feature',
   FeaturesPublic = 'features-public',
 }
 

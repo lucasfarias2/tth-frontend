@@ -5,6 +5,12 @@ interface ICreateHabitRequest {
   color: string;
 }
 
+interface ICreateTicketRequest {
+  title: string;
+  content: string;
+  sender: string;
+}
+
 interface IEditHabitRequest extends ICreateHabitRequest {
   id?: string;
 }
@@ -25,4 +31,9 @@ interface IUpdateUserRequest {
   email?: string;
   password?: string;
   old_password: string;
+}
+
+interface IEditTicketRequest {
+  id?: string;
+  status: 'open' | 'closed' | 'resolved';
 }

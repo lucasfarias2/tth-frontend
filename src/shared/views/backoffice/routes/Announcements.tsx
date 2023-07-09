@@ -5,8 +5,6 @@ import fetchAnnouncements from '@/shared/queries/backoffice/fetch-announcements'
 import EQueryKeys from '@/shared/queries/query-keys';
 import { formatDate } from '@/shared/utils/date';
 
-const currentDate = new Date();
-
 const Announcements = () => {
   const { data: announcements } = useQuery([EQueryKeys.Announcements], fetchAnnouncements);
 
@@ -30,11 +28,6 @@ const Announcements = () => {
 
       <div className="mt-4 max-w-2xl overflow-hidden rounded-lg border  bg-white shadow-sm dark:border-white/5 dark:bg-white/5">
         {announcements?.map((announcement, i) => {
-          const isOpen = (end_date: string) => {
-            const endDate = new Date(end_date);
-            return endDate < currentDate;
-          };
-
           return (
             <div
               className={`flex flex-wrap items-center justify-between border-b py-3 px-4 last:mb-0 last:border-b-0 ${
@@ -47,21 +40,24 @@ const Announcements = () => {
                 <div className="flex-1 leading-snug">
                   <div className="flex items-center text-sm font-medium">
                     <div className="mr-2">{announcement.title}</div>
-                    <span className="inline-block">
-                      {isOpen(announcement.end_date) && (
-                        <div className="rounded-lg border border-sky-200 bg-sky-100 px-1 text-[10px] text-green-500">
-                          On
-                        </div>
-                      )}
-                    </span>
                   </div>
                   <div className="text-xs capitalize text-black/50">{announcement.type}</div>
                 </div>
               </div>
               <div className="mt-4 flex items-center md:mt-0">
                 <div className="text-[10px] text-gray-500 md:ml-2 md:text-right">
-                  <div>From: {formatDate(announcement.starting_date)}</div>
-                  <div>Until: {formatDate(announcement.end_date)}</div>
+                  <span className="inline-block">
+                    {announcement.status === 'ON' ? (
+                      <div className="mb-1 rounded-lg border border-green-200 bg-green-100 p-1 text-[10px] text-green-500">
+                        On
+                      </div>
+                    ) : (
+                      <div className="mb-1 rounded-lg border border-gray-200 bg-gray-100 p-1 text-[10px] text-gray-500">
+                        Off
+                      </div>
+                    )}
+                  </span>
+                  <div>On until: {formatDate(announcement.end_date)}</div>
                 </div>
               </div>
             </div>
