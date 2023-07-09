@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
+import Badge from '@/shared/components/badge/Badge';
 import { PuzzleIcon } from '@/shared/components/ui/icons';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
 import fetchFeaturesPublic from '@/shared/queries/fetch-features-public';
@@ -9,14 +10,6 @@ import trackEvent from '@/shared/utils/ga-tracking';
 
 const Roadmap = () => {
   const { data: features } = useQuery([EQueryKeys.FeaturesPublic], fetchFeaturesPublic);
-
-  const getLabel = (status: string) => {
-    if (status === 'ontrack') {
-      return 'On track';
-    } else if (status === 'live') {
-      return 'Live';
-    }
-  };
 
   useEffect(() => {
     trackEvent('page_view', { title: 'roadmap' });
@@ -36,7 +29,7 @@ const Roadmap = () => {
           <div
             className={`flex items-center justify-between border-b py-3 px-4 last:mb-0 last:border-b-0 ${
               i % 2 === 0 ? 'bg-white' : 'bg-gray-50'
-            } flex-wrap ${feature.status === 'live' ? 'opacity-50' : ''}`}
+            } flex-wrap`}
             key={feature.id}
           >
             <div className="flex items-center">
@@ -51,13 +44,9 @@ const Roadmap = () => {
             <div className="mt-4 flex items-center md:mt-0">
               <span className="inline-block text-xs">
                 {feature.status === 'ontrack' ? (
-                  <div className="rounded-lg border border-sky-300 bg-sky-100 py-1 px-2 text-sky-500">
-                    {getLabel(feature.status)}
-                  </div>
+                  <Badge color="blue" text="On track" size="xs" />
                 ) : (
-                  <div className="rounded-lg border border-green-300 bg-green-100 py-1 px-2 text-green-500">
-                    {getLabel(feature.status)}
-                  </div>
+                  <Badge color="green" text="Live" size="xs" />
                 )}
               </span>
             </div>

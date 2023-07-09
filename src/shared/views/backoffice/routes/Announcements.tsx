@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import Badge from '@/shared/components/badge/Badge';
 import { AlertInfoIcon, AnnouncementIcon } from '@/shared/components/ui/icons';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
 import fetchAnnouncements from '@/shared/queries/backoffice/fetch-announcements';
@@ -48,13 +49,9 @@ const Announcements = () => {
                 <div className="text-[10px] text-gray-500 md:ml-2 md:text-right">
                   <span className="inline-block">
                     {announcement.status === 'ON' ? (
-                      <div className="mb-1 rounded-lg border border-green-200 bg-green-100 p-1 text-[10px] text-green-500">
-                        On
-                      </div>
+                      <Badge color="green" text="On" size="xs" />
                     ) : (
-                      <div className="mb-1 rounded-lg border border-gray-200 bg-gray-100 p-1 text-[10px] text-gray-500">
-                        Off
-                      </div>
+                      <Badge color="red" text="Off" size="xs" />
                     )}
                   </span>
                   <div>On until: {formatDate(announcement.end_date)}</div>

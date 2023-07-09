@@ -7,6 +7,7 @@ import MyHabits from './my-habits/MyHabits';
 import ViewHabit from './my-habits/view-habit/ViewHabit';
 import MySettings from './my-settings/MySettings';
 import MyStats from './my-stats/MyStats';
+import AddTicket from './support/AddTicket';
 import Support from './support/Support';
 
 const AccountRouter = (props: IViewProps) => {
@@ -22,7 +23,7 @@ const AccountRouter = (props: IViewProps) => {
             <Route path="/account/habits/*" element={<HabitsRouter />} />
             <Route path="/account/stats" element={<MyStats />} />
             <Route path="/account/settings" element={<MySettings />} />
-            <Route path="/account/support" element={<Support />} />
+            <Route path="/account/support/*" element={<SupportRouter />} />
           </Routes>
         </div>
       </div>
@@ -36,6 +37,15 @@ const HabitsRouter = () => {
       <Route path="/" element={<MyHabits />} />
       <Route path="/add" element={<AddHabit />} />
       <Route path="/:id" element={<ViewHabit />} />
+    </Routes>
+  );
+};
+
+const SupportRouter = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Support />} />
+      <Route path="/add" element={<AddTicket />} />
     </Routes>
   );
 };

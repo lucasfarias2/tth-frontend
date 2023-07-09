@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import Badge from '@/shared/components/badge/Badge';
 import { PuzzleIcon } from '@/shared/components/ui/icons';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
 import fetchFeatures from '@/shared/queries/backoffice/fetch-features';
@@ -7,14 +8,6 @@ import { formatDate } from '@/shared/utils/date';
 
 const Features = () => {
   const { data: features } = useQuery([EQueryKeys.Features], fetchFeatures);
-
-  const getLabel = (status: string) => {
-    if (status === 'ontrack') {
-      return 'On track';
-    } else if (status === 'live') {
-      return 'Live';
-    }
-  };
 
   const LiveIcon = <PuzzleIcon className="text-xl text-green-500" />;
   const OnTrackIcon = <PuzzleIcon className="text-xl text-gray-500" />;
@@ -46,13 +39,9 @@ const Features = () => {
             <div className="mt-4 flex items-center md:mt-0">
               <span className="inline-block text-xs">
                 {feature.status === 'ontrack' ? (
-                  <div className="rounded-lg border border-sky-300 bg-sky-100 py-1 px-2 text-sky-500">
-                    {getLabel(feature.status)}
-                  </div>
+                  <Badge color="blue" text="On track" size="xs" />
                 ) : (
-                  <div className="rounded-lg border border-green-300 bg-green-100 py-1 px-2 text-green-500">
-                    {getLabel(feature.status)}
-                  </div>
+                  <Badge color="green" text="Live" size="xs" />
                 )}
               </span>
             </div>

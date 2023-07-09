@@ -12,6 +12,7 @@ enum EQueryKeys {
   Announcements = 'announcements',
   Announcement = 'announcement',
   Tickets = 'tickets',
+  UserTickets = 'user-tickets',
   Ticket = 'ticket',
   Features = 'features',
   Feature = 'feature',

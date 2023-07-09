@@ -8,6 +8,7 @@ import {
   FrequencyIcon,
   HelpIcon,
   HomeIcon,
+  SupportIcon,
 } from '@/shared/components/ui/icons';
 import EQueryKeys from '@/shared/queries/query-keys';
 import NavbarLinkMobile from './NavbarLink.mobile';
@@ -50,6 +51,15 @@ const NavbarAccountMobile = () => {
         to="/account/settings"
         Icon={ConfigurationIcon}
         label="My settings"
+        closeMenu={() => {
+          setOpenMobileMenu(false);
+        }}
+        end
+      />
+      <NavbarLinkMobile
+        to="/account/support"
+        Icon={SupportIcon}
+        label="Support"
         closeMenu={() => {
           setOpenMobileMenu(false);
         }}

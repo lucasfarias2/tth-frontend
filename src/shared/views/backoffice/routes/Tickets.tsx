@@ -1,16 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import Badge from '@/shared/components/badge/Badge';
 import { EmailClosedIcon, EmailOpenIcon } from '@/shared/components/ui/icons';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
+import { DeviceContext } from '@/shared/contexts/DeviceContext';
 import fetchTickets from '@/shared/queries/backoffice/fetch-tickets';
 import EQueryKeys from '@/shared/queries/query-keys';
 import { formatDate } from '@/shared/utils/date';
 
 const Tickets = () => {
   const { data: tickets } = useQuery([EQueryKeys.Tickets], fetchTickets);
+  const device = useContext(DeviceContext);
 
   const EmailOpen = <EmailOpenIcon className="mr-4 h-5 w-5 text-sky-400 md:h-6 md:w-6" />;
-  const EmailClosed = <EmailClosedIcon className="mr-4 h-5 w-5 text-gray-400 md:h-6 md:w-6" />;
+  const EmailClosed = <EmailClosedIcon className="mr-4 h-5 w-5 text-red-400 md:h-6 md:w-6" />;
   const EmailClosedResolved = <EmailClosedIcon className="mr-4 h-5 w-5 text-green-400 md:h-6 md:w-6" />;
 
   return (
@@ -33,28 +37,21 @@ const Tickets = () => {
                   <div className="mr-2">{ticket.title}</div>
                 </div>
                 <div className="text-xs text-black/50">{ticket.sender}</div>
+                <div className="mt-1 text-[10px] text-black/40">Created at: {formatDate(ticket.creation_date)}</div>
               </div>
             </div>
-            <div className="mt-4 flex items-center md:mt-0">
-              <div className="text-[10px] text-gray-500 md:ml-2 md:text-right">
+            <div className="flex items-center">
+              {device.type === 'desktop' && (
                 <span className="inline-block">
                   {ticket.status === 'open' ? (
-                    <div className="mb-1 rounded-lg border border-sky-200 bg-sky-100 px-1 text-[10px] text-sky-500">
-                      Open
-                    </div>
+                    <Badge color="blue" text="Open" size="xs" />
                   ) : ticket.status === 'closed' ? (
-                    <div className="mb-1 rounded-lg border border-red-200 bg-red-100 px-1 text-[10px] text-red-500">
-                      Closed
-                    </div>
+                    <Badge color="red" text="Closed" size="xs" />
                   ) : (
-                    <div className="mb-1 rounded-lg border border-green-200 bg-green-100 px-1 text-[10px] text-green-500">
-                      Resolved
-                    </div>
+                    <Badge color="green" text="Resolved" size="xs" />
                   )}
                 </span>
-                <div>Created at: {formatDate(ticket.creation_date)}</div>
-                <div>Last update: {formatDate(ticket.updated_date)}</div>
-              </div>
+              )}
             </div>
           </Link>
         ))}

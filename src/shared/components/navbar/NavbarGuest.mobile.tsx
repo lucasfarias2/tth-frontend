@@ -2,7 +2,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import RegisterIcon from '@/shared/components/ui/icons/RegisterIcon';
 import EQueryKeys from '@/shared/queries/query-keys';
-import { ExternalLinkIcon } from '../ui/icons';
+import { ExternalLinkIcon, SupportIcon } from '../ui/icons';
 import BarChartIcon from '../ui/icons/BarChartIcon';
 import ConfigurationIcon from '../ui/icons/ConfigurationIcon';
 import FileIcon from '../ui/icons/FileIcon';
@@ -25,6 +25,7 @@ const NavbarGuestMobile = () => {
       <NavbarLinkExternalMobile to="/account/habits" Icon={FrequencyIcon} label="My habits" />
       <NavbarLinkExternalMobile to="/account/stats" Icon={BarChartIcon} label="My statistics" />
       <NavbarLinkExternalMobile to="/account/settings" Icon={ConfigurationIcon} label="My settings" />
+      <NavbarLinkExternalMobile to="/account/support" Icon={SupportIcon} label="Support" />
     </>
   ) : (
     <>

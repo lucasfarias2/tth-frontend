@@ -22,6 +22,7 @@ apiRouter.get('/site-config', siteConfigController.getSiteConfig);
 
 apiRouter.get('/features', featuresController.getFeatures);
 
+apiRouter.get('/tickets', ticketsController.getUserTickets);
 apiRouter.post('/tickets', ticketsController.createTicket);
 
 apiRouter.get('/habits', habitController.getHabits);
