@@ -1,8 +1,9 @@
 interface ICreateHabitRequest {
-  name: string;
-  starting_week: number;
-  expected_effort: number;
-  color: string;
+  name?: string;
+  starting_week?: number;
+  expected_effort?: number;
+  color?: string;
+  ending_week?: number | null;
 }
 
 interface ICreateTicketRequest {

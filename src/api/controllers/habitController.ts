@@ -40,7 +40,7 @@ const getHabitById = async (req: Request, res: Response) => {
 
 const createHabit = async (req: Request, res: Response) => {
   const session = req.cookies.session;
-  const { name, starting_week, expected_effort, color } = req.body;
+  const { name, starting_week, expected_effort, color, ending_week } = req.body;
 
   if (!session) {
     return res.status(401).send('No session found');
@@ -49,7 +49,7 @@ const createHabit = async (req: Request, res: Response) => {
   try {
     const { data } = await axios.post(
       `${process.env.BACKEND_URL}/habits/`,
-      { name, starting_week, expected_effort, color },
+      { name, starting_week, expected_effort, color, ending_week },
       {
         headers: { Authorization: `Bearer ${session}` },
       }
@@ -63,7 +63,7 @@ const createHabit = async (req: Request, res: Response) => {
 };
 
 const editHabit = async (req: Request, res: Response) => {
-  const { name, starting_week, expected_effort, color } = req.body;
+  const { name, starting_week, expected_effort, color, ending_week } = req.body;
 
   const session = req.cookies.session;
 
@@ -74,7 +74,7 @@ const editHabit = async (req: Request, res: Response) => {
   try {
     const { data } = await axios.patch(
       `${process.env.BACKEND_URL}/habits/${req.params.id}/`,
-      { name, starting_week, expected_effort, color },
+      { name, starting_week, expected_effort, color, ending_week },
       {
         headers: { Authorization: `Bearer ${session}` },
       }

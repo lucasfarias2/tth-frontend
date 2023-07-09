@@ -4,7 +4,7 @@ import ChevronRightIcon from '@/shared/components/ui/icons/ChevronRightIcon';
 import { DeviceContext } from '@/shared/contexts/DeviceContext';
 
 interface WeekSelectorProps extends IComponent {
-  value: number;
+  value?: number | null;
   onChange: (value: number) => void;
   currentWeek: number;
 }
@@ -15,7 +15,7 @@ const WeekSelector = React.forwardRef<HTMLDivElement, WeekSelectorProps>(
     const isDesktop = device.type === 'desktop';
 
     const scrollWeek = (direction: number) => {
-      let newWeek = value + direction;
+      let newWeek = (value || currentWeek) + direction;
       if (newWeek < 1) newWeek = 52;
       if (newWeek > 52) newWeek = 1;
       onChange(newWeek);
@@ -27,7 +27,11 @@ const WeekSelector = React.forwardRef<HTMLDivElement, WeekSelectorProps>(
 
     const renderWeeks = () => {
       const weeks = [];
-      for (let i = value - (isDesktop ? 3 : 2); i <= value + (isDesktop ? 3 : 2); i++) {
+      for (
+        let i = (value || currentWeek) - (isDesktop ? 3 : 2);
+        i <= (value || currentWeek) + (isDesktop ? 3 : 2);
+        i++
+      ) {
         let weekNumber = i;
         if (weekNumber < 1) weekNumber += 52;
         if (weekNumber > 52) weekNumber -= 52;

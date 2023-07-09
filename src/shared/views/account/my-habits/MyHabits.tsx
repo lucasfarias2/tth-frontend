@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AddIcon from '@/shared/components/ui/icons/AddIcon';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
@@ -10,6 +10,7 @@ import Habit from './components/Habit';
 
 const MyHabits = () => {
   const { data: habits } = useQuery([EQueryKeys.Habits], fetchHabits);
+  const [currentTab, setCurrentTab] = useState('open');
 
   useEffect(() => {
     trackEvent('page_view', { title: 'account_habits' });
@@ -29,9 +30,39 @@ const MyHabits = () => {
       </div>
 
       <div className="mb-4 max-w-2xl flex-1">
-        {habits?.map(habit => {
-          return <Habit key={habit.id} {...habit} />;
-        })}
+        <div className="mb-2 flex cursor-pointer justify-between rounded-lg border bg-white p-1 text-center text-sm font-medium shadow-sm">
+          <div
+            className={`mr-1 w-1/2 rounded-lg px-2 py-1 hover:bg-gray-50 ${
+              currentTab === 'open' ? 'bg-gray-100' : 'text-black/40'
+            }`}
+            onClick={() => {
+              setCurrentTab('open');
+            }}
+          >
+            Open
+          </div>
+          <div
+            className={`w-1/2 rounded-lg px-2 py-1 hover:bg-gray-50 ${
+              currentTab === 'finished' ? 'bg-gray-100' : 'text-black/40'
+            }`}
+            onClick={() => {
+              setCurrentTab('finished');
+            }}
+          >
+            Finished
+          </div>
+        </div>
+        {habits
+          ?.filter(habit => {
+            if (currentTab === 'open') {
+              return habit.status === 'open';
+            } else {
+              return habit.status === 'finished';
+            }
+          })
+          .map(habit => {
+            return <Habit key={habit.id} {...habit} />;
+          })}
       </div>
     </div>
   );

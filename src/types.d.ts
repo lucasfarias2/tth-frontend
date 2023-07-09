@@ -52,6 +52,8 @@ declare global {
     starting_week: number;
     color: string;
     expected_effort: number;
+    ending_week: number;
+    status: 'open' | 'finished';
   }
 
   export interface TTHEffort {
