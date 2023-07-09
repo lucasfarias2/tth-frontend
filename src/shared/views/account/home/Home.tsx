@@ -57,9 +57,11 @@ const Home = () => {
             </div>
           )}
           {habits &&
-            habits?.map(habit => {
-              return <HomeHabit key={habit.id} {...habit} efforts={efforts} week={week} />;
-            })}
+            habits
+              ?.filter(habit => habit.ending_week >= week)
+              .map(habit => {
+                return <HomeHabit key={habit.id} {...habit} efforts={efforts} week={week} />;
+              })}
           <div className="mt-4 text-xs text-gray-400">
             <span className="font-semibold">Note:</span> Add how much have you done of each habit to track your weekly
             progress.
