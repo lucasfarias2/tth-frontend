@@ -46,17 +46,18 @@ const AddHabit = () => {
   });
 
   const onSubmit = (data: IFormData) => {
-    const { name, starting_week, expected_effort, color } = data;
+    const { name, starting_week, expected_effort, color, ending_week } = data;
 
     createHabitMutation.mutate({
       name,
+      ending_week,
       starting_week,
       expected_effort,
       color,
     });
   };
 
-  const fullScreenClasses = device.type === 'mobile' ? 'h-full bg-gray-50 fixed top-0' : '';
+  const fullScreenClasses = device.type === 'mobile' ? 'bg-gray-50 fixed top-0 overflow-y-scroll' : '';
 
   return (
     <div className={`p-6 ${fullScreenClasses}`}>
@@ -77,6 +78,7 @@ interface IFormData {
   starting_week: number;
   expected_effort: number;
   color: string;
+  ending_week?: number | null;
 }
 
 export default AddHabit;

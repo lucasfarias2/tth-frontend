@@ -101,7 +101,7 @@ const ViewHabit = () => {
     });
   };
 
-  const fullScreenClasses = device.type === 'mobile' ? 'h-full bg-gray-50 fixed top-0' : '';
+  const fullScreenClasses = device.type === 'mobile' ? 'h-full bg-gray-50 fixed top-0 overflow-y-scroll' : '';
 
   return (
     <div className={`max-w-2xl p-6 ${fullScreenClasses}`}>
