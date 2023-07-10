@@ -11,7 +11,6 @@ import Habit from './components/Habit';
 const MyHabits = () => {
   const queryClient = useQueryClient();
   const { data: habits } = useQuery([EQueryKeys.Habits], fetchHabits);
-  const siteConfig = queryClient.getQueryData([EQueryKeys.SiteConfig]) as TTHSiteConfig;
   const [currentTab, setCurrentTab] = useState('open');
 
   useEffect(() => {
