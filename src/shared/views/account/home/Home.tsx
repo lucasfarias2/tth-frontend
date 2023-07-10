@@ -15,7 +15,7 @@ const Home = () => {
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData([EQueryKeys.User]) as TTHUser;
   const siteConfig = queryClient.getQueryData([EQueryKeys.SiteConfig]) as TTHSiteConfig;
-  const [week, setWeek] = useState(siteConfig.current_week);
+  const [week, setWeek] = useState(siteConfig?.current_week || 1);
   const { data: habits } = useQuery([EQueryKeys.Habits, week], fetchHabits);
   const { data: efforts } = useQuery([EQueryKeys.Efforts, week], fetchEffortsByWeek);
   const { data: weekCompletion } = useQuery([EQueryKeys.WeekCompletion, week], fetchWeekCompletion);
@@ -58,7 +58,13 @@ const Home = () => {
           )}
           {habits &&
             habits
-              ?.filter(habit => habit.ending_week >= week)
+              ?.filter(habit => {
+                if (habit.ending_week) {
+                  return habit.ending_week >= week;
+                } else {
+                  return true;
+                }
+              })
               .map(habit => {
                 return <HomeHabit key={habit.id} {...habit} efforts={efforts} week={week} />;
               })}

@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AddIcon from '@/shared/components/ui/icons/AddIcon';
@@ -9,7 +9,9 @@ import trackEvent from '@/shared/utils/ga-tracking';
 import Habit from './components/Habit';
 
 const MyHabits = () => {
+  const queryClient = useQueryClient();
   const { data: habits } = useQuery([EQueryKeys.Habits], fetchHabits);
+  const siteConfig = queryClient.getQueryData([EQueryKeys.SiteConfig]) as TTHSiteConfig;
   const [currentTab, setCurrentTab] = useState('open');
 
   useEffect(() => {
@@ -30,26 +32,28 @@ const MyHabits = () => {
       </div>
 
       <div className="mb-4 max-w-2xl flex-1">
-        <div className="mb-2 flex cursor-pointer justify-between rounded-lg border bg-white p-1 text-center text-sm font-medium shadow-sm">
+        <div className="mb-2 flex cursor-pointer justify-between overflow-hidden rounded-lg border bg-gray-100 text-center text-sm font-medium leading-none shadow-sm">
           <div
-            className={`mr-1 w-1/2 rounded-lg px-2 py-1 hover:bg-gray-50 ${
-              currentTab === 'open' ? 'bg-gray-100' : 'text-black/40'
+            className={`mr-1 flex w-1/2 flex-col items-center justify-center rounded-lg p-2 ${
+              currentTab === 'open' ? 'bg-white shadow' : 'text-black/40'
             }`}
             onClick={() => {
               setCurrentTab('open');
             }}
           >
-            Open
+            <div className="mb-1">Open</div>
+            <span className="text-[10px] font-normal">End after current week</span>
           </div>
           <div
-            className={`w-1/2 rounded-lg px-2 py-1 hover:bg-gray-50 ${
-              currentTab === 'finished' ? 'bg-gray-100' : 'text-black/40'
+            className={`w-1/2 flex-col items-center justify-center rounded-lg p-2 ${
+              currentTab === 'finished' ? 'bg-white shadow' : 'text-black/40'
             }`}
             onClick={() => {
               setCurrentTab('finished');
             }}
           >
-            Finished
+            <div className="">Finished</div>
+            <span className="text-[10px] font-normal">Ended before current week</span>
           </div>
         </div>
         {habits
