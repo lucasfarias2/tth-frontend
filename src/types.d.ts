@@ -109,7 +109,7 @@ declare global {
     id: string;
     title: string;
     content: string;
-    type: 'alert' | 'warning' | 'info';
+    type: 'alert' | 'info';
     starting_date: string;
     end_date: string;
     status: 'ON' | 'OFF';

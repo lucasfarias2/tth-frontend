@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 import Badge from '@/shared/components/badge/Badge';
-import { PuzzleIcon } from '@/shared/components/ui/icons';
+import { AddIcon, PuzzleIcon } from '@/shared/components/ui/icons';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
 import fetchFeatures from '@/shared/queries/backoffice/fetch-features';
 import EQueryKeys from '@/shared/queries/query-keys';
@@ -14,14 +15,24 @@ const Features = () => {
 
   return (
     <div className="p-6">
-      <PageTitle
-        title="Development features"
-        subtitle="Here you can manage the development features roadmap that users will see."
-      />
+      <div className="flex max-w-2xl items-end justify-between">
+        <PageTitle
+          title="Development features"
+          subtitle="Here you can manage the development features roadmap that users will see."
+        />
+        <Link
+          to="/backoffice/features/add"
+          className="mr-2 flex cursor-pointer items-center rounded-lg border bg-white p-2 text-xs font-medium text-gray-600 shadow-sm hover:bg-gray-50"
+        >
+          <AddIcon className="mr-2 text-lg" />
+          New feature
+        </Link>
+      </div>
 
       <div className="mt-4 max-w-2xl overflow-hidden rounded-lg border  bg-white shadow-sm dark:border-white/5 dark:bg-white/5">
         {features?.map((feature, i) => (
-          <div
+          <Link
+            to={`/backoffice/features/${feature.id}`}
             className={`flex items-center justify-between border-b py-3 px-4 last:mb-0 last:border-b-0 ${
               i % 2 === 0 ? 'bg-white' : 'bg-gray-50'
             } flex-wrap ${feature.status === 'live' ? 'opacity-50' : ''}`}
@@ -45,7 +56,7 @@ const Features = () => {
                 )}
               </span>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

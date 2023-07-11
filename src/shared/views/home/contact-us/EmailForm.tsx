@@ -43,7 +43,7 @@ const EmailForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex max-w-lg flex-1 flex-col">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex max-w-2xl flex-1 flex-col">
       <FormInput
         name="title"
         label="Title"

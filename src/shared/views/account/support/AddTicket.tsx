@@ -14,7 +14,7 @@ const AddTicket = () => {
       <PageBack to="/account/support" />
       <PageTitle title="New ticket" subtitle="Open a new support ticket." className="mb-4" />
 
-      <div className="mt-4 max-w-lg md:rounded-lg md:border md:bg-white md:p-4 md:shadow-sm">
+      <div className="mt-4 max-w-2xl md:rounded-lg md:border md:bg-white md:p-4 md:shadow-sm">
         <EmailForm />
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import EffortProgressBar from '@/shared/components/effort-progress-bar/EffortProgressBar';
 import FormInput from '@/shared/components/ui/input/FormInput';
 import FormSelect from '@/shared/components/ui/select/FormSelect';
@@ -19,7 +19,6 @@ interface IFormData {
 }
 
 const HabitForm = ({ initialValues, onSubmit }: { initialValues?: IFormData; onSubmit: (data: IFormData) => void }) => {
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const siteConfig = queryClient.getQueryData([EQueryKeys.SiteConfig]) as TTHSiteConfig;
   const [withEndingWeek, setWithEndingWeek] = useState(!!initialValues?.ending_week);
@@ -138,9 +137,6 @@ const HabitForm = ({ initialValues, onSubmit }: { initialValues?: IFormData; onS
       </div>
 
       <Link
-        onClick={() => {
-          navigate('/account/habits');
-        }}
         to="/account/habits"
         className="mr-2 inline-block rounded-lg border bg-white px-4 py-2 text-sm font-semibold shadow-sm hover:bg-gray-50"
       >

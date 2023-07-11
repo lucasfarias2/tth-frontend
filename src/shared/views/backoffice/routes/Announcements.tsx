@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 import Badge from '@/shared/components/badge/Badge';
-import { AlertInfoIcon, AnnouncementIcon } from '@/shared/components/ui/icons';
+import { AddIcon, AlertInfoIcon, AnnouncementIcon } from '@/shared/components/ui/icons';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
 import fetchAnnouncements from '@/shared/queries/backoffice/fetch-announcements';
 import EQueryKeys from '@/shared/queries/query-keys';
@@ -25,12 +26,23 @@ const Announcements = () => {
 
   return (
     <div className="p-6">
-      <PageTitle title="Announcements" subtitle="Here you can manage the announcements in the platform." />
+      <div className="flex max-w-2xl items-end justify-between">
+        <PageTitle title="Announcements" subtitle="Here you can manage the announcements in the platform." />
+
+        <Link
+          to="/backoffice/announcements/add"
+          className="mr-2 flex cursor-pointer items-center rounded-lg border bg-white p-2 text-xs font-medium text-gray-600 shadow-sm hover:bg-gray-50"
+        >
+          <AddIcon className="mr-2 text-lg" />
+          New announcement
+        </Link>
+      </div>
 
       <div className="mt-4 max-w-2xl overflow-hidden rounded-lg border  bg-white shadow-sm dark:border-white/5 dark:bg-white/5">
         {announcements?.map((announcement, i) => {
           return (
-            <div
+            <Link
+              to={`/backoffice/announcements/${announcement.id}`}
               className={`flex flex-wrap items-center justify-between border-b py-3 px-4 last:mb-0 last:border-b-0 ${
                 i % 2 === 0 ? 'bg-white' : 'bg-gray-50'
               }`}
@@ -57,7 +69,7 @@ const Announcements = () => {
                   <div>On until: {formatDate(announcement.end_date)}</div>
                 </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

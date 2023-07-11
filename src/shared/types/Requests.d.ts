@@ -38,3 +38,25 @@ interface IEditTicketRequest {
   id?: string;
   status: 'open' | 'closed' | 'resolved';
 }
+
+interface ICreateAnnouncementRequest {
+  title: string;
+  content: string;
+  type: 'alert' | 'info';
+  starting_date: string;
+  end_date: string;
+  status: 'ontrack' | 'live';
+}
+
+interface ICreateFeatureRequest {
+  title: string;
+  status: 'open' | 'closed' | 'resolved';
+}
+
+interface IEditAnnouncementRequest extends ICreateAnnouncementRequest {
+  id?: string;
+}
+
+interface IEditFeatureRequest extends ICreateFeatureRequest {
+  id?: string;
+}

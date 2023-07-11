@@ -120,13 +120,13 @@ const ViewHabit = () => {
             onClick={() => setIsConfirmFinishModalOpen(true)}
             className="mr-2 flex cursor-pointer items-center rounded-lg border bg-white p-2 text-xs font-medium text-gray-600 shadow-sm hover:bg-gray-50"
           >
-            <CloseIcon className="mr-1 text-base" /> Finish habit
+            <CloseIcon className="mr-1 text-base" /> Finish
           </div>
           <div
             onClick={() => setIsConfirmModalOpen(true)}
             className="flex cursor-pointer items-center rounded-lg border bg-white p-2 text-xs font-medium text-red-600 shadow-sm hover:bg-gray-50"
           >
-            <RemoveIcon className="mr-1 text-base" /> Delete habit
+            <RemoveIcon className="mr-1 text-base" /> Delete
           </div>
         </div>
       </div>

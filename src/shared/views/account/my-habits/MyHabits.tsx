@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AddIcon from '@/shared/components/ui/icons/AddIcon';
@@ -9,7 +9,6 @@ import trackEvent from '@/shared/utils/ga-tracking';
 import Habit from './components/Habit';
 
 const MyHabits = () => {
-  const queryClient = useQueryClient();
   const { data: habits } = useQuery([EQueryKeys.Habits], fetchHabits);
   const [currentTab, setCurrentTab] = useState('open');
 
