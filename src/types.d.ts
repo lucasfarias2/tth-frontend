@@ -98,9 +98,9 @@ declare global {
     id: string;
     title: string;
     content: string;
-    status: 'open' | 'closed' | 'resolved';
+    status: TTHTicketStatus;
     sender: string;
-    type: 'email' | 'web';
+    type: TTHTicketType;
     creation_date: string;
     updated_date: string;
   }
@@ -109,16 +109,22 @@ declare global {
     id: string;
     title: string;
     content: string;
-    type: 'alert' | 'info';
+    type: TTHAnnouncementType;
     starting_date: string;
     end_date: string;
-    status: 'ON' | 'OFF';
+    status: TTHAnnouncementStatus;
   }
+
+  export type TTHTicketStatus = 'open' | 'closed' | 'resolved';
+  export type TTHTicketType = 'email' | 'web';
+  export type TTHAnnouncementType = 'alert' | 'info';
+  export type TTHAnnouncementStatus = 'ON' | 'OFF';
+  export type TTHFeatureStatus = 'ontrack' | 'live';
 
   export interface TTHFeature {
     id: string;
     title: string;
-    status: 'ontrack' | 'live';
+    status: TTHFeatureStatus;
     creation_date: string;
     updated_date: string;
   }

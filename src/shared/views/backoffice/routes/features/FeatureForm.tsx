@@ -1,9 +1,12 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import FormInput from '@/shared/components/ui/input/FormInput';
+import FormSelect from '@/shared/components/ui/select/FormSelect';
 
 interface IFormData {
   title: string;
+  status?: TTHFeatureStatus;
+  id?: string;
 }
 
 const FeatureForm = ({
@@ -20,10 +23,11 @@ const FeatureForm = ({
   } = useForm<IFormData>({ defaultValues: initialValues });
 
   const internalOnSubmit: SubmitHandler<IFormData> = data => {
-    const { title } = data;
+    const { title, status } = data;
 
     onSubmit({
       title,
+      status,
     });
   };
 
@@ -37,6 +41,19 @@ const FeatureForm = ({
           control={control}
           errors={errors}
           inputProps={{ type: 'text', placeholder: 'Title of the feature (shown to users)' }}
+        />
+
+        <FormSelect
+          name="status"
+          label="Status"
+          placeholder="Select a status"
+          options={[
+            { id: 'ontrack', name: 'On track' },
+            { id: 'live', name: 'Live' },
+          ]}
+          errors={errors}
+          control={control}
+          required
         />
       </div>
 

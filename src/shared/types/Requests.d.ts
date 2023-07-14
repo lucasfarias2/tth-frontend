@@ -36,21 +36,20 @@ interface IUpdateUserRequest {
 
 interface IEditTicketRequest {
   id?: string;
-  status: 'open' | 'closed' | 'resolved';
+  status: TTHTicketStatus;
 }
 
 interface ICreateAnnouncementRequest {
   title: string;
   content: string;
-  type: 'alert' | 'info';
+  type: TTHAnnouncementType;
   starting_date: string;
   end_date: string;
-  status: 'ontrack' | 'live';
 }
 
 interface ICreateFeatureRequest {
   title: string;
-  status: 'open' | 'closed' | 'resolved';
+  status?: TTHFeatureStatus;
 }
 
 interface IEditAnnouncementRequest extends ICreateAnnouncementRequest {
