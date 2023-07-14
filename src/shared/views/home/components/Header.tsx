@@ -3,7 +3,7 @@ import trackEvent from '@/shared/utils/ga-tracking';
 const Header = ({ device }: { device: IDevice }) => {
   return (
     <div className="flex items-center justify-between bg-white py-2 md:h-[470px] md:py-0 md:pl-16 2xl:px-48">
-      <div className="flex h-full max-w-2xl flex-col items-center justify-center text-center md:items-start md:text-left">
+      <div className="flex h-full max-w-2xl flex-col items-center justify-center text-center md:items-start md:text-left 2xl:max-w-7xl">
         <Announcements />
         <Title device={device} />
         <Actions />
@@ -13,7 +13,7 @@ const Header = ({ device }: { device: IDevice }) => {
           <img
             src="https://i.imgur.com/RI7AjRn.png"
             alt="App Screenshot"
-            className="max-h-none -right-3/2 absolute top-12 ml-4 w-[900px] max-w-none rounded-2xl border-8 border-neutral-800 shadow-lg"
+            className="max-h-none -right-3/2 absolute top-12 ml-4 w-[900px] max-w-none rounded-2xl border-8 border-neutral-800 shadow-lg xl:w-[1200px]"
           />
         </div>
       )}
