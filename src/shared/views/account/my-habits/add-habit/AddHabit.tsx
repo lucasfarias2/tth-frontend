@@ -57,7 +57,7 @@ const AddHabit = () => {
     });
   };
 
-  const fullScreenClasses = device.type === 'mobile' ? 'bg-gray-50 fixed top-0 overflow-y-scroll' : '';
+  const fullScreenClasses = device.type === 'mobile' ? 'h-full bg-gray-50 fixed top-0 overflow-y-scroll' : '';
 
   return (
     <div className={`p-6 ${fullScreenClasses}`}>
