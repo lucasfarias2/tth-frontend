@@ -9,9 +9,10 @@ import PageBack from '@/shared/components/ui/page-back/PageBack';
 import PageTitle from '@/shared/components/ui/page-title/PageTitle';
 import { DeviceContext } from '@/shared/contexts/DeviceContext';
 import deleteAnnouncement from '@/shared/queries/backoffice/delete-announcement';
+import editAnnouncement from '@/shared/queries/backoffice/edit-announcement';
 import fetchAnnouncementById from '@/shared/queries/backoffice/fetch-announcement-by-id';
 import EQueryKeys from '@/shared/queries/query-keys';
-import { formatDate } from '@/shared/utils/date';
+import AnnouncementForm from './AnnouncementForm';
 
 const ViewAnnouncement = () => {
   const { id } = useParams();
@@ -21,6 +22,29 @@ const ViewAnnouncement = () => {
   const navigate = useNavigate();
   const { showToast } = useToast();
   const queryClient = useQueryClient();
+
+  const editAnnouncementMutation = useMutation(editAnnouncement, {
+    onMutate: () => {
+      // loading
+    },
+    onError: () => {
+      showToast(
+        'Error while editing announcement',
+        'error',
+        'There has been an error while editing announcement, please try again later.'
+      );
+    },
+    onSuccess: () => {
+      navigate('/backoffice/announcements');
+
+      queryClient.invalidateQueries([EQueryKeys.Announcements]);
+      queryClient.invalidateQueries([EQueryKeys.Announcement, id]);
+      showToast('Announcement updated successfully', 'success');
+    },
+    onSettled: () => {
+      // off loading
+    },
+  });
 
   const deleteAnnouncementMutation = useMutation(deleteAnnouncement, {
     onMutate: () => {
@@ -43,6 +67,19 @@ const ViewAnnouncement = () => {
     deleteAnnouncementMutation.mutate(id);
   };
 
+  const onSubmit = (data: IFormData) => {
+    const { title, content, type, date } = data;
+
+    editAnnouncementMutation.mutate({
+      id,
+      title,
+      content,
+      type,
+      starting_date: date.startDate,
+      end_date: date.endDate,
+    });
+  };
+
   const fullScreenClasses = device.type === 'mobile' ? 'h-full bg-gray-50 fixed top-0 w-full' : '';
 
   return (
@@ -53,6 +90,13 @@ const ViewAnnouncement = () => {
           <>
             <div className="flex items-center justify-center">
               <PageTitle title={announcement.title} subtitle={`Type: ${announcement.type}`} />
+              <div className="ml-4">
+                {announcement.status === 'ON' ? (
+                  <Badge color="green" text="Active" size="xs" />
+                ) : (
+                  <Badge color="red" text="Inactive" size="xs" />
+                )}
+              </div>
             </div>
           </>
         )}
@@ -68,14 +112,15 @@ const ViewAnnouncement = () => {
 
       {announcement && (
         <div className="mb-2 rounded-lg border bg-white p-4 shadow-sm">
-          {announcement.status === 'ON' ? (
-            <Badge color="green" text="On" size="xs" />
-          ) : (
-            <Badge color="red" text="Off" size="xs" />
-          )}
-          <p className="text-xs text-black/50">Starts at: {formatDate(announcement.starting_date)}</p>
-          <p className="text-xs text-black/50">Ends by: {formatDate(announcement.end_date)}</p>
-          <p className="mt-4">{announcement.content}</p>
+          <AnnouncementForm
+            initialValues={{
+              title: announcement.title,
+              content: announcement.content,
+              type: announcement.type,
+              date: { startDate: announcement.starting_date, endDate: announcement.end_date },
+            }}
+            onSubmit={onSubmit}
+          />
         </div>
       )}
 
@@ -91,5 +136,16 @@ const ViewAnnouncement = () => {
     </div>
   );
 };
+
+interface IFormData {
+  title: string;
+  content: string;
+  type: TTHAnnouncementType;
+  date: {
+    startDate: string;
+    endDate: string;
+  };
+  id?: string;
+}
 
 export default ViewAnnouncement;

@@ -20,7 +20,7 @@ const AdminPanel = () => {
   return (
     <div className="z-10 flex h-full w-[280px] flex-col justify-between border-r-2 border-white/90  bg-black/80 px-4 pt-4 shadow">
       <div>
-        <div className="border-b-2 border-white/10 px-2 pb-4">
+        <div className="border-b border-white/10 px-2 pb-4">
           <Logo dark hideTag />
         </div>
         <div className="py-4">
@@ -37,7 +37,7 @@ const AdminPanel = () => {
           <AdminPanelLink to="/account" Icon={ExternalLinkIcon} label="Account" external />
         </div>
 
-        <div className="flex items-center justify-between border-t-2 border-white/10 px-3 py-2">
+        <div className="flex items-center justify-between border-t border-white/10 px-3 py-2">
           {user && (
             <a href="/account/" className="mr-4 flex items-center py-2 text-sm">
               <UserIcon className="mr-3 text-2xl text-white/50" />

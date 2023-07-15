@@ -61,9 +61,9 @@ const Announcements = () => {
                 <div className="text-[10px] text-gray-500 md:ml-2 md:text-right">
                   <span className="inline-block">
                     {announcement.status === 'ON' ? (
-                      <Badge color="green" text="On" size="xs" />
+                      <Badge color="green" text="Active" size="xs" />
                     ) : (
-                      <Badge color="red" text="Off" size="xs" />
+                      <Badge color="red" text="Inactive" size="xs" />
                     )}
                   </span>
                   <div>On until: {formatDate(announcement.end_date)}</div>
