@@ -196,7 +196,7 @@ const deleteAnnouncement = async (req: Request, res: Response) => {
   }
 
   try {
-    const { data } = await axios.delete(`${process.env.BACKEND_URL}/backoffice/announcement/${req.params.id}`, {
+    const { data } = await axios.delete(`${process.env.BACKEND_URL}/backoffice/announcements/${req.params.id}`, {
       headers: { Authorization: `Bearer ${session}` },
     });
 

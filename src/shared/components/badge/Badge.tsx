@@ -2,7 +2,7 @@ import getColorClasses from '@/shared/utils/get-color-classes';
 
 const Badge = ({ text, size = 'md', color = 'gray' }: IProps) => {
   const colorClasses = getColorClasses(color);
-  const textColorClass = colorClasses.textColor;
+  const textColorClass = colorClasses.textColorDark;
   const bgColorClass = colorClasses.bgLightColor;
   const borderColorClass = colorClasses.borderColor;
 
@@ -17,7 +17,9 @@ const Badge = ({ text, size = 'md', color = 'gray' }: IProps) => {
   }
 
   return (
-    <div className={`mb-1 rounded-lg border ${textColorClass} ${bgColorClass} p-1 ${sizeClass} ${borderColorClass}`}>
+    <div
+      className={`mb-1 inline-block rounded-lg border ${textColorClass} ${bgColorClass} p-1 ${sizeClass} ${borderColorClass}`}
+    >
       {text}
     </div>
   );

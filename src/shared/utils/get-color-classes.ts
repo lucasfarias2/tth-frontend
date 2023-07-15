@@ -1,5 +1,5 @@
 function getColorClasses(color: string) {
-  let textColor, fillColor, bgColor, hex400, borderColor, bgLightColor;
+  let textColor, fillColor, bgColor, hex400, borderColor, bgLightColor, textColorDark;
   switch (color) {
     case 'red':
       textColor = 'text-red-400';
@@ -8,6 +8,7 @@ function getColorClasses(color: string) {
       hex400 = '#f87171'; // for 400
       borderColor = 'border-red-200';
       bgLightColor = 'bg-red-100';
+      textColorDark = 'text-red-500';
       break;
     case 'blue':
       textColor = 'text-blue-400';
@@ -16,6 +17,7 @@ function getColorClasses(color: string) {
       hex400 = '#60a5fa'; // for 400
       borderColor = 'border-blue-200';
       bgLightColor = 'bg-blue-100';
+      textColorDark = 'text-blue-500';
       break;
     case 'cyan':
       textColor = 'text-cyan-400';
@@ -24,6 +26,7 @@ function getColorClasses(color: string) {
       hex400 = '#22d3ee'; // for 400
       borderColor = 'border-cyan-200';
       bgLightColor = 'bg-cyan-100';
+      textColorDark = 'text-cyan-500';
       break;
     case 'yellow':
       textColor = 'text-yellow-400';
@@ -32,6 +35,7 @@ function getColorClasses(color: string) {
       hex400 = '#facc15'; // for 400
       borderColor = 'border-yellow-200';
       bgLightColor = 'bg-yellow-100';
+      textColorDark = 'text-yellow-500';
       break;
     case 'orange':
       textColor = 'text-orange-400';
@@ -40,6 +44,7 @@ function getColorClasses(color: string) {
       hex400 = '#fb923c'; // for 400
       borderColor = 'border-orange-200';
       bgLightColor = 'bg-orange-100';
+      textColorDark = 'text-orange-500';
       break;
     case 'pink':
       textColor = 'text-pink-400';
@@ -48,6 +53,7 @@ function getColorClasses(color: string) {
       hex400 = '#f472b6'; // for 400
       borderColor = 'border-pink-200';
       bgLightColor = 'bg-pink-100';
+      textColorDark = 'text-pink-500';
       break;
     case 'purple':
       textColor = 'text-purple-400';
@@ -56,6 +62,7 @@ function getColorClasses(color: string) {
       hex400 = '#c084fc'; // for 400
       borderColor = 'border-purple-200';
       bgLightColor = 'bg-purple-100';
+      textColorDark = 'text-purple-500';
       break;
     case 'indigo':
       textColor = 'text-indigo-400';
@@ -64,6 +71,7 @@ function getColorClasses(color: string) {
       hex400 = '#818cf8'; // for 400
       borderColor = 'border-indigo-200';
       bgLightColor = 'bg-indigo-100';
+      textColorDark = 'text-indigo-500';
       break;
     case 'green':
       textColor = 'text-green-400';
@@ -72,6 +80,7 @@ function getColorClasses(color: string) {
       hex400 = '#4ade80'; // for 400
       borderColor = 'border-green-200';
       bgLightColor = 'bg-green-100';
+      textColorDark = 'text-green-500';
       break;
     case 'teal':
       textColor = 'text-teal-400';
@@ -80,6 +89,7 @@ function getColorClasses(color: string) {
       hex400 = '#2dd4bf'; // for 400
       borderColor = 'border-teal-200';
       bgLightColor = 'bg-teal-100';
+      textColorDark = 'text-teal-500';
       break;
     case 'gray':
       textColor = 'text-gray-400';
@@ -88,6 +98,7 @@ function getColorClasses(color: string) {
       hex400 = '#9ca3af'; // for 400
       borderColor = 'border-gray-200';
       bgLightColor = 'bg-gray-100';
+      textColorDark = 'text-gray-500';
       break;
     case 'emerald':
       textColor = 'text-emerald-400';
@@ -96,6 +107,7 @@ function getColorClasses(color: string) {
       hex400 = '#34d399'; // for 400
       borderColor = 'border-emerald-200';
       bgLightColor = 'bg-emerald-100';
+      textColorDark = 'text-emerald-500';
       break;
     case 'rose':
       textColor = 'text-rose-400';
@@ -104,6 +116,7 @@ function getColorClasses(color: string) {
       hex400 = '#fb7185'; // for 400
       borderColor = 'border-rose-200';
       bgLightColor = 'bg-rose-100';
+      textColorDark = 'text-rose-500';
       break;
     case 'sky':
       textColor = 'text-sky-400';
@@ -112,6 +125,7 @@ function getColorClasses(color: string) {
       hex400 = '#38bdf8'; // for 400
       borderColor = 'border-sky-200';
       bgLightColor = 'bg-sky-100';
+      textColorDark = 'text-sky-500';
       break;
     case 'amber':
       textColor = 'text-amber-400';
@@ -120,6 +134,7 @@ function getColorClasses(color: string) {
       hex400 = '#fbbf24'; // for 400
       borderColor = 'border-amber-200';
       bgLightColor = 'bg-amber-100';
+      textColorDark = 'text-amber-500';
       break;
     default:
       textColor = 'text-neutral-400';
@@ -128,9 +143,10 @@ function getColorClasses(color: string) {
       hex400 = '#a3a3a3'; // for 400
       borderColor = 'border-neutral-200';
       bgLightColor = 'bg-blue-100';
+      textColorDark = 'text-neutral-500';
       break;
   }
-  return { textColor, fillColor, bgColor, hex400, borderColor, bgLightColor };
+  return { textColor, fillColor, bgColor, hex400, borderColor, bgLightColor, textColorDark };
 }
 
 export default getColorClasses;

@@ -90,7 +90,7 @@ const ViewFeature = () => {
               <PageTitle title={feature.title} subtitle={`Updated at: ${formatDate(feature.updated_date)}`} />
             </div>
           </>
-        )}{' '}
+        )}
         <div className="mt-4 flex md:mt-0">
           <div
             onClick={() => setIsConfirmModalOpen(true)}

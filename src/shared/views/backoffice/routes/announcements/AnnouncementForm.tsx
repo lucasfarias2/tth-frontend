@@ -1,11 +1,18 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import FormDatePicker from '@/shared/components/ui/date-picker/FormDatePicker';
 import FormInput from '@/shared/components/ui/input/FormInput';
+import FormSelect from '@/shared/components/ui/select/FormSelect';
 import FormTextArea from '@/shared/components/ui/text-field/FormTextArea';
 
 interface IFormData {
   title: string;
   content: string;
+  type: TTHAnnouncementType;
+  date: {
+    startDate: string;
+    endDate: string;
+  };
 }
 
 const AnnouncementForm = ({
@@ -22,11 +29,13 @@ const AnnouncementForm = ({
   } = useForm<IFormData>({ defaultValues: initialValues });
 
   const internalOnSubmit: SubmitHandler<IFormData> = data => {
-    const { title, content } = data;
+    const { title, content, type, date } = data;
 
     onSubmit({
       title,
       content,
+      type,
+      date,
     });
   };
 
@@ -50,6 +59,21 @@ const AnnouncementForm = ({
           errors={errors}
           inputProps={{ type: 'text', placeholder: 'Write the text here...', autoComplete: 'content' }}
         />
+
+        <FormSelect
+          name="type"
+          label="Type"
+          placeholder="Select a type"
+          options={[
+            { id: 'alert', name: 'Alert' },
+            { id: 'info', name: 'Information' },
+          ]}
+          errors={errors}
+          control={control}
+          required
+        />
+
+        <FormDatePicker name="date" label="Date range" rules={{ required: true }} control={control} errors={errors} />
       </div>
 
       <Link
