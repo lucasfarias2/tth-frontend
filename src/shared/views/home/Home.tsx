@@ -4,7 +4,7 @@ import Page from '@/shared/components/page/Page';
 import trackEvent from '@/shared/utils/ga-tracking';
 import Features from './components/Features';
 import Header from './components/Header';
-import Steps from './components/Steps'
+import Steps from './components/Steps';
 import ContactUs from './contact-us/ContactUs';
 import Login from './login/Login';
 import Roadmap from './roadmap/Roadmap';
