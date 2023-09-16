@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700');
-@import url('https://fonts.googleapis.com/css2?family=Signika:wght@400;500;600&display=swap');
+/* Load pack UI */
 
 @tailwind base;
 @tailwind components;
@@ -12,63 +11,5 @@
     margin: 0;
     padding: 0;
     background-color: #fafafa;
-    /* background-color: #fff; */
   }
-}
-
-@layer components {
-  .border,
-  .border-2,
-  .border-r,
-  .border-l,
-  .border-t,
-  .border-b,
-  .border-x,
-  .border-y {
-    @apply border-gray-200;
-  }
-}
-
-* {
-  outline-color: #fb7185;
-}
-
-.with-navbar-max-height-mobile {
-  height: calc(100vh - 142px);
-}
-
-.with-navbar-max-height-desktop {
-  height: calc(100vh - 164px);
-}
-
-.without-navbar {
-  height: calc(100vh);
-}
-
-.page {
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
-.logo {
-  font-family: Signika, sans-serif;
-  font-weight: 500;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: Signika, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
-}
-
-h3,
-h4,
-h5 {
-  font-weight: 500;
-}
-
-h1, h2 {
-  font-weight: 600;
 }
