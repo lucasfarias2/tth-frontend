@@ -10,13 +10,13 @@
     "url": "git+https://github.com/trackthehabit/tth-frontend.git"
   },
   "scripts": {
-    "start": "NODE_ENV=production node ./dist/src/index.js",
-    "dev": "NODE_ENV=development nodemon ./src/index.ts",
+    "start": "packlify-server",
+    "dev": "packlify-dev-server",
     "build": "npm run build:react && npm run build:server",
-    "build:server": "tsc -p tsconfig.server.json",
+    "build:server": "packlify-build-server",
     "build:react": "npm run build:react:client && npm run build:react:ssr",
-    "build:react:ssr": "vite build --config ./vite.config.ssr.ts",
-    "build:react:client": "vite build --config ./vite.config.ts",
+    "build:react:ssr": "packlify-build-ssr",
+    "build:react:client": "packlify-build-client",
     "format": "packlify-format-write",
     "format:check": "packlify-format-check",
     "lint": "packlify-lint",
@@ -48,7 +48,8 @@
     "serve-static": "^1.15.0"
   },
   "devDependencies": {
-    "@packlify/config-format": "0.0.13-alpha.0",
+    "@packlify/config-build": "0.1.0-alpha.0",
+    "@packlify/config-format": "^0.0.15",
     "@swc/core": "^1.3.57",
     "@swc/helpers": "^0.5.1",
     "@testing-library/react": "^13.4.0",
@@ -64,7 +65,7 @@
     "@vitest/coverage-c8": "^0.27.1",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.48.0",
-    "eslint-config-packlify": "^0.0.4",
+    "eslint-config-packlify": "0.1.0-alpha.0",
     "happy-dom": "^8.1.3",
     "nodemon": "^2.0.22",
     "postcss": "^8.4.21",
@@ -74,8 +75,8 @@
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.1.2",
     "typescript": "^4.9.4",
-    "vite": "^4.0.4",
-    "vite-tsconfig-paths": "^4.0.3",
+    "vite": "^4.4.9",
+    "vite-tsconfig-paths": "^4.2.0",
     "vitest": "^0.27.1",
     "vitest-fetch-mock": "^0.2.1"
   },
