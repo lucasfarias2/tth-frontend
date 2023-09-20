@@ -1,6 +1,5 @@
 import axios from 'axios';
 import type { NextFunction, Request, Response } from 'express';
-import EQueryKeys from '../../shared/queries/query-keys.js';
 
 const getCurrentUser = async (req: Request, res: Response, next: NextFunction) => {
   if (!req.cookies.session) {
@@ -16,7 +15,6 @@ const getCurrentUser = async (req: Request, res: Response, next: NextFunction) =
     const { id, first_name, last_name, email, is_staff, is_superuser, date_joined, last_login } = data as TTHUser;
 
     req.user = { id, first_name, last_name, email, is_staff, is_superuser, date_joined, last_login };
-    res.queries[EQueryKeys.User] = req.user;
   } catch (e) {
     console.error('Error: Fetching data from current user', e);
   } finally {

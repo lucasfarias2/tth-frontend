@@ -7,4 +7,7 @@ export default defineConfig({
     environment: 'happy-dom',
     setupFiles: ['./src/config/setupVitest.ts'],
   },
+  optimizeDeps: {
+    exclude: ['fsevents'],
+  },
 });

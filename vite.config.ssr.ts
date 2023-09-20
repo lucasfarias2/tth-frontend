@@ -7,14 +7,8 @@ export default defineConfig({
       name: 'home',
       path: '/src/server/entries/home.tsx',
     },
-    {
-      name: 'account',
-      path: '/src/server/entries/account.tsx',
-    },
-
-    {
-      name: 'backoffice',
-      path: '/src/server/entries/backoffice.tsx',
-    },
   ]),
+  optimizeDeps: {
+    exclude: ['fsevents'],
+  },
 });

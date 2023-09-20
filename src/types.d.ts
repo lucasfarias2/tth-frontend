@@ -9,7 +9,6 @@ declare global {
 
     interface Response {
       renderView: (pageName: string, props?: unknown) => void;
-      loadQueryKeys: (queryKeys: string[]) => Response;
       queries: Record<string, unknown>;
       isProd?: boolean;
       vite: ViteDevServer;
