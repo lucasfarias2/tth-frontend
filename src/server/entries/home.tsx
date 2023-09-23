@@ -1,4 +1,4 @@
-import { renderComponent } from '@packlify/server';
+import { renderComponent } from '../renderComponent';
 import Home from '@/shared/views/Home';
 
 // import { renderComponent } from './renderComponent';
