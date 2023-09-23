@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 
 (async () => {
   try {
-    const app = await createServer();
+    const app = await createServer()
 
     app.use(express.json());
     app.use(cookieParser());

@@ -19,6 +19,5 @@
   "exclude": ["node_modules", "dist"],
   "ts-node": {
     "esm": true,
-    "swc": true
   }
 }
