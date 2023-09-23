@@ -18,7 +18,7 @@ declare global {
     device?: IDevice;
   }
 
-  export interface IInitialState {} 
+  export interface IInitialState {}
 
   export interface IViewProps {
     initialState: IInitialState;

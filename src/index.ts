@@ -1,4 +1,4 @@
-import { createServer } from '@packlify/server';
+import { createServer } from '@packlify/core/server';
 import cookieParser from 'cookie-parser';
 import { config } from 'dotenv';
 import express from 'express';
@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 
 (async () => {
   try {
-    const app = await createServer()
+    const app = await createServer();
 
     app.use(express.json());
     app.use(cookieParser());

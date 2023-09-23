@@ -11,9 +11,8 @@
     "isolatedModules": true,
     "paths": {
       "@/*": ["src/*"],
-      "@/components/*": ["src/shared/components/*"]
-    },
-    "types": ["react", "react-dom"]
+      "@/components/*": ["src/shared/components/*"],
+    }
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist"],

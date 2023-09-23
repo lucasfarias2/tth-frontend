@@ -1,4 +1,4 @@
-import { renderComponent } from '../renderComponent';
+import { renderComponent } from '@packlify/core/server/renderComponent.js';
 import Home from '@/shared/views/Home';
 
 export function render(url: string, props: IInitialState) {

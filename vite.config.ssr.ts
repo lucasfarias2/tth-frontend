@@ -1,14 +1,11 @@
-import { viteSsrConfig } from '@packlify/config-build';
+import { viteConfigSsr } from '@packlify/core/config';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  ...viteSsrConfig([
+  ...viteConfigSsr([
     {
       name: 'home',
       path: '/src/server/entries/home.tsx',
     },
   ]),
-  optimizeDeps: {
-    exclude: ['fsevents'],
-  },
 });
