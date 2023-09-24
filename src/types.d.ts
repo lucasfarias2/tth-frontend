@@ -20,5 +20,3 @@ declare global {
     device: IDevice;
   }
 }
-
-export {};
