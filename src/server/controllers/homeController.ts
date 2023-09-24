@@ -1,4 +1,4 @@
-import type { PacklifyServerRequest, PacklifyServerResponse } from '@packlify/core/types';
+import type { PacklifyServerRequest, PacklifyServerResponse } from '@packlify/core';
 import type { NextFunction } from 'express';
 
 const fetch = async (req: PacklifyServerRequest, res: PacklifyServerResponse, next: NextFunction) => {

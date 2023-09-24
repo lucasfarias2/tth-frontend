@@ -1,6 +1,6 @@
 import apiRouter from './api/router.js';
 import appRouter from './server/router.js';
-import { createServer } from '@packlify/core/server';
+import { createServer } from '@packlify/core';
 import cookieParser from 'cookie-parser';
 import { config } from 'dotenv';
 import express from 'express';

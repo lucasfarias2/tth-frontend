@@ -1,4 +1,4 @@
-import { viteConfigClient } from '@packlify/core/config';
+import { viteConfigClient } from '@packlify/config-build';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
