@@ -1,16 +1,9 @@
-import {} from './';
+import type { TDeviceType } from '@packlify/core';
 
 declare global {
   export interface IDevice {
     type?: TDeviceType;
   }
-
-  type TDeviceType = 'mobile' | 'desktop';
-
-  export type IWindow = typeof window & {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    __PRELOADED_STATE__: any;
-  };
 
   export interface IComponent {
     children?: React.ReactNode;
@@ -18,10 +11,14 @@ declare global {
     device?: IDevice;
   }
 
-  export interface IInitialState {}
+  export interface IInitialState {
+    [key: string]: unknown;
+  }
 
   export interface IViewProps {
     initialState: IInitialState;
     device: IDevice;
   }
 }
+
+export {};
